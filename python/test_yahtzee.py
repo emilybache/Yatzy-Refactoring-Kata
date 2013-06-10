@@ -61,19 +61,21 @@ def test_one_pair():
 
 def test_two_Pair():
         assert 16 == Yahtzee.two_pair(3,3,5,4,5)
-        assert 0 == Yahtzee.two_pair(3,3,5,5,5)
+        assert 18 == Yahtzee.two_pair(3,3,6,6,6)
+        assert 0 == Yahtzee.two_pair(3,3,6,5,4)
   
 
 def test_three_of_a_kind():
         assert 9 == Yahtzee.three_of_a_kind(3,3,3,4,5)
         assert 15 == Yahtzee.three_of_a_kind(5,3,5,4,5)
-        assert 0 == Yahtzee.three_of_a_kind(3,3,3,3,5)
+        assert 9 == Yahtzee.three_of_a_kind(3,3,3,3,5)
   
 
 def test_four_of_a_knd():
         assert 12 == Yahtzee.four_of_a_kind(3,3,3,3,5)
         assert 20 == Yahtzee.four_of_a_kind(5,5,5,4,5)
-        assert 0 == Yahtzee.three_of_a_kind(3,3,3,3,3)
+        assert 12 == Yahtzee.four_of_a_kind(3,3,3,3,3)
+        assert 0  == Yahtzee.four_of_a_kind(3,3,3,2,1)
   
 
 def test_smallStraight():

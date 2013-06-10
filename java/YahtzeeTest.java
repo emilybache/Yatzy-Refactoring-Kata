@@ -70,7 +70,7 @@ public class YahtzeeTest {
     @Test
     public void two_Pair() {
         assertEquals(16, Yahtzee.two_pair(3,3,5,4,5));
-        assertEquals(0, Yahtzee.two_pair(3,3,5,5,5));
+        assertEquals(16, Yahtzee.two_pair(3,3,5,5,5));
     }
 
     @Test
@@ -78,14 +78,14 @@ public class YahtzeeTest {
     {
         assertEquals(9, Yahtzee.three_of_a_kind(3,3,3,4,5));
         assertEquals(15, Yahtzee.three_of_a_kind(5,3,5,4,5));
-        assertEquals(0, Yahtzee.three_of_a_kind(3,3,3,3,5));
+        assertEquals(9, Yahtzee.three_of_a_kind(3,3,3,3,5));
     }
 
     @Test
     public void four_of_a_knd() {
         assertEquals(12, Yahtzee.four_of_a_kind(3,3,3,3,5));
         assertEquals(20, Yahtzee.four_of_a_kind(5,5,5,4,5));
-        assertEquals(0, Yahtzee.three_of_a_kind(3,3,3,3,3));
+        assertEquals(9, Yahtzee.three_of_a_kind(3,3,3,3,3));
     }
 
     @Test

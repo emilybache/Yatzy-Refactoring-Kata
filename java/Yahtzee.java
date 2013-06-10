@@ -107,7 +107,7 @@ public class Yahtzee {
         counts[d5-1]++;
         int at;
         for (at = 0; at != 6; at++)
-            if (counts[6-at-1] == 2)
+            if (counts[6-at-1] >= 2)
                 return (6-at)*2;
         return 0;
     }
@@ -123,7 +123,7 @@ public class Yahtzee {
         int n = 0;
         int score = 0;
         for (int i = 0; i < 6; i += 1)
-            if (counts[6-i-1] == 2) {
+            if (counts[6-i-1] >= 2) {
                 n++;
                 score += (6-i);
             }        
@@ -143,7 +143,7 @@ public class Yahtzee {
         tallies[d4-1]++;
         tallies[d5-1]++;
         for (int i = 0; i < 6; i++)
-            if (tallies[i] == 4)
+            if (tallies[i] >= 4)
                 return (i+1) * 4;
         return 0;
     }
@@ -158,7 +158,7 @@ public class Yahtzee {
         t[d4-1]++;
         t[d5-1]++;
         for (int i = 0; i < 6; i++)
-            if (t[i] == 3)
+            if (t[i] >= 3)
                 return (i+1) * 3;
         return 0;
     }

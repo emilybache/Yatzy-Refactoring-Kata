@@ -132,7 +132,7 @@ class Yahtzee
     counts[d5-1] += 1
     at = 0
     (0...6).each do |at|
-      if (counts[6-at-1] == 2)
+      if (counts[6-at-1] >= 2)
         return (6-at)*2
       end
     end
@@ -149,7 +149,7 @@ class Yahtzee
     n = 0
     score = 0
     for i in Array 0..5
-      if (counts[6-i-1] == 2)
+      if (counts[6-i-1] >= 2)
         n = n+1
         score += (6-i)
       end
@@ -169,7 +169,7 @@ class Yahtzee
     tallies[d4-1] += 1
     tallies[d5-1] += 1
     for i in (0..6)
-      if (tallies[i] == 4)
+      if (tallies[i] >= 4)
         return (i+1) * 4
       end
     end
@@ -184,7 +184,7 @@ class Yahtzee
     t[d4-1] += 1
     t[d5-1] += 1
     for i in [0,1,2,3,4,5]
-      if (t[i] == 3)
+      if (t[i] >= 3)
         return (i+1) * 3
       end
     end

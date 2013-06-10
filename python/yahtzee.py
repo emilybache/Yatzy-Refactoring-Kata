@@ -125,7 +125,7 @@ class Yahtzee:
         n = 0
         score = 0
         for i in range(6):
-            if (counts[6-i-1] == 2):
+            if (counts[6-i-1] >= 2):
                 n = n+1
                 score += (6-i)
                     
@@ -143,7 +143,7 @@ class Yahtzee:
         tallies[d4-1] += 1
         tallies[d5-1] += 1
         for i in range(6):
-            if (tallies[i] == 4):
+            if (tallies[i] >= 4):
                 return (i+1) * 4
         return 0
     
@@ -157,7 +157,7 @@ class Yahtzee:
         t[d4-1] += 1
         t[d5-1] += 1
         for i in range(6):
-            if (t[i] == 3):
+            if (t[i] >= 3):
                 return (i+1) * 3
         return 0
     

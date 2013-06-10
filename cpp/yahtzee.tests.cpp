@@ -80,21 +80,21 @@ static void one_pair()
 static void two_Pair() 
 {
     assert(16 == Yahtzee().TwoPair(3,3,5,4,5));
-    assert(0 == Yahtzee().TwoPair(3,3,5,5,5));
+    assert(16 == Yahtzee().TwoPair(3,3,5,5,5));
 }
 
 static void three_of_a_kind() 
 {
     assert(9 == Yahtzee().ThreeOfAKind(3,3,3,4,5));
     assert(15 == Yahtzee().ThreeOfAKind(5,3,5,4,5));
-    assert(0 == Yahtzee::ThreeOfAKind(3,3,3,3,5));
+    assert(9 == Yahtzee::ThreeOfAKind(3,3,3,3,5));
 }
 
 static void four_of_a_knd() 
 {
     assert(12 == Yahtzee::FourOfAKind(3,3,3,3,5));
     assert(20 == Yahtzee::FourOfAKind(5,5,5,4,5));
-    assert(0  == Yahtzee::FourOfAKind(3,3,3,3,3));
+    assert(12  == Yahtzee::FourOfAKind(3,3,3,3,3));
 }
 
 static void smallStraight() 
