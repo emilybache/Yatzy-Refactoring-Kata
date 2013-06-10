@@ -15,11 +15,16 @@ The game of yahtzee is a simple dice game. Each player
 rolls five six-sided dice. They can re-roll some or all
 of the dice up to three times (including the original roll).
 
-For example, suppose a players rolls
+For example, suppose a players rolls:
+
     3,4,5,5,2
-They hold (-,-,5,5,-) and re-roll (3,4,-,-,2)
+    
+They hold (-,-,5,5,-) and re-roll (3,4,-,-,2):
+
     5,1,5,5,3
-They hold (5,-,5,5,-) and re-roll (-,1,-,-,3)
+
+They hold (5,-,5,5,-) and re-roll (-,1,-,-,3):
+
     5,6,5,5,2
 
 The player then places the roll in a category, such as ones,
@@ -109,7 +114,7 @@ When placed on "small straight", if the dice read
 
    1,2,3,4,5, 
    
-the player scores 15 (the sum of all the dice.
+the player scores 15 (the sum of all the dice).
 
 ### Large straight: 
 When placed on "large straight", if the dice read
