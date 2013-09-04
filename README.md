@@ -47,7 +47,7 @@ The game is NOT played by letting the computer choose the
 highest scoring category for a given roll.
   
 
-## Kata: Yahzee Categories and Scoring Rules
+## Kata: Yatzy Categories and Scoring Rules
 
 ### Chance: 
 The player scores the sum of all dice, no matter what they read.
