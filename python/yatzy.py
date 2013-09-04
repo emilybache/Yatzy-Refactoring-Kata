@@ -1,4 +1,4 @@
-class Yahtzee:
+class Yatzy:
 
     @staticmethod
     def chance(d1, d2, d3, d4, d5):
@@ -11,7 +11,7 @@ class Yahtzee:
         return total
 
     @staticmethod
-    def yahtzee(dice):
+    def yatzy(dice):
         counts = [0]*(len(dice)+1)
         for die in dice:
             counts[die-1] += 1

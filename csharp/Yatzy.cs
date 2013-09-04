@@ -1,4 +1,4 @@
-public class Yahtzee {
+public class Yatzy {
 
     public static int Chance(int d1, int d2, int d3, int d4, int d5)
     {
@@ -11,7 +11,7 @@ public class Yahtzee {
         return total;
     }
 
-    public static int yahtzee(params int[] dice)
+    public static int yatzy(params int[] dice)
     {
         int[] counts = new int[6];
         foreach (int die in dice)
@@ -56,7 +56,7 @@ public class Yahtzee {
     }
 
     protected int[] dice;
-    public Yahtzee(int d1, int d2, int d3, int d4, int _5)
+    public Yatzy(int d1, int d2, int d3, int d4, int _5)
     {
         dice = new int[5];
         dice[0] = d1;

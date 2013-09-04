@@ -1,4 +1,4 @@
-# Yahtzee Refactoring Kata
+# Yatzy Refactoring Kata
 
 This Refactoring Kata was designed by Jon Jagger and is available in his Cyber-Dojo. See [his blog post](http://jonjagger.blogspot.co.uk/2012/05/yahtzee-cyber-dojo-refactoring-in-java.html)
 
@@ -9,9 +9,9 @@ The other language translations have been contributed by:
 - Python: Emily Bache
 - Ruby: Kim Persson and Lennart Fridén
 
-## Kata: Yahtzee rules
+## Kata: Yatzy rules
 
-The game of yahtzee is a simple dice game. Each player
+The game of Yatzy is a simple dice game. Each player
 rolls five six-sided dice. They can re-roll some or all
 of the dice up to three times (including the original roll).
 
@@ -56,13 +56,13 @@ For example:
 -   1,1,3,3,6 placed on "chance" scores 14 (1+1+3+3+6)
 -   4,5,5,6,1 placed on "chance" scores 21 (4+5+5+6+1)  
 
-### Yahtzee: 
+### Yatzy: 
 If all dice have the same number,
 the player scores 50 points. 
 For example:
   
--   1,1,1,1,1 placed on "yahtzee" scores 50
--   1,1,1,2,1 placed on "yahtzee" scores 0
+-   1,1,1,1,1 placed on "yatzy" scores 50
+-   1,1,1,2,1 placed on "yatzy" scores 0
 
 ### Ones, Twos, Threes, Fours, Fives, Sixes: 
 The player scores the sum of the dice that reads one, 

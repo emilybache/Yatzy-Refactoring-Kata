@@ -1,4 +1,4 @@
-class Yahtzee
+class Yatzy
   def self.chance(d1, d2, d3, d4, d5)
     total = 0
     total += d1
@@ -9,7 +9,7 @@ class Yahtzee
     return total
   end
 
-  def self.yahtzee(dice)
+  def self.yatzy(dice)
     counts = [0]*(dice.length+1)
     for die in dice do
       counts[die-1] += 1

@@ -1,12 +1,12 @@
 #ifndef YAHTZEE_INCLUDED
 #define YATHZEE_INCLUDED
 
-class Yahtzee
+class Yatzy
 {
 public:
 
     static int Chance(int d1, int d2, int d3, int d4, int d5);
-    static int yahtzee(int dice[]);
+    static int yatzy(int dice[]);
     static int Ones(int d1, int d2, int d3, int d4, int d5);
     static int Twos(int d1, int d2, int d3, int d4, int d5);
     static int Threes(int d1, int d2, int d3, int d4, int d5);
@@ -14,8 +14,8 @@ public:
 protected:
     int * dice;
 public:
-    Yahtzee();
-    Yahtzee(int d1, int d2, int d3, int d4, int _5);
+    Yatzy();
+    Yatzy(int d1, int d2, int d3, int d4, int _5);
     int Fours();
     int Fives();
     int sixes();
