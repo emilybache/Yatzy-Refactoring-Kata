@@ -1,0 +1,9 @@
+{
+  "name": "yatzy-refactoring-kata",
+  "version": "0.0.1",
+  "description": "Code for a refactoring exercise about the game of Yatzy",
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "~1.17"
+  }
+}
