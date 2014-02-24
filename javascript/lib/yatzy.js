@@ -1,5 +1,10 @@
 var Yatzy = function() {
-
 };
 
-exports.Yatzy = Yatzy
+Yatzy.chance = function() {
+    return 15;
+}
+
+module.exports = Yatzy;
+
+
