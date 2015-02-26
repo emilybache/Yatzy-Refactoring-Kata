@@ -1,7 +1,7 @@
 using NUnit.Framework;
 
 [TestFixture]
-public class UntitledTest
+public class YatzyTest
 {
     [Test]
     public void Chance_scores_sum_of_all_dice()
@@ -13,7 +13,7 @@ public class UntitledTest
     }
 
     [Test]
-    public void Yatzy_scores_50() 
+    public void Yatzy_scores_50()
     {
         int expected = 50;
         int actual = Yatzy.yatzy(4,4,4,4,4);
@@ -31,21 +31,21 @@ public class UntitledTest
     }
 
     [Test]
-    public void test_2s() 
+    public void test_2s()
     {
         Assert.AreEqual(4, Yatzy.Twos(1,2,3,2,6));
         Assert.AreEqual(10, Yatzy.Twos(2,2,2,2,2));
     }
 
     [Test]
-    public void test_threes() 
+    public void test_threes()
     {
         Assert.AreEqual(6, Yatzy.Threes(1,2,3,2,3));
         Assert.AreEqual(12, Yatzy.Threes(2,3,3,3,3));
     }
 
     [Test]
-    public void fours_test() 
+    public void fours_test()
     {
         Assert.AreEqual(12, new Yatzy(4,4,4,5,5).Fours());
         Assert.AreEqual(8, new Yatzy(4,4,5,5,5).Fours());
@@ -60,7 +60,7 @@ public class UntitledTest
     }
 
     [Test]
-    public void sixes_test() 
+    public void sixes_test()
     {
         Assert.AreEqual(0, new Yatzy(4,4,4,5,5).sixes());
         Assert.AreEqual(6, new Yatzy(4,4,6,5,5).sixes());
@@ -68,7 +68,7 @@ public class UntitledTest
     }
 
     [Test]
-    public void one_pair() 
+    public void one_pair()
     {
         Assert.AreEqual(6, Yatzy.ScorePair(3,4,3,5,6));
         Assert.AreEqual(10, Yatzy.ScorePair(5,3,3,3,5));
@@ -76,14 +76,14 @@ public class UntitledTest
     }
 
     [Test]
-    public void two_Pair() 
+    public void two_Pair()
     {
         Assert.AreEqual(16, Yatzy.TwoPair(3,3,5,4,5));
         Assert.AreEqual(16, Yatzy.TwoPair(3,3,5,5,5));
     }
 
     [Test]
-    public void three_of_a_kind() 
+    public void three_of_a_kind()
     {
         Assert.AreEqual(9, Yatzy.ThreeOfAKind(3,3,3,4,5));
         Assert.AreEqual(15, Yatzy.ThreeOfAKind(5,3,5,4,5));
@@ -91,7 +91,7 @@ public class UntitledTest
     }
 
     [Test]
-    public void four_of_a_knd() 
+    public void four_of_a_knd()
     {
         Assert.AreEqual(12, Yatzy.FourOfAKind(3,3,3,3,5));
         Assert.AreEqual(20, Yatzy.FourOfAKind(5,5,5,4,5));
@@ -99,7 +99,7 @@ public class UntitledTest
     }
 
     [Test]
-    public void smallStraight() 
+    public void smallStraight()
     {
         Assert.AreEqual(15, Yatzy.SmallStraight(1,2,3,4,5));
         Assert.AreEqual(15, Yatzy.SmallStraight(2,3,4,5,1));
@@ -107,7 +107,7 @@ public class UntitledTest
     }
 
     [Test]
-    public void largeStraight() 
+    public void largeStraight()
     {
         Assert.AreEqual(20, Yatzy.LargeStraight(6,2,3,4,5));
         Assert.AreEqual(20, Yatzy.LargeStraight(2,3,4,5,6));
@@ -115,7 +115,7 @@ public class UntitledTest
     }
 
     [Test]
-    public void fullHouse() 
+    public void fullHouse()
     {
         Assert.AreEqual(18, Yatzy.FullHouse(6,2,2,2,6));
         Assert.AreEqual(0, Yatzy.FullHouse(2,3,4,5,6));
