@@ -1,4 +1,4 @@
-# Yatzy Refactoring Kata
+﻿# Yatzy Refactoring Kata
 
 This Refactoring Kata was designed by Jon Jagger and is available in his Cyber-Dojo. See [his blog post](http://jonjagger.blogspot.co.uk/2012/05/yahtzee-cyber-dojo-refactoring-in-java.html)
 
@@ -8,6 +8,7 @@ The other language translations have been contributed by:
 
 - Python: Emily Bache
 - Ruby: Kim Persson and Lennart Fridén
+- Javascript: Antti Tarvainen
 
 ## Kata: Yatzy rules
 
