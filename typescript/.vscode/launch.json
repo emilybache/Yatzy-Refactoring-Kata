@@ -1,0 +1,38 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Mocha Tests",
+      "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+      "args": [
+        "-u",
+        "bdd",
+        "--colors",
+        "--require",
+        "${workspaceRoot}/node_modules/ts-node/register/transpile-only",
+        "${workspaceRoot}/test/**/*.ts"
+      ],
+      "internalConsoleOptions": "openOnSessionStart"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Mocha Watch",
+      "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+      "args": [
+        "-u",
+        "bdd",
+        "--colors",
+        "--require",
+        "${workspaceRoot}/node_modules/ts-node/register/transpile-only",
+        "${workspaceRoot}/test/**/*.ts",
+        "--watch",
+        "--watch-extensions",
+        "ts"
+      ],
+      "internalConsoleOptions": "openOnSessionStart"
+    }
+  ]
+}
