@@ -1,0 +1,22 @@
+{
+  "name": "yatzy-refactoring-kata",
+  "version": "0.0.0",
+  "author": {
+    "name": "Lorens León Parra",
+    "email": "lorensleon@gmail.org"
+  },
+  "dependencies": {
+    "@types/node": "*"
+  },
+  "devDependencies": {
+    "@types/mocha": "^5.2.0",
+    "mocha": "^5.2.0",
+    "ts-node": "^6.0.5",
+    "typescript": "^2.8.3"
+  },
+  "scripts": {
+    "test": "mocha --require ts-node/register/transpile-only 'test/**/*.ts'",
+    "watch": "npm test -- --watch --watch-extensions ts"
+  },
+  "private": true
+}
