@@ -1,0 +1,14 @@
+# Compiled class file
+*.class
+out/
+
+.gradle
+
+# Eclipse files
+.classpath
+.project
+.settings/
+
+# IntelliJ files
+*.iml
+.idea/
