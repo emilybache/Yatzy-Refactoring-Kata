@@ -141,7 +141,6 @@ defmodule Yatzy do
     |> List.flatten()
     |> Enum.group_by(&(&1))
     |> Enum.filter(&((&1 |> elem(1) |> Enum.count()) >= 3))
-    |> IO.inspect()
     |> Enum.reduce(score, fn {die, _dice}, score ->
       score + die * 3
     end)
