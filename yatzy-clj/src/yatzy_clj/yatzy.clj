@@ -41,7 +41,7 @@
     )
   )
 
-(defn fives [d1 d2 d3 d4 _5]
+(defn fives_ [d1 d2 d3 d4 _5]
   (let [dice [d1 d2 d3 d4 _5]]
     (apply +
            (for [i (range 0 (count dice))]

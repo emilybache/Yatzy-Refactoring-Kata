@@ -33,9 +33,9 @@
   (is (= 4 (fours 4 5 5 5 5))))
 
 (deftest fives
-  (is (= 10 (fives 4 4 4 5 5 )))
-  (is (= 15 (fives 4 4 5 5 5)))
-  (is (= 20 (fives 4 5 5 5 5))))
+  (is (= 10 (fives_ 4 4 4 5 5 )))
+  (is (= 15 (fives_ 4 4 5 5 5)))
+  (is (= 20 (fives_ 4 5 5 5 5))))
 
 (deftest test_6s
   (is (= 0 (sixes 4 4 4 5 5 )))
