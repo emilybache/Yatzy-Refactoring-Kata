@@ -50,10 +50,10 @@
 (defn fours [d1 d2 d3 d4 _5]
   (let [dice [d1 d2 d3 d4 _5]
         sum (apply +
-           (for [at (range 0 5)]
-             (if (= 4 (nth dice at)) 4 0)
-             )
-           )]
+                   (for [at (range 0 5)]
+                     (if (= 4 (nth dice at)) 4 0)
+                     )
+                   )]
     sum
     )
   )
@@ -62,10 +62,10 @@
 (defn fives_ [d1 d2 d3 d4 _5]
   (let [dice [d1 d2 d3 d4 _5]
         s (apply +
-           (for [i (range 0 (count dice))]
-             (if (= 5 (nth dice i)) 5 0)
-             )
-           )]
+                 (for [i (range 0 (count dice))]
+                   (if (= 5 (nth dice i)) 5 0)
+                   )
+                 )]
     s
     )
   )
@@ -73,26 +73,26 @@
 (defn sixes [d1 d2 d3 d4 _5]
   (let [dice [d1 d2 d3 d4 _5]
         sum (apply +
-           (for [at (range 0 (count dice))]
-             (if (= 6 (nth dice at)) 6 0)
-             )
-           )]
+                   (for [at (range 0 (count dice))]
+                     (if (= 6 (nth dice at)) 6 0)
+                     )
+                   )]
     sum
     )
   )
 
 (defn score_pair [dice]
   (let [counts (tally-die dice)
-      result (first
-               (remove nil?
-                       (for [at (range 0 6)]
-                         (if (>= (nth counts (- 6 at 1)) 2)
-                           (* (- 6 at) 2)
-                           nil
+        result (first
+                 (remove nil?
+                         (for [at (range 0 6)]
+                           (if (>= (nth counts (- 6 at 1)) 2)
+                             (* (- 6 at) 2)
+                             nil
+                             )
                            )
                          )
-                       )
-               )]
+                 )]
     (if (= nil result) 0 result)))
 
 (defn two-pair [dice]
@@ -103,24 +103,6 @@
                     (reduce +)
                     (* 2))]
     (if (= nil result) 0 result)))
-
-;public static int yatzy(int... dice)
-;{
-; int[] counts = new int[6];
-;    for (int die : dice)
-;    counts[die-1]++;
-; for (int i = 0; i != 6; i++)
-;    if (counts[i] == 5)
-;        return 50;
-; return 0;
-; }
-
-
-
-(defn get-first-tally [tallies value]
-  (->> (range 0 6)
-       (filter #(= value (nth tallies %)))
-       (first)))
 
 (defn four-of-a-kind [dice]
   (let [tallies (tally-die dice)
@@ -186,4 +168,33 @@
       0)))
 
 (defn full-house [dice]
-  (+ (score_pair dice) (three-of-a-kind dice)))
+  (+
+    (let [counts (tally-die dice)
+          result (first
+                   (remove nil?
+                           (for [at (range 0 6)]
+                             (if (>= (nth counts (- 6 at 1)) 2)
+                               (* (- 6 at) 2)
+                               nil
+                               )
+                             )
+                           )
+                   )]
+      (if (= nil result) 0 result))
+    (let [t (tally-die dice)
+          result (first
+                   (remove nil?
+                           (for [i (range 0 6)]
+                             (if (>= (nth t i) 3)
+                               (* (+ i 1) 3)
+                               nil
+                               )
+                             )
+                           ))]
+      (if (= nil result)
+        0 result
+        )
+      )
+    )
+  )
+
