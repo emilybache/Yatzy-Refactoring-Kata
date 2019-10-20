@@ -106,11 +106,22 @@
 
 (defn three-of-a-kind [dice]
   (let [tallies (tally-die dice)
-        result (->> (range 0 6)
-                    (filter #(>= (nth tallies %) 3))
-                    (map (fn [i] (* (+ i 1) 3)))
-                    (first))]
-    (if (= nil result) 0 result)))
+        result (first (remove nil?
+            (for [i (range 0 6)]
+              (if (>= (nth tallies i) 3)
+                (* (+ i 1) 3)
+                nil
+                )
+              )
+            ))]
+    (if (= nil result)
+      0 result
+      )
+    )
+  )
+
+
+
 
 (defn four-of-a-kind [dice]
   (let [tallies (tally-die dice)
