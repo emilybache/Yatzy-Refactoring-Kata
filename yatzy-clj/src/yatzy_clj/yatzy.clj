@@ -70,19 +70,16 @@
     )
   )
 
-
-
 (defn sixes [d1 d2 d3 d4 _5]
-  (let [dice [d1 d2 d3 d4 _5]]
-    (apply +
+  (let [dice [d1 d2 d3 d4 _5]
+        sum (apply +
            (for [at (range 0 (count dice))]
              (if (= 6 (nth dice at)) 6 0)
              )
-           )
+           )]
+    sum
     )
   )
-
-
 
 
 
