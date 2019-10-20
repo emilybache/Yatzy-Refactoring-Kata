@@ -43,9 +43,9 @@
   (is (= 18 (sixes 6 5 6 6 5))))
 
 (deftest one_pair
-  (is (= 6 (pair [3 4 3 5 6 ])))
-  (is (= 10 (pair [5 3 3 3 5])))
-  (is (= 12 (pair [5 3 6 6 5]))))
+  (is (= 6 (score_pair [3 4 3 5 6 ])))
+  (is (= 10 (score_pair [5 3 3 3 5])))
+  (is (= 12 (score_pair [5 3 6 6 5]))))
 
 (deftest test_three_of_a_kind
   (is (= 9 (three-of-a-kind [3 3 3 4 5])))

@@ -4,9 +4,6 @@
 (defn chance [d1 d2 d3 d4 d5]
   (+ d1 d2 d3 d4 d5))
 
-(defn sum-dice [dice value]
-  (reduce + (filter (fn [die] (= value die)) dice)))
-
 (defn ones [d1 d2 d3 d4 d5]
   (+ (if (= d1 1) 1 0)
      (if (= d2 1) 1 0)
@@ -61,12 +58,39 @@
     )
   )
 
-(defn count-value [dice value]
-  (->> (filter (fn [die] (= value die)) dice)
-       (count)))
 
 (defn tally-die [dice]
-  (map (fn [x] (count-value dice x)) (range 1 7)))
+  (for [i (range 1 7)]
+    (apply + (for [die dice] (if (= die i) 1 0))))
+  )
+
+
+
+(defn score_pair [dice]
+  (let [tallies (tally-die dice)
+
+
+
+        result (->> (range 0 5)
+                    (map #(- 5 %))
+                    (filter #(> (nth tallies %) 1))
+                    (map #(* (+ % 1) 2))
+                    (first))]
+    (if (= nil result) 0 result)))
+
+
+
+
+
+
+(defn two-pair [dice]
+  (let [tallies (tally-die dice)
+        result (->> (range 0 6)
+                    (filter #(>= (nth tallies (- 6 % 1)) 2))
+                    (map #(- 6 %))
+                    (reduce +)
+                    (* 2))]
+    (if (= nil result) 0 result)))
 
 (defn get-first-tally [tallies value]
   (->> (range 0 6)
@@ -79,49 +103,51 @@
       0
       50)))
 
-(defn pair [dice]
-  (let [tallies (tally-die dice)
-        result (->> (range 0 5)
-                    (map (fn [i] (- 5 i)))
-                    (filter #(> (nth tallies %) 1))
-                    (map #(* (+ % 1) 2))
-                    (first))]
-    (if (= nil result) 0 result)))
-
-(defn two-pair [dice]
-  (let [tallies (tally-die dice)
-        result (->> (range 0 6)
-                    (filter #(>= (nth tallies (- 6 % 1)) 2))
-                    (map #(- 6 %))
-                    (reduce +)
-                    (* 2))]
-    (if (= nil result) 0 result)))
-
-(defn x-of-a-kind [dice x]
-  (let [tallies (tally-die dice)
-        result (->> (range 0 6)
-                    (filter #(>= (nth tallies %) x))
-                    (map (fn [i] (* (+ i 1) x)))
-                    (first))]
-    (if (= nil result) 0 result)))
 
 (defn three-of-a-kind [dice]
-  (x-of-a-kind dice 3))
+  (let [tallies (tally-die dice)
+        result (->> (range 0 6)
+                    (filter #(>= (nth tallies %) 3))
+                    (map (fn [i] (* (+ i 1) 3)))
+                    (first))]
+    (if (= nil result) 0 result)))
 
 (defn four-of-a-kind [dice]
-  (x-of-a-kind dice 4))
+  (let [tallies (tally-die dice)
+        result (->> (range 0 6)
+                    (filter #(>= (nth tallies %) 4))
+                    (map (fn [i] (* (+ i 1) 4)))
+                    (first))]
+    (if (= nil result) 0 result)))
 
-(defn straight [dice start end]
-  (->> (range start end)
-       (filter #(not= (nth (tally-die dice) %) 1))
-       (map (fn [x] 0))
-       (first)))
 
 (defn small-straight [dice]
-  (if (= nil (straight dice 0 5)) 15 0))
+  (let [tallies (for [i (range 1 7)]
+                  (apply + (for [die dice] (if (= die i) 1 0))))]
+    (if (= true (and
+                  (= (nth tallies 0) 1)
+                  (= (nth tallies 1) 1)
+                  (= (nth tallies 2) 1)
+                  (= (nth tallies 3) 1)
+                  (= (nth tallies 4) 1)
+                  )
+           )
+      15
+      0)))
 
 (defn large-straight [dice]
-  (if (= nil (straight dice 1 6)) 20 0))
+  (let [tallies (for [i (range 1 7)]
+                  (apply + (for [die dice] (if (= die i) 1 0))))]
+    (if (= true (and
+                  (= (nth tallies 1) 1)
+                  (= (nth tallies 2) 1)
+                  (= (nth tallies 3) 1)
+                  (= (nth tallies 4) 1)
+                  (= (nth tallies 5) 1)
+                  )
+           )
+      20
+      0)))
 
 (defn full-house [dice]
-  (+ (pair dice) (three-of-a-kind dice)))
+  (+ (score_pair dice) (three-of-a-kind dice)))
