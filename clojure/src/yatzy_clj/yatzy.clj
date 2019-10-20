@@ -168,33 +168,32 @@
       0)))
 
 (defn full-house [dice]
-  (+
-    (let [counts (tally-die dice)
-          result (first
-                   (remove nil?
-                           (for [at (range 0 6)]
-                             (if (>= (nth counts (- 6 at 1)) 2)
-                               (* (- 6 at) 2)
-                               nil
+  (let [tallies (tally-die dice)]
+    (+
+      (let [result (first
+                     (remove nil?
+                             (for [at (range 0 6)]
+                               (if (>= (nth tallies (- 6 at 1)) 2)
+                                 (* (- 6 at) 2)
+                                 nil
+                                 )
                                )
                              )
-                           )
-                   )]
-      (if (= nil result) 0 result))
-    (let [t (tally-die dice)
-          result (first
-                   (remove nil?
-                           (for [i (range 0 6)]
-                             (if (>= (nth t i) 3)
-                               (* (+ i 1) 3)
-                               nil
+                     )]
+        (if (= nil result) 0 result))
+      (let [result (first
+                     (remove nil?
+                             (for [i (range 0 6)]
+                               (if (>= (nth tallies i) 3)
+                                 (* (+ i 1) 3)
+                                 nil
+                                 )
                                )
-                             )
-                           ))]
-      (if (= nil result)
-        0 result
+                             ))]
+        (if (= nil result)
+          0 result
+          )
         )
       )
     )
   )
-
