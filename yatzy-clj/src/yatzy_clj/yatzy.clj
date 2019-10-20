@@ -81,19 +81,18 @@
     )
   )
 
-
-
-
 (defn score_pair [dice]
-  (let [tallies (tally-die dice)
-
-
-
-        result (->> (range 0 5)
-                    (map #(- 5 %))
-                    (filter #(> (nth tallies %) 1))
-                    (map #(* (+ % 1) 2))
-                    (first))]
+  (let [counts (tally-die dice)
+      result (first
+               (remove nil?
+                       (for [at (range 0 6)]
+                         (if (>= (nth counts (- 6 at 1)) 2)
+                           (* (- 6 at) 2)
+                           nil
+                           )
+                         )
+                       )
+               )]
     (if (= nil result) 0 result)))
 
 (defn two-pair [dice]
