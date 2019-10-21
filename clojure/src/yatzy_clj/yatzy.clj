@@ -24,11 +24,14 @@
     (if (= nil result) 0 50)))
 
 (defn ones [d1 d2 d3 d4 d5]
-  (+ (if (= d1 1) 1 0)
-     (if (= d2 1) 1 0)
-     (if (= d3 1) 1 0)
-     (if (= d4 1) 1 0)
-     (if (= d5 1) 1 0))
+  (let [sum (+ (if (= d1 1) 1 0)
+               (if (= d2 1) 1 0)
+               (if (= d3 1) 1 0)
+               (if (= d4 1) 1 0)
+               (if (= d5 1) 1 0))
+        ]
+    sum
+    )
   )
 
 (defn twos [d1 d2 d3 d4 d5]
