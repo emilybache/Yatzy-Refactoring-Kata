@@ -2,7 +2,17 @@
   (:gen-class))
 
 (defn chance [d1 d2 d3 d4 d5]
-  (+ d1 d2 d3 d4 d5))
+  (let [total
+        (+
+          d1
+          d2
+          d3
+          d4
+          d5)
+        ]
+    total
+    )
+  )
 
 (defn tally-die [dice]
   (for [i (range 1 7)]
