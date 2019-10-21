@@ -32,11 +32,13 @@
   )
 
 (defn twos [d1 d2 d3 d4 d5]
-  (+ (if (= d1 2) 2 0)
-     (if (= d2 2) 2 0)
-     (if (= d3 2) 2 0)
-     (if (= d4 2) 2 0)
-     (if (= d5 2) 2 0))
+  (let [sum (+ (if (= d1 2) 2 0)
+               (if (= d2 2) 2 0)
+               (if (= d3 2) 2 0)
+               (if (= d4 2) 2 0)
+               (if (= d5 2) 2 0))]
+    sum
+    )
   )
 
 (defn threes [d1 d2 d3 d4 d5]
