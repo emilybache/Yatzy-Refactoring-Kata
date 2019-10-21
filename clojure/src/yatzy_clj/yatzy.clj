@@ -95,14 +95,46 @@
                  )]
     (if (= nil result) 0 result)))
 
+;int score = 0;
+;for (int i = 0; i < 6; i += 1)
+;         if (counts[6-i-1] >= 2) {
+;                n++;
+;                score += (6-i);
+;         }
+;if (n == 2)
+;  return score * 2;
+;else
+;  return 0;
+
 (defn two-pair [dice]
-  (let [tallies (tally-die dice)
-        result (->> (range 0 6)
-                    (filter #(>= (nth tallies (- 6 % 1)) 2))
-                    (map #(- 6 %))
-                    (reduce +)
-                    (* 2))]
-    (if (= nil result) 0 result)))
+  (let [counts (tally-die dice)
+        values (remove nil?
+                       (for [i (range 0 6)]
+                         (if (>= (nth counts (- 6 i 1)) 2)
+                           (- 6 i)
+                           nil
+                           )
+                         )
+                       )
+        score (reduce + values)
+        n (count values)]
+    (if (= n 2)
+      (* score 2)
+      0
+      )
+    )
+  )
+
+
+
+;(defn two-pair [dice]
+;  (let [tallies (tally-die dice)
+;        result (->> (range 0 6)
+;                    (filter #(>= (nth tallies (- 6 % 1)) 2))
+;                    (map #(- 6 %))
+;                    (reduce +)
+;                    (* 2))]
+;    (if (= nil result) 0 result)))
 
 (defn four-of-a-kind [dice]
   (let [tallies (tally-die dice)
@@ -122,7 +154,8 @@
   )
 
 (defn three-of-a-kind [dice]
-  (let [t (tally-die dice)
+  (let [t (for [i (range 1 7)]
+            (apply + (for [die dice] (if (= die i) 1 0))))
         result (first
                  (remove nil?
                          (for [i (range 0 6)]
