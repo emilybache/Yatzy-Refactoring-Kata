@@ -14,13 +14,9 @@
     )
   )
 
-(defn tally-die [dice]
-  (for [i (range 1 7)]
-    (apply + (for [die dice] (if (= die i) 1 0))))
-  )
-
 (defn yatzy [dice]
-  (let [counts (tally-die dice)
+  (let [counts (for [i (range 1 7)]
+                 (apply + (for [die dice] (if (= die i) 1 0))))
         result (first
                  (remove nil?
                          (for [i (range 0 6)]
@@ -99,7 +95,8 @@
   )
 
 (defn score_pair [dice]
-  (let [counts (tally-die dice)
+  (let [counts (for [i (range 1 7)]
+                 (apply + (for [die dice] (if (= die i) 1 0))))
         result (first
                  (remove nil?
                          (for [at (range 0 6)]
@@ -113,7 +110,8 @@
     (if (= nil result) 0 result)))
 
 (defn two-pair [dice]
-  (let [counts (tally-die dice)
+  (let [counts (for [i (range 1 7)]
+                 (apply + (for [die dice] (if (= die i) 1 0))))
         values (remove nil?
                        (for [i (range 0 6)]
                          (if (>= (nth counts (- 6 i 1)) 2)
@@ -132,7 +130,8 @@
   )
 
 (defn four-of-a-kind [dice]
-  (let [tallies (tally-die dice)
+  (let [tallies (for [i (range 1 7)]
+                  (apply + (for [die dice] (if (= die i) 1 0))))
         result (first
                  (remove nil?
                          (for [i (range 0 6)]
@@ -196,7 +195,8 @@
       0)))
 
 (defn full-house [dice]
-  (let [tallies (tally-die dice)
+  (let [tallies (for [i (range 1 7)]
+                  (apply + (for [die dice] (if (= die i) 1 0))))
         _2_at (first
                 (remove nil?
                         (for [i (range 0 6)]
