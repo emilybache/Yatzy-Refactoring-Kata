@@ -78,6 +78,7 @@ def test_four_of_a_kind(): # refactor name
 
 def test_small_straight(): # refactor name
         assert 15 == Yatzy.small_straight(1,2,3,4,5) # refactor name
+        assert 15 == Yatzy.small_straight(2,1,4,3,5) # added assert
         assert 15 == Yatzy.small_straight(2,3,4,5,1) # refactor name
         assert 0 == Yatzy.small_straight(1,2,2,4,5) # refactor name
 
