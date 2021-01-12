@@ -34,9 +34,9 @@ def test_threes():
 
 
 def test_fours_test():
-        assert 12 == Yatzy(4,4,4,5,5).fours()
-        assert 8 == Yatzy(4,4,5,5,5).fours()
-        assert 4 == Yatzy(4,5,5,5,5).fours()
+        assert 12 == Yatzy.fours(4,4,4,5,5) # refactor code
+        assert 8 == Yatzy.fours(4,4,5,5,5) # refactor code
+        assert 4 == Yatzy.fours(4,5,5,5,5) # refactor code
 
 
 def test_fives():
