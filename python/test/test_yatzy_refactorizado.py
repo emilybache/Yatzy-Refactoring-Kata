@@ -28,6 +28,7 @@ def test_twos(): # refactor name
 
 
 def test_threes():
+        assert 3 == Yatzy.threes(1,2,3,4,5) # added assert
         assert 6 == Yatzy.threes(1,2,3,2,3)
         assert 12 == Yatzy.threes(2,3,3,3,3)
 
