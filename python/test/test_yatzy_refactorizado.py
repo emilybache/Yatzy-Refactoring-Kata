@@ -3,13 +3,13 @@ from src.yatzy import Yatzy
 # These unit tests can be run using the py.test framework
 # available from http://pytest.org/
 
-def test_chance_scores(): # refactor name
+def test_chance(): # refactor name
         assert 12 == Yatzy.chance(4,4,2,1,1) # added assert
         assert 16 == Yatzy.chance(3,3,4,5,1)
         assert 20 == Yatzy.chance(4,4,5,6,1) # added assert
 
 
-def test_yatzy_scores(): # refactor name
+def test_yatzy(): # refactor name
         assert 50 == Yatzy.yatzy([6,6,6,6,6])
         assert 0 == Yatzy.yatzy([6,6,6,6,3])
 
@@ -52,9 +52,9 @@ def test_sixes(): # refactor name
 
 
 def test_one_pair():
-        assert 6 == Yatzy.score_pair(3,4,3,5,6)
-        assert 10 == Yatzy.score_pair(5,3,3,3,5)
-        assert 12 == Yatzy.score_pair(5,3,6,6,5)
+        assert 6 == Yatzy.one_pair(3,4,3,5,6) # refactor name
+        assert 10 == Yatzy.one_pair(5,3,3,3,5) # refactor name
+        assert 12 == Yatzy.one_pair(5,3,6,6,5) # refactor name
 
 
 def test_two_pair(): # refactor name
@@ -77,18 +77,18 @@ def test_four_of_a_kind(): # refactor name
 
 
 def test_small_straight(): # refactor name
-        assert 15 == Yatzy.smallStraight(1,2,3,4,5)
-        assert 15 == Yatzy.smallStraight(2,3,4,5,1)
-        assert 0 == Yatzy.smallStraight(1,2,2,4,5)
+        assert 15 == Yatzy.small_straight(1,2,3,4,5) # refactor name
+        assert 15 == Yatzy.small_straight(2,3,4,5,1) # refactor name
+        assert 0 == Yatzy.small_straight(1,2,2,4,5) # refactor name
 
 
 def test_large_straight(): # refactor name
-        assert 20 == Yatzy.largeStraight(6,2,3,4,5)
-        assert 20 == Yatzy.largeStraight(2,3,4,5,6)
-        assert 0 == Yatzy.largeStraight(1,2,2,4,5)
+        assert 20 == Yatzy.large_straight(6,2,3,4,5) # refactor name
+        assert 20 == Yatzy.large_straight(2,3,4,5,6) # refactor name
+        assert 0 == Yatzy.large_straight(1,2,2,4,5) # refactor name
 
 
 def test_full_house(): # refactor name
-        assert 18 == Yatzy.fullHouse(6,2,2,2,6)
-        assert 0 == Yatzy.fullHouse(2,3,4,5,6)
+        assert 18 == Yatzy.full_house(6,2,2,2,6) # refactor name
+        assert 0 == Yatzy.full_house(2,3,4,5,6) # refactor name
 
