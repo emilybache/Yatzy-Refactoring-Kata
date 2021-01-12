@@ -4,10 +4,9 @@ from src.yatzy import Yatzy
 # available from http://pytest.org/
 
 def test_chance_scores(): # refactor name
-        expected = 15
-        actual = Yatzy.chance(2,3,4,5,1)
-        assert expected == actual
+        assert 12 == Yatzy.chance(4,4,2,1,1) # added assert
         assert 16 == Yatzy.chance(3,3,4,5,1)
+        assert 20 == Yatzy.chance(4,4,5,6,1) # added assert
 
 
 def test_yatzy_scores(): # refactor name
