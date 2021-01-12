@@ -40,9 +40,9 @@ def test_fours_test():
 
 
 def test_fives():
-        assert 10 == Yatzy(4,4,4,5,5).fives()
-        assert 15 == Yatzy(4,4,5,5,5).fives()
-        assert 20 == Yatzy(4,5,5,5,5).fives()
+        assert 10 == Yatzy.fives(4,4,4,5,5) # refactor code
+        assert 15 == Yatzy.fives(4,4,5,5,5) # refactor code
+        assert 20 == Yatzy.fives(4,5,5,5,5) # refactor code
 
 
 def test_sixes_test():
