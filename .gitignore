@@ -1,1 +1,6 @@
 .vs
+env
+.venv 
+venv 
+.vscode 
+env1
