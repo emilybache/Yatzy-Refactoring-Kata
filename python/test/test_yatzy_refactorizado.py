@@ -23,6 +23,7 @@ def test_ones(): # refactor name
 
 def test_twos(): # refactor name
         assert 4 == Yatzy.twos(1,2,3,2,6)
+        assert 8 == Yatzy.twos(1,2,2,2,2) # added assert
         assert 10 == Yatzy.twos(2,2,2,2,2)
 
 
