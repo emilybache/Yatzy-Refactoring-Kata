@@ -33,7 +33,7 @@ def test_threes():
         assert 12 == Yatzy.threes(2,3,3,3,3)
 
 
-def test_fours_test():
+def test_fours(): # refactor name
         assert 12 == Yatzy.fours(4,4,4,5,5) # refactor code
         assert 8 == Yatzy.fours(4,4,5,5,5) # refactor code
         assert 4 == Yatzy.fours(4,5,5,5,5) # refactor code
@@ -45,7 +45,7 @@ def test_fives():
         assert 20 == Yatzy.fives(4,5,5,5,5) # refactor code
 
 
-def test_sixes_test():
+def test_sixes(): # refactor name
         assert 0 == Yatzy.sixes(4,4,4,5,5) # refactor code
         assert 6 == Yatzy.sixes(4,4,6,5,5) # refactor code
         assert 18 == Yatzy.sixes(6,5,6,6,5) # refactor code
