@@ -1,5 +1,0 @@
-{
-  "prettier.printWidth": 100,
-  "prettier.singleQuote": true,
-  "typescriptHero.imports.multiLineWrapThreshold": 100
-}
