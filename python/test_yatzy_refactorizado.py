@@ -1,4 +1,4 @@
-from src.yatzy import Yatzy
+from .yatzy_refactorizado import Yatzy
 import pytest
 
 # These unit tests can be run using the py.test framework
@@ -11,8 +11,8 @@ def test_chance(): # refactor name
 
 
 def test_yatzy(): # refactor name
-        assert 50 == Yatzy.yatzy([6,6,6,6,6])
-        assert 0 == Yatzy.yatzy([6,6,6,6,3])
+        assert 50 == Yatzy.yatzy(6,6,6,6,6)
+        assert 0 == Yatzy.yatzy(6,6,6,6,3)
 
 
 def test_ones(): # refactor name
