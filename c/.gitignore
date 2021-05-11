@@ -1,0 +1,6 @@
+/build_meson/
+/subprojects/Catch2-*/
+/subprojects/packagecache/
+/cmake-build-*/
+.idea
+
