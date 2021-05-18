@@ -237,3 +237,39 @@ int FullHouse(Yatzy *yatzy, int d1, int d2, int d3, int d4, int d5) {
         return 0;
 }
 
+int score(Yatzy *d, int category) {
+    switch (category) {
+        case CHANCE:
+            return Chance(d->dice[0], d->dice[1], d->dice[2], d->dice[3], d->dice[4]);
+        case YATZY:
+            return yatzy(d->dice);
+        case ONES:
+            return Ones(d->dice[0], d->dice[1], d->dice[2], d->dice[3], d->dice[4]);
+        case TWOS:
+            return Twos(d->dice[0], d->dice[1], d->dice[2], d->dice[3], d->dice[4]);
+        case THREES:
+            return Threes(d->dice[0], d->dice[1], d->dice[2], d->dice[3], d->dice[4]);
+        case FOURS:
+            return Fours(d);
+        case FIVES:
+            return Fives(d);
+        case SIXES:
+            return sixes(d);
+        case PAIR:
+            return ScorePair(d, d->dice[0], d->dice[1], d->dice[2], d->dice[3], d->dice[4]);
+        case TWO_PAIRS:
+            return TwoPair(d, d->dice[0], d->dice[1], d->dice[2], d->dice[3], d->dice[4]);
+        case THREE_OF_A_KIND:
+            return ThreeOfAKind(d, d->dice[0], d->dice[1], d->dice[2], d->dice[3], d->dice[4]);
+        case FOUR_OF_A_KIND:
+            return FourOfAKind(d, d->dice[0], d->dice[1], d->dice[2], d->dice[3], d->dice[4]);
+        case SMALL_STRAIGHT:
+            return SmallStraight(d, d->dice[0], d->dice[1], d->dice[2], d->dice[3], d->dice[4]);
+        case LARGE_STRAIGHT:
+            return LargeStraight(d, d->dice[0], d->dice[1], d->dice[2], d->dice[3], d->dice[4]);
+        case FULL_HOUSE:
+            return FullHouse(d, d->dice[0], d->dice[1], d->dice[2], d->dice[3], d->dice[4]);
+        default:
+            return 0;
+    };
+}
