@@ -8,8 +8,8 @@ extern "C"
 
 using namespace std;
 
-string printRoll(const Yatzy* roll) {
-    stringstream ss = stringstream();
+ostream& operator<<(ostream& ss, const Yatzy& roll)
+{
     ss << "Roll [";
 
     bool first = true;
@@ -18,12 +18,13 @@ string printRoll(const Yatzy* roll) {
             first = false;
         else
             ss << ", ";
-        ss << roll->dice[i];
+        ss << roll.dice[i];
     }
 
     ss << "]";
-    return ss.str();
+    return ss;
 }
+
 
 string printCategory(int category) {
     switch (category) {
@@ -62,36 +63,43 @@ string printCategory(int category) {
     }
 }
 
-Yatzy *roll_factory(int *d) {
+ostream& operator<<(ostream& ss, const category& category)
+{
+    ss << printCategory(category);
+    return ss;
+}
+
+Yatzy *roll_factory(int d1, int d2, int d3, int d4, int _5) {
     Yatzy *yatzy = static_cast<Yatzy *>(malloc(sizeof(Yatzy)));
     int *dice = static_cast<int *>(malloc(5 * sizeof(int)));
-    dice[0] = d[0];
-    dice[1] = d[1];
-    dice[2] = d[2];
-    dice[3] = d[3];
-    dice[4] = d[4];
+    dice[0] = d1;
+    dice[1] = d2;
+    dice[2] = d3;
+    dice[3] = d4;
+    dice[4] = _5;
     yatzy->dice = dice;
     return yatzy;
 }
 
-TEST(Yatzy, YatzyCategories)
+TEST(Yatzy, YatzyCategoriesCombinations)
 {
-    int totalRolls = 2;
-    int rolls[][5] = {
-            {2, 3, 4, 5, 1},
-            {4, 3, 4, 5, 1}
+    vector<Yatzy> rolls = {
+            *roll_factory(2, 3, 4, 5, 1),
+            *roll_factory(4, 3, 4, 5, 1),
+            *roll_factory(3, 3, 3, 3, 3),
+            *roll_factory(2, 2, 1, 1, 1),
+            *roll_factory(2, 6, 5, 6, 5),
+            *roll_factory(2, 6, 5, 3, 4),
+
+    };
+    vector<category> categories = {CHANCE, YATZY,
+                                   ONES, TWOS, THREES, FOURS, FIVES, SIXES,
+                                   PAIR, TWO_PAIRS, THREE_OF_A_KIND, FOUR_OF_A_KIND,
+                                   SMALL_STRAIGHT, LARGE_STRAIGHT, FULL_HOUSE};
+
+    auto f = [](Yatzy roll, category category) {
+        return score(&roll, category);
     };
 
-    stringstream ss = stringstream();
-    for (int i = 0; i < totalRolls; ++i) {
-        Yatzy *yatzy = roll_factory(rolls[i]);
-
-        ss << printRoll(yatzy) << "\n";
-        ss << "   " << printCategory(CHANCE) << ": " << score(yatzy, CHANCE) << "\n";
-        // TODO: the other categories
-
-        ss << "\n";
-    }
-
-    ApprovalTests::Approvals::verify(ss.str());
+    ApprovalTests::CombinationApprovals::verifyAllCombinations(f, rolls, categories);
 }
