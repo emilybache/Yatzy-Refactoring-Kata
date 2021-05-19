@@ -237,7 +237,7 @@ int FullHouse(Yatzy *yatzy, int d1, int d2, int d3, int d4, int d5) {
         return 0;
 }
 
-int score(Yatzy *d, int category) {
+int score(Yatzy *d, enum category category) {
     switch (category) {
         case CHANCE:
             return Chance(d->dice[0], d->dice[1], d->dice[2], d->dice[3], d->dice[4]);

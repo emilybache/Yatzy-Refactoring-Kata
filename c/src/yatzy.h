@@ -10,7 +10,7 @@ typedef struct Yatzy Yatzy;
 enum category {CHANCE, YATZY, ONES, TWOS, THREES, FOURS, FIVES, SIXES,
     PAIR, TWO_PAIRS, THREE_OF_A_KIND, FOUR_OF_A_KIND, SMALL_STRAIGHT, LARGE_STRAIGHT, FULL_HOUSE};
 
-int score(Yatzy*, category);
+int score(Yatzy*, enum category);
 
 int Chance(int d1, int d2, int d3, int d4, int d5);
 int yatzy(int dice[]);
