@@ -1,0 +1,30 @@
+/bin/
+/out/
+.gradle
+build
+.classpath
+.settings
+.project
+*.iws
+*.ipr
+.idea/
+**/target/**
+*.iml
+.DS*
+.floo*
+
+
+# sbt specific
+.cache/
+.history/
+.lib/
+.bsp/
+dist/*
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+
+# Scala-IDE specific
+.scala_dependencies
+.worksheet
