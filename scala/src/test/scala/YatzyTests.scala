@@ -80,4 +80,9 @@ class YatzyTests extends AnyFunSuite with Matchers {
     assert(Yatzy.threeOfAKind(5, 3, 5, 4, 5) == 15)
     assert(Yatzy.threeOfAKind(3, 3, 3, 3, 5) == 9)
   }
+
+  test("two pair") {
+    assert(Yatzy.twoPair(3, 3, 5, 4, 5) == 16)
+    assert(Yatzy.twoPair(3, 3, 5, 5, 5) == 16)
+  }
 }

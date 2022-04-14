@@ -96,6 +96,27 @@ object Yatzy {
     0
   }
 
+  def twoPair(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int = {
+    val counts = new Array[Int](6)
+    counts(d1 - 1) += 1
+    counts(d2 - 1) += 1
+    counts(d3 - 1) += 1
+    counts(d4 - 1) += 1
+    counts(d5 - 1) += 1
+    var n = 0
+    var score = 0
+    for (i <- 0 until 6) {
+      if (counts(6 - i - 1) >= 2) {
+        n += 1
+        score += 6 - i
+      }
+    }
+
+    if (n == 2)
+      return score * 2
+    0
+  }
+
   def threeOfAKind(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int = {
     val t = new Array[Int](6)
     t(d1 - 1) += 1
