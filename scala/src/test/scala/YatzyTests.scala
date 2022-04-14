@@ -85,4 +85,12 @@ class YatzyTests extends AnyFunSuite with Matchers {
     assert(Yatzy.twoPair(3, 3, 5, 4, 5) == 16)
     assert(Yatzy.twoPair(3, 3, 5, 5, 5) == 16)
   }
+
+  test("Yatzy scores 50") {
+    val expected = 50
+    val actual = Yatzy.Yatzy(4, 4, 4, 4, 4)
+    assert(actual == expected)
+    assert(Yatzy.Yatzy(6, 6, 6, 6, 6) == 50)
+    assert(Yatzy.Yatzy(6, 6, 6, 6, 3) == 0)
+  }
 }

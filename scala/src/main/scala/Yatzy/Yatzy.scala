@@ -39,6 +39,18 @@ class Yatzy(
 }
 
 object Yatzy {
+  def Yatzy(dice: Int*): Int = {
+    val counts = new Array[Int](6)
+    for (die <- dice) {
+      counts(die - 1) += 1
+    }
+    for (i <- 0 until 6) {
+      if (counts(i) == 5)
+        return 50
+    }
+    0
+  }
+
   def chance(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int = {
     var total: Int = 0
     total += d1
