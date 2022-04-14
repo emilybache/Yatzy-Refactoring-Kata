@@ -68,4 +68,10 @@ class YatzyTests extends AnyFunSuite with Matchers {
     assert(new Yatzy(4, 4, 6, 5, 5).Sixes() == 6)
     assert(new Yatzy(6, 5, 6, 6, 5).Sixes() == 18)
   }
+
+  test("smallStraight") {
+    assert(Yatzy.smallStraight(1, 2, 3, 4, 5) == 15)
+    assert(Yatzy.smallStraight(2, 3, 4, 5, 1) == 15)
+    assert(Yatzy.smallStraight(1, 2, 2, 4, 5) == 0)
+  }
 }

@@ -111,6 +111,23 @@ object Yatzy {
     0
   }
 
+  def smallStraight(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int = {
+    var tallies = new Array[Int](6)
+    tallies(d1 - 1) += 1
+    tallies(d2 - 1) += 1
+    tallies(d3 - 1) += 1
+    tallies(d4 - 1) += 1
+    tallies(d5 - 1) += 1
+    if (
+      tallies(0) == 1 &&
+      tallies(1) == 1 &&
+      tallies(2) == 1 &&
+      tallies(3) == 1 &&
+      tallies(4) == 1
+    ) 15
+    else 0
+  }
+
   def largeStraight(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int = {
     var tallies = new Array[Int](6)
     tallies(d1 - 1) += 1
