@@ -37,7 +37,6 @@ object Yatzy {
     total += d3
     total += d4
     total += d5
-
     total
   }
 
@@ -84,5 +83,42 @@ object Yatzy {
         return (i + 1) * 4
     }
     0
+  }
+
+  def fullHouse(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int = {
+    var tallies = new Array[Int](6)
+    var _2 = false
+    var i = 0
+    var _2_at = 0
+    var _3 = false
+    var _3_at = 0
+
+    tallies(d1 - 1) += 1
+    tallies(d2 - 1) += 1
+    tallies(d3 - 1) += 1
+    tallies(d4 - 1) += 1
+    tallies(d5 - 1) += 1
+
+    i = 0
+    while (i != 6) {
+      if (tallies(i) == 2) {
+        _2 = true
+        _2_at = i + 1
+      }
+      i += 1
+    }
+
+    i = 0
+    while (i != 6) {
+      if (tallies(i) == 3) {
+        _3 = true
+        _3_at = i + 1
+      }
+      i += 1
+    }
+
+    if (_2 && _3)
+      _2_at * 2 + _3_at * 3
+    else 0
   }
 }

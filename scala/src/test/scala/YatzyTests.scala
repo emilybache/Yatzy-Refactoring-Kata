@@ -45,4 +45,9 @@ class YatzyTests extends AnyFunSuite with Matchers {
     assert(new Yatzy(4, 4, 5, 5, 5).fours() == 8)
     assert(new Yatzy(4, 5, 5, 5, 5).fours() == 4)
   }
+
+  test("fullHouse") {
+    assert(Yatzy.fullHouse(6, 2, 2, 2, 6) == 18)
+    assert(Yatzy.fullHouse(2, 3, 4, 5, 6) == 0)
+  }
 }
