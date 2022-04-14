@@ -62,4 +62,10 @@ class YatzyTests extends AnyFunSuite with Matchers {
     assert(Yatzy.scorePair(5, 3, 3, 3, 5) == 10)
     assert(Yatzy.scorePair(5, 3, 6, 6, 5) == 12)
   }
+
+  test("sixes") {
+    assert(new Yatzy(4, 4, 4, 5, 5).Sixes() == 0)
+    assert(new Yatzy(4, 4, 6, 5, 5).Sixes() == 6)
+    assert(new Yatzy(6, 5, 6, 6, 5).Sixes() == 18)
+  }
 }

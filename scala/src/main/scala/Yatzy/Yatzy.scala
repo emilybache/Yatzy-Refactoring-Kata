@@ -7,7 +7,6 @@ class Yatzy(
     private val d4: Int,
     val d5: Int
 ) {
-
   val dice: List[Int] = List(d1, d2, d3, d4, d5)
 
   def fives(): Int = {
@@ -26,6 +25,16 @@ class Yatzy(
       if (dice(at) == 4) sum += 4
     }
     return sum
+  }
+
+  def Sixes(): Int = {
+    var sum = 0
+    sum = 0
+    for (at <- 0 until 5) {
+      if (dice(at) == 6)
+        sum += 6
+    }
+    sum
   }
 }
 
