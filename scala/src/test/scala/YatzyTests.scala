@@ -56,4 +56,10 @@ class YatzyTests extends AnyFunSuite with Matchers {
     assert(Yatzy.largeStraight(2, 3, 4, 5, 6) == 20)
     assert(Yatzy.largeStraight(1, 2, 2, 4, 5) == 0)
   }
+
+  test("one Pair") {
+    assert(Yatzy.scorePair(3, 4, 3, 5, 6) == 6)
+    assert(Yatzy.scorePair(5, 3, 3, 3, 5) == 10)
+    assert(Yatzy.scorePair(5, 3, 6, 6, 5) == 12)
+  }
 }

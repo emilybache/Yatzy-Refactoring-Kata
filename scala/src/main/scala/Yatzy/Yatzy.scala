@@ -30,7 +30,6 @@ class Yatzy(
 }
 
 object Yatzy {
-
   def chance(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int = {
     var total: Int = 0
     total += d1
@@ -69,6 +68,23 @@ object Yatzy {
     if (d4 == 3) sum += 3
     if (d5 == 3) sum += 3
     sum
+  }
+
+  def scorePair(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int = {
+    val counts = new Array[Int](6)
+    counts(d1 - 1) += 1
+    counts(d2 - 1) += 1
+    counts(d3 - 1) += 1
+    counts(d4 - 1) += 1
+    counts(d5 - 1) += 1
+
+    var at = 0
+    while (at != 6) {
+      if (counts(6 - at - 1) >= 2)
+        return (6 - at) * 2
+      at += 1
+    }
+    0
   }
 
   def fourOfAKind(_1: Int, _2: Int, d3: Int, d4: Int, d5: Int): Int = {
