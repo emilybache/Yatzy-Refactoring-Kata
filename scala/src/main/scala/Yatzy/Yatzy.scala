@@ -60,4 +60,19 @@ object Yatzy {
     if (d5 == 3) sum += 3
     sum
   }
+
+  def fourOfAKind(_1: Int, _2: Int, d3: Int, d4: Int, d5: Int): Int = {
+    var tallies = new Array[Int](6)
+    tallies(_1 - 1) += 1
+    tallies(_2 - 1) += 1
+    tallies(d3 - 1) += 1
+    tallies(d4 - 1) += 1
+    tallies(d5 - 1) += 1
+
+    for (i <- 0 until 6) {
+      if (tallies(i) >= 4)
+        return (i + 1) * 4
+    }
+    0
+  }
 }
