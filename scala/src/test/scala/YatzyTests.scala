@@ -22,4 +22,9 @@ class YatzyTests extends AnyFunSuite with Matchers {
     assert(Yatzy.twos(1, 2, 3, 2, 6) == 4)
     assert(Yatzy.twos(2, 2, 2, 2, 2) == 10)
   }
+
+  test("test_3s") {
+    assert(Yatzy.threes(1, 2, 3, 2, 3) == 6)
+    assert(Yatzy.threes(2, 3, 3, 3, 3) == 12)
+  }
 }

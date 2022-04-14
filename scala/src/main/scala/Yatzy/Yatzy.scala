@@ -33,4 +33,14 @@ object Yatzy {
     if (d5 == 2) sum += 2
     sum
   }
+
+  def threes(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int = {
+    var sum = 0
+    if (d1 == 3) sum += 3
+    if (d2 == 3) sum += 3
+    if (d3 == 3) sum += 3
+    if (d4 == 3) sum += 3
+    if (d5 == 3) sum += 3
+    sum
+  }
 }
