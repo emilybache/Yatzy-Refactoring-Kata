@@ -27,4 +27,10 @@ class YatzyTests extends AnyFunSuite with Matchers {
     assert(Yatzy.threes(1, 2, 3, 2, 3) == 6)
     assert(Yatzy.threes(2, 3, 3, 3, 3) == 12)
   }
+
+  test("test_5s") {
+    assert(new Yatzy(4, 4, 4, 5, 5).fives() == 10)
+    assert(new Yatzy(4, 4, 5, 5, 5).fives() == 15)
+    assert(new Yatzy(4, 5, 5, 5, 5).fives() == 20)
+  }
 }
