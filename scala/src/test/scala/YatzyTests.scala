@@ -50,4 +50,10 @@ class YatzyTests extends AnyFunSuite with Matchers {
     assert(Yatzy.fullHouse(6, 2, 2, 2, 6) == 18)
     assert(Yatzy.fullHouse(2, 3, 4, 5, 6) == 0)
   }
+
+  test("largeStraight") {
+    assert(Yatzy.largeStraight(6, 2, 3, 4, 5) == 20)
+    assert(Yatzy.largeStraight(2, 3, 4, 5, 6) == 20)
+    assert(Yatzy.largeStraight(1, 2, 2, 4, 5) == 0)
+  }
 }

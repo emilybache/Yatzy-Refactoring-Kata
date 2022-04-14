@@ -30,6 +30,7 @@ class Yatzy(
 }
 
 object Yatzy {
+
   def chance(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int = {
     var total: Int = 0
     total += d1
@@ -82,6 +83,23 @@ object Yatzy {
       if (tallies(i) >= 4)
         return (i + 1) * 4
     }
+    0
+  }
+
+  def largeStraight(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int = {
+    var tallies = new Array[Int](6)
+    tallies(d1 - 1) += 1
+    tallies(d2 - 1) += 1
+    tallies(d3 - 1) += 1
+    tallies(d4 - 1) += 1
+    tallies(d5 - 1) += 1
+    if (
+      tallies(1) == 1 &&
+      tallies(2) == 1 &&
+      tallies(3) == 1 &&
+      tallies(4) == 1 &&
+      tallies(5) == 1
+    ) return 20
     0
   }
 
