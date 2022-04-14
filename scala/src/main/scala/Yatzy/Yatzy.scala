@@ -96,6 +96,19 @@ object Yatzy {
     0
   }
 
+  def threeOfAKind(d1: Int, d2: Int, d3: Int, d4: Int, d5: Int): Int = {
+    val t = new Array[Int](6)
+    t(d1 - 1) += 1
+    t(d2 - 1) += 1
+    t(d3 - 1) += 1
+    t(d4 - 1) += 1
+    t(d5 - 1) += 1
+    for (i <- 0 until 6) {
+      if (t(i) >= 3) return (i + 1) * 3
+    }
+    0
+  }
+
   def fourOfAKind(_1: Int, _2: Int, d3: Int, d4: Int, d5: Int): Int = {
     var tallies = new Array[Int](6)
     tallies(_1 - 1) += 1

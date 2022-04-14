@@ -74,4 +74,10 @@ class YatzyTests extends AnyFunSuite with Matchers {
     assert(Yatzy.smallStraight(2, 3, 4, 5, 1) == 15)
     assert(Yatzy.smallStraight(1, 2, 2, 4, 5) == 0)
   }
+
+  test("three_of_a_kind") {
+    assert(Yatzy.threeOfAKind(3, 3, 3, 4, 5) == 9)
+    assert(Yatzy.threeOfAKind(5, 3, 5, 4, 5) == 15)
+    assert(Yatzy.threeOfAKind(3, 3, 3, 3, 5) == 9)
+  }
 }
