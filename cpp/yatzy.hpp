@@ -1,5 +1,5 @@
-#ifndef YAHTZEE_INCLUDED
-#define YATHZEE_INCLUDED
+#ifndef YATZY_INCLUDED
+#define YATZY_INCLUDED
 
 class Yatzy
 {
