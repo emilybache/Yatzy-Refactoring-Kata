@@ -3,11 +3,11 @@ package Yatzy
 class Yatzy(
     private val d1: Int,
     private val d2: Int,
-    private val d3: Int,
+    val d3: Int,
     private val d4: Int,
-    private val d5: Int
+    val d5: Int
 ) {
-  private val dice: List[Int] = List(d1, d2, d3, d4, d5)
+  val dice: List[Int] = List(d1, d2, d3, d4, d5)
 
   def fives(): Int = {
     var s = 0
