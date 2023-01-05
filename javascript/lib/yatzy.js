@@ -1,237 +1,247 @@
-var Yatzy = function(d1, d2, d3, d4, _5) {
-    this.dice = [];
-    this.dice[0] = d1;
-    this.dice[1] = d2;
-    this.dice[2] = d3;
-    this.dice[3] = d4;
-    this.dice[4] = _5;
+var Yatzy = function (d1, d2, d3, d4, d5) {
 
-    this.fours = function()
-    {
-        var sum;
-        sum = 0;
-        for (at = 0; at != 5; at++) {
-            if (this.dice[at] == 4) {
-                sum += 4;
-            }
-        }
-        return sum;
+    // PROPERTIES
+
+    this.dices = [d1, d2, d3, d4, d5];
+
+    // PUBLIC METHODE
+
+    /**
+     * return the total of all 1
+     */
+    this.ones = function () {
+        return this._sumOfNumber(1);
     }
 
-    this.fives = function()
-    {
-        s = 0
-        var i
-        for (i = 0; i < this.dice.length; i++)
-            if (this.dice[i] == 5)
-                s = s + 5;
-        return s;
+    /**
+     * return the total of all 2
+     */
+    this.twos = function () {
+        return this._sumOfNumber(2);
     }
 
-    this.sixes = function()
-    {
-        sum = 0;
-        for (var at = 0; at < this.dice.length; at++)
-            if (this.dice[at] == 6)
-                sum = sum + 6;
-        return sum;
+    /**
+     * return the total of all 3
+     */
+    this.threes = function () {
+        return this._sumOfNumber(3);
     }
-}
 
+    /**
+     * return the total of all 4
+     */
+    this.fours = function () {
+        return this._sumOfNumber(4);
+    }
 
+    /**
+     * return the total of all 5
+     */
+    this.fives = function () {
+        return this._sumOfNumber(5);
+    }
 
-Yatzy.chance = function(d1, d2, d3, d4, d5) {
-    var total = 0;
-    total += d1;
-    total += d2;
-    total += d3;
-    total += d4;
-    total += d5;
-    return total;
-}
+    /**
+     * return the total of all 6
+     */
+    this.sixes = function () {
+        return this._sumOfNumber(6);
+    }
 
-Yatzy.yatzy = function() {
-    var counts = [0, 0, 0, 0, 0, 0, 0, 0];
-    for (var i = 0; i != arguments.length; ++i) {
-    var die = arguments[i];
-    counts[die-1]++; }
-    for (i = 0; i != 6; i++)
-        if (counts[i] == 5)
+    /**
+     * return the total of all dices
+     */
+    this.chance = function () {
+        return this.dices.reduce((a, b) => a + b);
+    }
+
+    /**
+     * return 50 if all dices are same; zero otherwise
+     */
+    this.yatzy = function () {
+        if (this._numberOfKind(5))
             return 50;
-    return 0;
-}
-
-Yatzy.ones = function(d1, d2, d3, d4, d5) {
-    var sum = 0;
-    if (d1 == 1) sum++;
-    if (d2 == 1) sum++;
-    if (d3 == 1) sum++;
-    if (d4 == 1) sum++;
-    if (d5 == 1)
-        sum++;
-
-    return sum;
-}
-
-Yatzy.twos = function(d1, d2, d3, d4, d5) {
-    var sum = 0;
-    if (d1 == 2) sum += 2;
-    if (d2 == 2) sum += 2;
-    if (d3 == 2) sum += 2;
-    if (d4 == 2) sum += 2;
-    if (d5 == 2) sum += 2;
-    return sum;
-}
-
-Yatzy.threes = function(d1, d2, d3, d4, d5) {
-    var s;
-    s = 0;
-    if (d1 == 3) s += 3;
-    if (d2 == 3) s += 3;
-    if (d3 == 3) s += 3;
-    if (d4 == 3) s += 3;
-    if (d5 == 3) s += 3;
-    return s;
-}
-
-Yatzy.score_pair = function(d1, d2, d3, d4, d5)
-{
-    var counts = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-    counts[d1-1]++;
-    counts[d2-1]++;
-    counts[d3-1]++;
-    counts[d4-1]++;
-    counts[d5-1]++;
-    var at;
-    for (at = 0; at != 6; at++)
-        if (counts[6-at-1] >= 2)
-            return (6-at)*2;
-    return 0;
-}
-
-Yatzy.two_pair = function(d1, d2, d3, d4, d5)
-{
-    var counts = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-    counts[d1-1]++;
-    counts[d2-1]++
-    counts[d3-1]++
-    counts[d4-1]++;
-    counts[d5-1]++;
-    var n = 0;
-    var score = 0;
-    for (i = 0; i < 6; i += 1)
-        if (counts[6-i-1] >= 2) {
-            n++;
-            score += (6-i);
-        }
-    if (n == 2)
-        return score * 2;
-    else
         return 0;
-}
+    }
 
-Yatzy.four_of_a_kind = function(_1, _2, d3, d4, d5)
-{
-    var tallies;
-    tallies = [0, 0, 0, 0, 0, 0, 0, 0]
-    tallies[_1-1]++;
-    tallies[_2-1]++;
-    tallies[d3-1]++;
-    tallies[d4-1]++;
-    tallies[d5-1]++;
-    for (i = 0; i < 6; i++)
-        if (tallies[i] >= 4)
-            return (i+1) * 4;
-    return 0;
-}
+    /**
+     * return the sum of one pair; zero otherwise
+     */
+    this.onePair = function () {
+        return this._findTheBestPair() * 2;
+    }
 
-Yatzy.three_of_a_kind = function(d1, d2, d3, d4, d5)
-{
-    var t;
-    t = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-    t[d1-1]++;
-    t[d2-1]++;
-    t[d3-1]++;
-    t[d4-1]++;
-    t[d5-1]++;
-    for (i = 0; i < 6; i++)
-        if (t[i] >= 3)
-            return (i+1) * 3;
-    return 0;
-}
+    /**
+     * return the sum of two pairs; zero otherwise
+     */
+    this.twoPair = function () {
+        const bestPair = this._findTheBestPair();
+        const worstPair = this._findTheWorstPair();
 
-Yatzy.smallStraight = function(d1, d2, d3, d4, d5)
-{
-    var tallies;
-    tallies = [0, 0, 0, 0, 0, 0, 0]
-    tallies[d1-1] += 1;
-    tallies[d2-1] += 1;
-    tallies[d3-1] += 1;
-    tallies[d4-1] += 1;
-    tallies[d5-1] += 1;
-    if (tallies[0] == 1 &&
-        tallies[1] == 1 &&
-        tallies[2] == 1 &&
-        tallies[3] == 1 &&
-        tallies[4] == 1)
-        return 15;
-    return 0;
-}
-
-Yatzy.largeStraight = function(d1, d2, d3, d4, d5)
-{
-    var tallies;
-    tallies = [0, 0, 0, 0,0,0,0,0];
-    tallies[d1-1] += 1;
-    tallies[d2-1] += 1;
-    tallies[d3-1] += 1;
-    tallies[d4-1] += 1;
-    tallies[d5-1] += 1;
-    if (tallies[1] == 1 &&
-        tallies[2] == 1 &&
-        tallies[3] == 1 &&
-        tallies[4] == 1
-        && tallies[5] == 1)
-        return 20;
-    return 0;
-}
-
-Yatzy.fullHouse = function(d1, d2, d3, d4, d5)
-{
-    var tallies;
-    var  _2 = false;
-    var i;
-    var _2_at = 0;
-    var _3 = false;
-    var _3_at = 0;
-
-
-
-
-    tallies = [0, 0, 0, 0, 0, 0, 0, 0];
-    tallies[d1-1] += 1;
-    tallies[d2-1] += 1;
-    tallies[d3-1] += 1;
-    tallies[d4-1] += 1;
-    tallies[d5-1] += 1;
-
-    for (i = 0; i != 6; i += 1)
-        if (tallies[i] == 2) {
-            _2 = true;
-            _2_at = i+1;
-        }
-
-    for (i = 0; i != 6; i += 1)
-        if (tallies[i] == 3) {
-            _3 = true;
-            _3_at = i+1;
-        }
-
-    if (_2 && _3)
-        return _2_at * 2 + _3_at * 3;
-    else
+        if (bestPair != 0 && worstPair != 0 && bestPair != worstPair)
+            return bestPair * 2 + worstPair * 2;
         return 0;
+    }
+
+    /**
+     * return the sum of four same dice; zero otherwise
+     */
+    this.fourOfKind = function () {
+        return this._numberOfKind(4) * 4;
+    }
+
+    /**
+     * return the sum of three same dice; zero otherwise
+     */
+    this.threeOfKind = function () {
+        return this._numberOfKind(3) * 3;
+    }
+
+    /**
+     * return 30 if four of the dice have consecutive values; zero otherwise
+     */
+    this.smallStraight = function () {
+        if (this._isSmallStraight())
+            return 30;
+        return 0;
+    }
+
+    /**
+     * return 40 if all five dice have consecutive values
+     */
+    this.largeStraight = function () {
+        if (this._isLargeStraight())
+            return 40;
+        return 0;
+    }
+
+    /**
+     * return the sum of dices if the combinaison is a three-of-a-kind and a pair
+     */
+    this.fullHouse = function () {
+        var countDices =  this._countDices();
+        
+        var gotPair = false;
+        var gotThreeOfKind = false;
+
+        var result = 0;
+
+        for (var i = 0; i < 6; i++) {
+            if (countDices[i] == 2) {
+                gotPair = true;
+                result += (i + 1) * 2;
+            }
+            if (countDices[i] == 3) {
+                gotThreeOfKind = true;
+                result += (i + 1) * 3;
+            }
+        }           
+
+        if (gotPair && gotThreeOfKind)
+            return result;
+        return 0;
+    }
+
+    // PROTECTED METHOD
+
+    /**
+     * return the total of specified number
+     */
+    this._sumOfNumber = function (number) {
+        var sum = 0;
+        for (var i = 0; i < this.dices.length; i++)
+            if (this.dices[i] == number)
+                sum += number;
+        return sum;
+    }
+
+    /**
+     * return an Array with the count of dices values
+     */
+    this._countDices = function () {
+        var countDices = [0, 0, 0, 0, 0, 0]
+        countDices[this.dices[0] - 1]++;
+        countDices[this.dices[1] - 1]++;
+        countDices[this.dices[2] - 1]++;
+        countDices[this.dices[3] - 1]++;
+        countDices[this.dices[4] - 1]++;
+        return countDices;
+    }
+
+    /**
+     * return the value of 'number' same dice; zero otherwise
+     * @param {int} number of dice wanted
+     */
+    this._numberOfKind = function(number) {
+        var countDices =  this._countDices();
+        for (i = 0; i < 6; i++)
+            if (countDices[i] >= number)
+                return i + 1;
+        return 0;
+    }
+
+    /**
+     * return true if the combinason is a small straight
+     * 1234 - 2345 - 3456
+     */
+    this._isSmallStraight = function () {
+        var countDices =  this._countDices();
+        return countDices[0] >= 1 &&
+            countDices[1] >= 1 &&
+            countDices[2] >= 1 &&
+            countDices[3] >= 1 ||
+            countDices[1] >= 1 &&
+            countDices[2] >= 1 &&
+            countDices[3] >= 1 &&
+            countDices[4] >= 1 ||
+            countDices[2] >= 1 &&
+            countDices[3] >= 1 &&
+            countDices[4] >= 1 &&
+            countDices[5] >= 1;
+    }
+
+    /**
+     * return true if the combinason is a large straight
+     * 12345 - 23456
+     */
+    this._isLargeStraight = function () {
+        var countDices =  this._countDices();
+        return countDices[0] == 1 &&
+            countDices[1] == 1 &&
+            countDices[2] == 1 &&
+            countDices[3] == 1 &&
+            countDices[4] == 1 ||
+            countDices[1] == 1 &&
+            countDices[2] == 1 &&
+            countDices[3] == 1 &&
+            countDices[4] == 1 &&
+            countDices[5] == 1;
+    }
+
+    /**
+     * find the value of the best pair; zero otherwise
+     */
+    this._findTheBestPair = function () {
+        var countDices =  this._countDices();
+        for (var i = 6; i > 0; i--)
+            if (countDices[i] >= 2)
+                return i + 1;
+        return 0;
+    }
+
+    /**
+     * find the value of the worst pair; zero otherwise
+     */
+    this._findTheWorstPair = function () {
+        var countDices =  this._countDices();
+        for (var i = 0; i < 6; i++)
+            if (countDices[i] >= 2)
+                return i + 1;
+        return 0;
+    }
+    
 }
+
 
 module.exports = Yatzy;
 
