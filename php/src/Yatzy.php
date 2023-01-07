@@ -1,11 +1,17 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Yatzy;
 
 class Yatzy
 {
-    public static function chance($d1, $d2, $d3, $d4, $d5)
+    /**
+     * @var array<int, int>
+     */
+    private array $dice;
+
+    public static function chance(int $d1, int $d2, int $d3, int $d4, int $d5): int
     {
         $total = 0;
         $total += $d1;
@@ -16,7 +22,10 @@ class Yatzy
         return $total;
     }
 
-    public static function yatzyScore($dice)
+    /**
+     * @param array<int, int> $dice
+     */
+    public static function yatzyScore(array $dice): int
     {
         $counts = array_fill(0, count($dice) + 1, 0);
         foreach ($dice as $die) {
@@ -29,7 +38,7 @@ class Yatzy
         return 0;
     }
 
-    public static function ones($d1, $d2, $d3, $d4, $d5)
+    public static function ones(int $d1, int $d2, int $d3, int $d4, int $d5): int
     {
         $sum = 0;
         if ($d1 == 1)
@@ -46,7 +55,7 @@ class Yatzy
         return $sum;
     }
 
-    public static function twos($d1, $d2, $d3, $d4, $d5)
+    public static function twos(int $d1, int $d2, int $d3, int $d4, int $d5): int
     {
         $sum = 0;
         if ($d1 == 2)
@@ -63,7 +72,7 @@ class Yatzy
         return $sum;
     }
 
-    public static function threes($d1, $d2, $d3, $d4, $d5)
+    public static function threes(int $d1, int $d2, int $d3, int $d4, int $d5): int
     {
         $s = 0;
         if ($d1 == 3)
@@ -80,7 +89,7 @@ class Yatzy
         return $s;
     }
 
-    public function __construct($d1, $d2, $d3, $d4, $_5)
+    public function __construct(int $d1, int $d2, int $d3, int $d4, int $_5)
     {
         $this->dice = array_fill(0, 6, 0);
         $this->dice[0] = $d1;
@@ -90,7 +99,7 @@ class Yatzy
         $this->dice[4] = $_5;
     }
 
-    public function fours()
+    public function fours(): int
     {
         $sum = 0;
         for ($at = 0; $at != 5; $at++) {
@@ -101,7 +110,7 @@ class Yatzy
         return $sum;
     }
 
-    public function Fives()
+    public function Fives(): int
     {
         $s = 0;
         $i = 0;
@@ -111,7 +120,7 @@ class Yatzy
         return $s;
     }
 
-    public function sixes()
+    public function sixes(): int
     {
         $sum = 0;
         for ($at = 0; $at < 5; $at++)
@@ -120,7 +129,7 @@ class Yatzy
         return $sum;
     }
 
-    public static function score_pair($d1, $d2, $d3, $d4, $d5)
+    public static function score_pair(int $d1, int $d2, int $d3, int $d4, int $d5): int
     {
         $counts = array_fill(0, 6, 0);
         $counts[$d1 - 1] += 1;
@@ -134,7 +143,7 @@ class Yatzy
         return 0;
     }
 
-    public static function two_pair($d1, $d2, $d3, $d4, $d5)
+    public static function two_pair(int $d1, int $d2, int $d3, int $d4, int $d5): int
     {
         $counts = array_fill(0, 6, 0);
         $counts[$d1 - 1] += 1;
@@ -156,7 +165,7 @@ class Yatzy
             return 0;
     }
 
-    public static function three_of_a_kind($d1, $d2, $d3, $d4, $d5)
+    public static function three_of_a_kind(int $d1, int $d2, int $d3, int $d4, int $d5): int
     {
         $t = array_fill(0, 6, 0);
         $t[$d1 - 1] += 1;
@@ -170,7 +179,7 @@ class Yatzy
         return 0;
     }
 
-    public static function smallStraight($d1, $d2, $d3, $d4, $d5)
+    public static function smallStraight(int $d1, int $d2, int $d3, int $d4, int $d5): int
     {
         $tallies = array_fill(0, 6, 0);
         $tallies[$d1 - 1] += 1;
@@ -187,7 +196,7 @@ class Yatzy
         return 0;
     }
 
-    public static function largeStraight($d1, $d2, $d3, $d4, $d5)
+    public static function largeStraight(int $d1, int $d2, int $d3, int $d4, int $d5): int
     {
         $tallies = array_fill(0, 6, 0);
         $tallies[$d1 - 1] += 1;
@@ -204,13 +213,13 @@ class Yatzy
         return 0;
     }
 
-    public static function fullHouse($d1, $d2, $d3, $d4, $d5)
+    public static function fullHouse(int $d1, int $d2, int $d3, int $d4, int $d5): int
     {
         $tallies = [];
         $_2 = false;
         $i = 0;
         $_2_at = 0;
-        $_3 = False;
+        $_3 = false;
         $_3_at = 0;
 
         $tallies = array_fill(0, 6, 0);
@@ -222,14 +231,14 @@ class Yatzy
 
         foreach (range(0, 5) as $i) {
             if ($tallies[$i] == 2) {
-                $_2 = True;
+                $_2 = true;
                 $_2_at = $i + 1;
             }
         }
 
         foreach (range(0, 5) as $i) {
             if ($tallies[$i] == 3) {
-                $_3 = True;
+                $_3 = true;
                 $_3_at = $i + 1;
             }
         }
