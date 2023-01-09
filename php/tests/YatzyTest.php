@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Yatzy\Tests;
@@ -8,7 +9,6 @@ use Yatzy\Yatzy;
 
 class YatzyTest extends TestCase
 {
-
     public function test_chance_scores_sum_of_all_dice(): void
     {
         $expected = 15;

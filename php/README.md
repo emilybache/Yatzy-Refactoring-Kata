@@ -19,7 +19,8 @@ Recommended:
 
 - [Git](https://git-scm.com/downloads)
 
-Clone the repository
+See [GitHub cloning a repository](https://help.github.com/en/articles/cloning-a-repository) for details on how to
+create a local copy of this project on your computer.
 
 ```sh
 git clone https://github.com/emilybache/Yatzy-Refactoring-Kata.git
@@ -35,7 +36,7 @@ composer install
 Run all the tests
 
 ```shell script
-composer test
+composer tests
 ```
 
 ## Dependencies
@@ -57,14 +58,14 @@ PHPUnit is pre-configured to run tests. PHPUnit can be run using a composer scri
 of the PHP kata run:
 
 ```shell script
-composer test
+composer tests
 ```
 
-On Windows a batch file has been created, similar to an alias on Linux/Mac (e.g. `alias pu="composer test"`), the same
-PHPUnit `composer test` can be run:
+On Windows a batch file has been created, similar to an alias on Linux/Mac (e.g. `alias pu="composer tests"`), the same
+PHPUnit `composer tests` can be run:
 
 ```shell script
-pu
+pu.bat
 ```
 
 ### Tests with Coverage Report
@@ -75,11 +76,15 @@ To run all test and generate a html coverage report run:
 composer test-coverage
 ```
 
-The test-coverage report will be created in /builds, it is best viewed by opening /builds/**index.html** in your browser.
+The test-coverage report will be created in /builds, it is best viewed by opening /builds/**index.html** in your
+browser.
+
+The [XDEbug](https://xdebug.org/download) extension is required for coverage report generating.
 
 ## Code Standard
 
-Easy Coding Standard (ECS) is used to check for style and code standards, **PSR-12** is used.
+Easy Coding Standard (ECS) is configured for style and code standards,
+**[PSR-12](https://www.php-fig.org/psr/psr-12/)** is used.
 
 ### Check Code
 
@@ -93,7 +98,7 @@ On Windows a batch file has been created, similar to an alias on Linux/Mac (e.g.
 same `composer check-cs` can be run:
 
 ```shell script
-cc
+cc.bat
 ```
 
 ### Fix Code
@@ -108,7 +113,7 @@ On Windows a batch file has been created, similar to an alias on Linux/Mac (e.g.
 `composer fix-cs` can be run:
 
 ```shell script
-fc
+fc.bat
 ```
 
 ## Static Analysis
@@ -123,7 +128,7 @@ On Windows a batch file has been created, similar to an alias on Linux/Mac (e.g.
 same `composer phpstan` can be run:
 
 ```shell script
-ps
+ps.bat
 ```
 
 **Happy coding**!
