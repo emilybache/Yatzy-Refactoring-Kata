@@ -1,17 +1,25 @@
 public class Yatzy {
 
-    public static int chance(int d1, int d2, int d3, int d4, int d5)
+    protected int[] dice;
+    public Yatzy(int d1, int d2, int d3, int d4, int _5)
     {
-        int total = 0;
-        total += d1;
-        total += d2;
-        total += d3;
-        total += d4;
-        total += d5;
-        return total;
+        dice = new int[5];
+        dice[0] = d1;
+        dice[1] = d2;
+        dice[2] = d3;
+        dice[3] = d4;
+        dice[4] = _5;
     }
 
-    public static int yatzy(int... dice)
+    public int chance()
+    {
+        int sum = 0;
+        for (int at = 0; at < dice.length; at++)
+                sum += dice[at];
+        return sum;
+    }
+
+    public int yatzy()
     {
         int[] counts = new int[6];
         for (int die : dice)
@@ -22,48 +30,31 @@ public class Yatzy {
         return 0;
     }
 
-    public static int ones(int d1, int d2, int d3, int d4, int d5) {
-        int sum = 0;
-        if (d1 == 1) sum++;
-        if (d2 == 1) sum++;
-        if (d3 == 1) sum++;
-        if (d4 == 1) sum++;
-        if (d5 == 1) 
-            sum++;
-
-        return sum;
-    }
-
-    public static int twos(int d1, int d2, int d3, int d4, int d5) {
-        int sum = 0;
-        if (d1 == 2) sum += 2;
-        if (d2 == 2) sum += 2;
-        if (d3 == 2) sum += 2;
-        if (d4 == 2) sum += 2;
-        if (d5 == 2) sum += 2;
-        return sum;
-    }
-
-    public static int threes(int d1, int d2, int d3, int d4, int d5) {
-        int s;    
-        s = 0;
-        if (d1 == 3) s += 3;
-        if (d2 == 3) s += 3;
-        if (d3 == 3) s += 3;
-        if (d4 == 3) s += 3;
-        if (d5 == 3) s += 3;
-        return s;
-    }
-
-    protected int[] dice;
-    public Yatzy(int d1, int d2, int d3, int d4, int _5)
+    public int ones()
     {
-        dice = new int[5];
-        dice[0] = d1;
-        dice[1] = d2;
-        dice[2] = d3;
-        dice[3] = d4;
-        dice[4] = _5;
+        int sum = 0;
+        for (int at = 0; at < dice.length; at++)
+            if (dice[at] == 1)
+                sum += dice[at];
+        return sum;
+    }
+
+    public int twos()
+    {
+        int sum = 0;
+        for (int at = 0; at < dice.length; at++)
+            if (dice[at] == 2)
+                sum += dice[at];
+        return sum;
+    }
+
+    public int threes()
+    {
+        int sum = 0;
+        for (int at = 0; at < dice.length; at++)
+            if (dice[at] == 3)
+                sum += dice[at];
+        return sum;
     }
 
     public int fours()
