@@ -8,19 +8,21 @@ import java.util.stream.Collectors;
 public class Yatzy {
 
 
-    List<Dice> dices;
-    public Yatzy(int d1, int d2, int d3, int d4, int _5)
+    private List<Dice> dices;
+    @Deprecated
+    public Yatzy(int d1, int d2, int d3, int d4, int d5)
     {
-        int[] dice = new int[5];
-        dice[0] = d1;
-        dice[1] = d2;
-        dice[2] = d3;
-        dice[3] = d4;
-        dice[4] = _5;
+        this(Dice.of(d1),Dice.of(d2),Dice.of(d3),Dice.of(d4),Dice.of(d5));
+    }
 
-        dices = Arrays.stream(dice)
-            .mapToObj(Dice::of)
-            .collect(Collectors.toList());
+    public Yatzy(Dice d1, Dice d2, Dice d3, Dice d4, Dice d5){
+        dices = List.of(d1, d2, d3, d4, d5);
+    }
+
+    public Yatzy(List<Dice> dices){
+        if(dices == null || dices.size() != 5)
+            throw new IllegalArgumentException("we are waiting 5 dices !");
+        this.dices = dices;
     }
 
     public int chance()
