@@ -1,6 +1,14 @@
+import yatzy.Chance;
+import yatzy.Dice;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Yatzy {
 
     protected int[] dice;
+    List<Dice> dices;
     public Yatzy(int d1, int d2, int d3, int d4, int _5)
     {
         dice = new int[5];
@@ -9,14 +17,15 @@ public class Yatzy {
         dice[2] = d3;
         dice[3] = d4;
         dice[4] = _5;
+
+        dices = Arrays.stream(dice)
+            .mapToObj(Dice::of)
+            .collect(Collectors.toList());
     }
 
     public int chance()
     {
-        int sum = 0;
-        for (int at = 0; at < dice.length; at++)
-                sum += dice[at];
-        return sum;
+        return new Chance(dices).score().getScore();
     }
 
     public int yatzy()
@@ -29,7 +38,6 @@ public class Yatzy {
                 return 50;
         return 0;
     }
-
     public int ones()
     {
         int sum = 0;
