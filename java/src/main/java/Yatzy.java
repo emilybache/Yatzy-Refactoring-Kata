@@ -1,5 +1,7 @@
-import yatzy.Chance;
+import yatzy.category.ChanceScore;
 import yatzy.Dice;
+import yatzy.category.OneValueScore;
+import yatzy.category.YatzyScore;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,75 +27,41 @@ public class Yatzy {
 
     public int chance()
     {
-        return new Chance(dices).score().getScore();
+        return new ChanceScore(dices).score().getScore();
     }
 
     public int yatzy()
     {
-        int[] counts = new int[6];
-        for (int die : dice)
-            counts[die-1]++;
-        for (int i = 0; i != 6; i++)
-            if (counts[i] == 5)
-                return 50;
-        return 0;
+        return new YatzyScore(dices).score().getScore();
     }
     public int ones()
     {
-        int sum = 0;
-        for (int at = 0; at < dice.length; at++)
-            if (dice[at] == 1)
-                sum += dice[at];
-        return sum;
+        return new OneValueScore(dices, Dice.of(1)).score().getScore();
     }
 
     public int twos()
     {
-        int sum = 0;
-        for (int at = 0; at < dice.length; at++)
-            if (dice[at] == 2)
-                sum += dice[at];
-        return sum;
+        return new OneValueScore(dices, Dice.of(2)).score().getScore();
     }
 
     public int threes()
     {
-        int sum = 0;
-        for (int at = 0; at < dice.length; at++)
-            if (dice[at] == 3)
-                sum += dice[at];
-        return sum;
+        return new OneValueScore(dices, Dice.of(3)).score().getScore();
     }
 
     public int fours()
     {
-        int sum;    
-        sum = 0;
-        for (int at = 0; at != 5; at++) {
-            if (dice[at] == 4) {
-                sum += 4;
-            }
-        }
-        return sum;
+        return new OneValueScore(dices, Dice.of(4)).score().getScore();
     }
 
     public int fives()
     {
-        int s = 0;
-        int i;
-        for (i = 0; i < dice.length; i++) 
-            if (dice[i] == 5)
-                s = s + 5;
-        return s;
+        return new OneValueScore(dices, Dice.of(5)).score().getScore();
     }
 
     public int sixes()
     {
-        int sum = 0;
-        for (int at = 0; at < dice.length; at++) 
-            if (dice[at] == 6)
-                sum = sum + 6;
-        return sum;
+        return new OneValueScore(dices, Dice.of(6)).score().getScore();
     }
 
     public int score_pair()

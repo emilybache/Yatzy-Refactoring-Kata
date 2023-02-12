@@ -1,5 +1,7 @@
 package yatzy;
 
+import java.util.Objects;
+
 public class Dice {
 
     private final Integer value;
@@ -16,5 +18,18 @@ public class Dice {
 
     public static Dice of(Integer value){
         return new Dice(value);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Dice dice = (Dice) o;
+        return Objects.equals(value, dice.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 }
