@@ -2,7 +2,7 @@ package yatzy;
 
 import java.util.Objects;
 
-public class Dice {
+public class Dice implements Comparable<Dice> {
 
     private final Integer value;
 
@@ -31,5 +31,10 @@ public class Dice {
     @Override
     public int hashCode() {
         return Objects.hash(value);
+    }
+
+    @Override
+    public int compareTo(Dice dice) {
+        return this.getValue().compareTo(dice.getValue());
     }
 }

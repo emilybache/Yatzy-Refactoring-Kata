@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class ScoreHelper {
 
-    public static Map<Dice, Long> countNumberOfDiceForEachValue(List<Dice> dices){
+    public static Map<Dice, Long> getFrequencyOfEachDiceValue(List<Dice> dices){
         if(dices == null || dices.size() != 5)
             throw new IllegalArgumentException("we are waiting 5 dices !");
 

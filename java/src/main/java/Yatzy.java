@@ -1,6 +1,7 @@
 import yatzy.category.ChanceScore;
 import yatzy.Dice;
 import yatzy.category.OneValueScore;
+import yatzy.category.XOfAKindScore;
 import yatzy.category.YatzyScore;
 
 import java.util.Arrays;
@@ -66,16 +67,7 @@ public class Yatzy {
 
     public int score_pair()
     {
-        int[] counts = new int[6];
-
-        for (int i = 0; i < dice.length; i++)
-            counts[dice[i]-1]++;
-
-        int at;
-        for (at = 0; at != 6; at++)
-            if (counts[6-at-1] >= 2)
-                return (6-at)*2;
-        return 0;
+        return new XOfAKindScore(dices, XOfAKindScore.NumberOfAKind.TWO).score().getScore();
     }
 
     public int two_pair()
@@ -98,28 +90,12 @@ public class Yatzy {
 
     public int four_of_a_kind()
     {
-        int[] counts = new int[6];
-
-        for (int i = 0; i < dice.length; i++)
-            counts[dice[i]-1]++;
-
-        for (int i = 0; i < 6; i++)
-            if (counts[i] >= 4)
-                return (i+1) * 4;
-        return 0;
+        return new XOfAKindScore(dices, XOfAKindScore.NumberOfAKind.FOUR).score().getScore();
     }
 
     public int three_of_a_kind()
     {
-        int[] counts = new int[6];
-
-        for (int i = 0; i < dice.length; i++)
-            counts[dice[i]-1]++;
-
-        for (int i = 0; i < 6; i++)
-            if (counts[i] >= 3)
-                return (i+1) * 3;
-        return 0;
+        return new XOfAKindScore(dices, XOfAKindScore.NumberOfAKind.THREE).score().getScore();
     }
 
     public int smallStraight()

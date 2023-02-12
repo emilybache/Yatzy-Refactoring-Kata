@@ -18,7 +18,7 @@ public class YatzyScore implements ScoreCategory {
 
     @Override
     public Score score() {
-        if (ScoreHelper.countNumberOfDiceForEachValue(dices).size() == 1)
+        if (ScoreHelper.getFrequencyOfEachDiceValue(dices).size() == 1)
             return Score.of(50);
         return Score.of(0);
     }
