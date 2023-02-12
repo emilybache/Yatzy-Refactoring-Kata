@@ -4,7 +4,6 @@ import yatzy.Dice;
 import yatzy.Score;
 import yatzy.ScoreCategory;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;

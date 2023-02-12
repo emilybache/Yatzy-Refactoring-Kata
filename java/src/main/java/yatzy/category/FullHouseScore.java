@@ -4,7 +4,9 @@ import yatzy.Dice;
 import yatzy.Score;
 import yatzy.ScoreCategory;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 public class FullHouseScore implements ScoreCategory {
     private final List<Dice> dices;

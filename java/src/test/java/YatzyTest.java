@@ -1,11 +1,11 @@
-import org.junit.*;
+import org.junit.Test;
 import yatzy.Dice;
 import yatzy.TestHelper;
-import yatzy.category.ChanceScore;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class YatzyTest {
 

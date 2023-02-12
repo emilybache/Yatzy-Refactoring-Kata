@@ -1,8 +1,8 @@
 package yatzy.category;
 
-import yatzy.ScoreCategory;
 import yatzy.Dice;
 import yatzy.Score;
+import yatzy.ScoreCategory;
 
 import java.util.List;
 

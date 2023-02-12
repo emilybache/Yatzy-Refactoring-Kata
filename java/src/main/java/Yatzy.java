@@ -1,14 +1,12 @@
-import yatzy.category.*;
 import yatzy.Dice;
+import yatzy.category.*;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Yatzy {
 
 
-    private List<Dice> dices;
+    private final List<Dice> dices;
     @Deprecated
     public Yatzy(int d1, int d2, int d3, int d4, int d5)
     {
