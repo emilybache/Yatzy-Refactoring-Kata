@@ -7,11 +7,11 @@ import java.util.stream.Collectors;
 
 public class Yatzy {
 
-    protected int[] dice;
+
     List<Dice> dices;
     public Yatzy(int d1, int d2, int d3, int d4, int _5)
     {
-        dice = new int[5];
+        int[] dice = new int[5];
         dice[0] = d1;
         dice[1] = d2;
         dice[2] = d3;
@@ -69,20 +69,7 @@ public class Yatzy {
 
     public int two_pair()
     {
-        int[] counts = new int[6];
-        for (int i = 0; i < dice.length; i++)
-            counts[dice[i]-1]++;
-        int n = 0;
-        int score = 0;
-        for (int i = 0; i < 6; i += 1)
-            if (counts[6-i-1] >= 2) {
-                n++;
-                score += (6-i);
-            }        
-        if (n == 2)
-            return score * 2;
-        else
-            return 0;
+        return new TwoPairsScore(dices).score().getScore();
     }
 
     public int four_of_a_kind()
