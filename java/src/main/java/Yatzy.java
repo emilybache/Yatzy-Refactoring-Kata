@@ -107,32 +107,7 @@ public class Yatzy {
 
     public int fullHouse()
     {
-        int[] counts = new int[6];
-
-        for (int i = 0; i < dice.length; i++)
-            counts[dice[i]-1]++;
-
-        boolean _2 = false;
-        int _2_at = 0;
-        boolean _3 = false;
-        int _3_at = 0;
-
-        for (int i = 0; i != 6; i += 1)
-            if (counts[i] == 2) {
-                _2 = true;
-                _2_at = i+1;
-            }
-
-        for (int i = 0; i != 6; i += 1)
-            if (counts[i] == 3) {
-                _3 = true;
-                _3_at = i+1;
-            }
-
-        if (_2 && _3)
-            return _2_at * 2 + _3_at * 3;
-        else
-            return 0;
+        return new FullHouseScore(dices).score().getScore();
     }
 }
 

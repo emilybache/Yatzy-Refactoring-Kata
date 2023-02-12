@@ -37,9 +37,9 @@ public class XOfAKindScore implements ScoreCategory {
 
     @Override
     public Score score() {
-        Map<Dice, Long> counts = ScoreHelper.getFrequencyOfEachDiceValue(dices);
+        Map<Dice, Long> frequencies = ScoreHelper.getFrequencyOfEachDiceValue(dices);
 
-        Optional<Map.Entry<Dice, Long>> optional = counts.entrySet()
+        Optional<Map.Entry<Dice, Long>> optional = frequencies.entrySet()
             .stream()
             .filter(e -> e.getValue() >= numberOfAKind.value)
             .max(Map.Entry.comparingByKey());
