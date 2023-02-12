@@ -1,8 +1,5 @@
-import yatzy.category.ChanceScore;
+import yatzy.category.*;
 import yatzy.Dice;
-import yatzy.category.OneValueScore;
-import yatzy.category.XOfAKindScore;
-import yatzy.category.YatzyScore;
 
 import java.util.Arrays;
 import java.util.List;
@@ -100,34 +97,12 @@ public class Yatzy {
 
     public int smallStraight()
     {
-        int[] counts = new int[6];
-
-        for (int i = 0; i < dice.length; i++)
-            counts[dice[i]-1]++;
-
-        if (counts[0] == 1 &&
-            counts[1] == 1 &&
-            counts[2] == 1 &&
-            counts[3] == 1 &&
-            counts[4] == 1)
-            return 15;
-        return 0;
+        return new SmallStraightScore(dices).score().getScore();
     }
 
     public int largeStraight()
     {
-        int[] counts = new int[6];
-
-        for (int i = 0; i < dice.length; i++)
-            counts[dice[i]-1]++;
-
-        if (counts[1] == 1 &&
-            counts[2] == 1 &&
-            counts[3] == 1 &&
-            counts[4] == 1
-            && counts[5] == 1)
-            return 20;
-        return 0;
+        return new LargeStraightScore(dices).score().getScore();
     }
 
     public int fullHouse()

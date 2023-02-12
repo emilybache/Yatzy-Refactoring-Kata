@@ -37,4 +37,11 @@ public class Dice implements Comparable<Dice> {
     public int compareTo(Dice dice) {
         return this.getValue().compareTo(dice.getValue());
     }
+
+    @Override
+    public String toString() {
+        return "Dice{" +
+            "value=" + value +
+            '}';
+    }
 }
