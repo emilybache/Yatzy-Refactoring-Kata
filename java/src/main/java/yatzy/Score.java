@@ -4,18 +4,18 @@ import java.util.Objects;
 
 public class Score {
 
-    private final Integer score;
+    private final Integer value;
 
-    private Score(Integer score) {
-        this.score = score;
+    private Score(Integer value) {
+        this.value = value;
     }
 
-    public Integer getScore() {
-        return score;
+    public Integer getValue() {
+        return value;
     }
 
-    public static Score of(Integer score){
-        return new Score(score);
+    public static Score of(Integer value){
+        return new Score(value);
     }
 
     @Override
@@ -23,18 +23,18 @@ public class Score {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Score score1 = (Score) o;
-        return Objects.equals(score, score1.score);
+        return Objects.equals(value, score1.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(score);
+        return Objects.hash(value);
     }
 
     @Override
     public String toString() {
         return "Score{" +
-            "score=" + score +
+            "score=" + value +
             '}';
     }
 }

@@ -2,7 +2,6 @@ package yatzy.category;
 
 import yatzy.Dice;
 import yatzy.Score;
-import yatzy.ScoreCategory;
 
 import java.util.List;
 import java.util.Map;

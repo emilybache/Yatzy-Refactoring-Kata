@@ -25,76 +25,76 @@ public class Yatzy {
 
     public int chance()
     {
-        return new ChanceScore(dices).score().getScore();
+        return new ChanceScore(dices).score().getValue();
     }
 
     public int yatzy()
     {
-        return new YatzyScore(dices).score().getScore();
+        return new YatzyScore(dices).score().getValue();
     }
     public int ones()
     {
-        return new OneValueScore(dices, Dice.of(1)).score().getScore();
+        return new OneValueScore(dices, Dice.of(1)).score().getValue();
     }
 
     public int twos()
     {
-        return new OneValueScore(dices, Dice.of(2)).score().getScore();
+        return new OneValueScore(dices, Dice.of(2)).score().getValue();
     }
 
     public int threes()
     {
-        return new OneValueScore(dices, Dice.of(3)).score().getScore();
+        return new OneValueScore(dices, Dice.of(3)).score().getValue();
     }
 
     public int fours()
     {
-        return new OneValueScore(dices, Dice.of(4)).score().getScore();
+        return new OneValueScore(dices, Dice.of(4)).score().getValue();
     }
 
     public int fives()
     {
-        return new OneValueScore(dices, Dice.of(5)).score().getScore();
+        return new OneValueScore(dices, Dice.of(5)).score().getValue();
     }
 
     public int sixes()
     {
-        return new OneValueScore(dices, Dice.of(6)).score().getScore();
+        return new OneValueScore(dices, Dice.of(6)).score().getValue();
     }
 
     public int score_pair()
     {
-        return new PairScore(dices).score().getScore();
+        return new PairScore(dices).score().getValue();
     }
 
     public int two_pair()
     {
-        return new TwoPairsScore(dices).score().getScore();
+        return new TwoPairsScore(dices).score().getValue();
     }
 
     public int four_of_a_kind()
     {
-        return new FourOfAKindScore(dices).score().getScore();
+        return new FourOfAKindScore(dices).score().getValue();
     }
 
     public int three_of_a_kind()
     {
-        return new ThreeOfAKindScore(dices).score().getScore();
+        return new ThreeOfAKindScore(dices).score().getValue();
     }
 
     public int smallStraight()
     {
-        return new SmallStraightScore(dices).score().getScore();
+        return new SmallStraightScore(dices).score().getValue();
     }
 
     public int largeStraight()
     {
-        return new LargeStraightScore(dices).score().getScore();
+        return new LargeStraightScore(dices).score().getValue();
     }
 
     public int fullHouse()
     {
-        return new FullHouseScore(dices).score().getScore();
+        return new FullHouseScore(dices).score().getValue();
     }
 }
 
