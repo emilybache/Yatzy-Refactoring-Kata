@@ -64,7 +64,7 @@ public class Yatzy {
 
     public int score_pair()
     {
-        return new XOfAKindScore(dices, XOfAKindScore.NumberOfAKind.TWO).score().getScore();
+        return new PairScore(dices).score().getScore();
     }
 
     public int two_pair()
@@ -74,12 +74,12 @@ public class Yatzy {
 
     public int four_of_a_kind()
     {
-        return new XOfAKindScore(dices, XOfAKindScore.NumberOfAKind.FOUR).score().getScore();
+        return new FourOfAKindScore(dices).score().getScore();
     }
 
     public int three_of_a_kind()
     {
-        return new XOfAKindScore(dices, XOfAKindScore.NumberOfAKind.THREE).score().getScore();
+        return new ThreeOfAKindScore(dices).score().getScore();
     }
 
     public int smallStraight()
