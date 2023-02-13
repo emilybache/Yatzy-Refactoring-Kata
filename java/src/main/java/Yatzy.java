@@ -1,4 +1,5 @@
 import yatzy.Dice;
+import yatzy.Score;
 import yatzy.category.*;
 
 import java.util.List;
@@ -7,6 +8,9 @@ public class Yatzy {
 
 
     private final List<Dice> dices;
+    /**
+     * @deprecated used the constructor with dices. This is just for backward compatibility
+     */
     @Deprecated
     public Yatzy(int d1, int d2, int d3, int d4, int d5)
     {
@@ -23,78 +27,78 @@ public class Yatzy {
         this.dices = dices;
     }
 
-    public int chance()
+    public Score chance()
     {
-        return new ChanceScore(dices).score().getValue();
+        return new ChanceScore(dices).score();
     }
 
-    public int yatzy()
+    public Score yatzy()
     {
-        return new YatzyScore(dices).score().getValue();
+        return new YatzyScore(dices).score();
     }
-    public int ones()
+    public Score ones()
     {
-        return new OneValueScore(dices, Dice.of(1)).score().getValue();
-    }
-
-    public int twos()
-    {
-        return new OneValueScore(dices, Dice.of(2)).score().getValue();
+        return new OneValueScore(dices, Dice.of(1)).score();
     }
 
-    public int threes()
+    public Score twos()
     {
-        return new OneValueScore(dices, Dice.of(3)).score().getValue();
+        return new OneValueScore(dices, Dice.of(2)).score();
     }
 
-    public int fours()
+    public Score threes()
     {
-        return new OneValueScore(dices, Dice.of(4)).score().getValue();
+        return new OneValueScore(dices, Dice.of(3)).score();
     }
 
-    public int fives()
+    public Score fours()
     {
-        return new OneValueScore(dices, Dice.of(5)).score().getValue();
+        return new OneValueScore(dices, Dice.of(4)).score();
     }
 
-    public int sixes()
+    public Score fives()
     {
-        return new OneValueScore(dices, Dice.of(6)).score().getValue();
+        return new OneValueScore(dices, Dice.of(5)).score();
     }
 
-    public int score_pair()
+    public Score sixes()
     {
-        return new PairScore(dices).score().getValue();
+        return new OneValueScore(dices, Dice.of(6)).score();
     }
 
-    public int two_pair()
+    public Score score_pair()
     {
-        return new TwoPairsScore(dices).score().getValue();
+        return new PairScore(dices).score();
     }
 
-    public int four_of_a_kind()
+    public Score two_pair()
     {
-        return new FourOfAKindScore(dices).score().getValue();
+        return new TwoPairsScore(dices).score();
     }
 
-    public int three_of_a_kind()
+    public Score four_of_a_kind()
     {
-        return new ThreeOfAKindScore(dices).score().getValue();
+        return new FourOfAKindScore(dices).score();
     }
 
-    public int smallStraight()
+    public Score three_of_a_kind()
     {
-        return new SmallStraightScore(dices).score().getValue();
+        return new ThreeOfAKindScore(dices).score();
     }
 
-    public int largeStraight()
+    public Score smallStraight()
     {
-        return new LargeStraightScore(dices).score().getValue();
+        return new SmallStraightScore(dices).score();
     }
 
-    public int fullHouse()
+    public Score largeStraight()
     {
-        return new FullHouseScore(dices).score().getValue();
+        return new LargeStraightScore(dices).score();
+    }
+
+    public Score fullHouse()
+    {
+        return new FullHouseScore(dices).score();
     }
 }
 
