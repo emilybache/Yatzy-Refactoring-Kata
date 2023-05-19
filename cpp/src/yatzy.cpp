@@ -117,12 +117,12 @@ int Yatzy::FullHouse(int d1, int d2, int d3, int d4, int d5)
     
     for (int i = 0; i < 6; i++)
     {
-        if (tallies[i] == 2) 
+        if (counts[i] == 2) 
         {
             isPair = true;
             pairValue = i+1;
         }
-        else if (tallies[i] == 3) 
+        else if (counts[i] == 3) 
         {
             isTriple = true;
             tripleValue = i+1;
