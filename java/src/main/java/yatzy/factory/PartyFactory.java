@@ -5,6 +5,13 @@ import java.util.List;
 import yatzy.Category;
 import yatzy.Dice;
 import yatzy.Party;
+import yatzy.major.Chance;
+import yatzy.major.FullHouse;
+import yatzy.major.NumberOfAKind;
+import yatzy.major.Pair;
+import yatzy.major.Straight;
+import yatzy.major.TwoPairs;
+import yatzy.major.Yatzi;
 import yatzy.minor.Minor;
 
 public class PartyFactory {
@@ -33,6 +40,33 @@ public class PartyFactory {
 		}
 		if (category.equals(Category.SIXES)) {
 			return new Minor(this.dices, 6);
+		}
+		if (category.equals(Category.YATZI)) {
+			return new Yatzi(this.dices);
+		}
+		if (category.equals(Category.PAIR)) {
+			return new Pair(this.dices);
+		}
+		if (category.equals(Category.TWO_PAIRS)) {
+			return new TwoPairs(this.dices);
+		}
+		if (category.equals(Category.SMALL_STRAIGHT)) {
+			return new Straight(this.dices, Category.SMALL_STRAIGHT);
+		}
+		if (category.equals(Category.LARGE_STRAIGHT)) {
+			return new Straight(this.dices, Category.LARGE_STRAIGHT);
+		}
+		if (category.equals(Category.THREE_OF_A_KIND)) {
+			return new NumberOfAKind(this.dices, 3);
+		}
+		if (category.equals(Category.FOUR_OF_A_KIND)) {
+			return new NumberOfAKind(this.dices, 4);
+		}
+		if (category.equals(Category.CHANCE)) {
+			return new Chance(this.dices);
+		}
+		if (category.equals(Category.FULL_HOUSE)) {
+			return new FullHouse(this.dices);
 		}
 		return null;
 	}

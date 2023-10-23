@@ -18,7 +18,7 @@ public abstract class Party {
 	 * 
 	 * @return
 	 */
-	protected Map<Integer, Long> getCountsMap() {
+	public Map<Integer, Long> getCountsMap() {
 		return dices.stream().collect(Collectors.groupingByConcurrent(Dice::getValue, counting()));
 	}
 
