@@ -1,7 +1,14 @@
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import yatzy.Category;
+import yatzy.Dice;
+import yatzy.Party;
+import yatzy.factory.PartyFactory;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class YatzyTest {
 
@@ -19,38 +26,62 @@ public class YatzyTest {
 
     @ParameterizedTest
     @CsvSource({ "1, 2, 3, 4, 5, 1", "1, 2, 1, 4, 5, 2", "6, 2, 2, 4, 5, 0", "1, 2, 1, 1, 1, 4" })
-    void ones(int d1, int d2, int d3, int d4, int d5, int expected) {
-        assertEquals(expected, Yatzy.ones(d1, d2, d3, d4, d5));
+    void onesParty_Success(int d1, int d2, int d3, int d4, int d5, int expected) {
+        PartyFactory factory = new PartyFactory(new Dice(d1), new Dice(d2), new Dice(d3), new Dice(d4), new Dice(d5));
+        Party ones = factory.createParty(Category.ONES);
+        assertEquals(expected, ones.calculateScore());
     }
 
     @ParameterizedTest
     @CsvSource({ "1, 2, 3, 2, 6, 4", "2, 2, 2, 2, 2, 10" })
-    void twos(int d1, int d2, int d3, int d4, int d5, int expected) {
-        assertEquals(expected, Yatzy.twos(d1, d2, d3, d4, d5));
+    void twosParty_success(int d1, int d2, int d3, int d4, int d5, int expected) {
+        PartyFactory factory = new PartyFactory(new Dice(d1), new Dice(d2), new Dice(d3), new Dice(d4), new Dice(d5));
+        Party twos = factory.createParty(Category.TWOS);
+        assertEquals(expected, twos.calculateScore());
     }
 
     @ParameterizedTest
     @CsvSource({ "1, 2, 3, 2, 3, 6", "2, 3, 3, 3, 3, 12" })
-    void threes(int d1, int d2, int d3, int d4, int d5, int expected) {
-        assertEquals(expected, Yatzy.threes(d1, d2, d3, d4, d5));
+    void threesParty_success(int d1, int d2, int d3, int d4, int d5, int expected) {
+        PartyFactory factory = new PartyFactory(new Dice(d1), new Dice(d2), new Dice(d3), new Dice(d4), new Dice(d5));
+        Party threes = factory.createParty(Category.THREES);
+        assertEquals(expected, threes.calculateScore());
     }
 
     @ParameterizedTest
     @CsvSource({ "4, 4, 4, 5, 5, 12", "4, 4, 5, 5, 5, 8", "4, 5, 5, 5, 5, 4" })
-    void fours(int d1, int d2, int d3, int d4, int d5, int expected) {
-        assertEquals(expected, new Yatzy(d1, d2, d3, d4, d5).fours());
+    void foursParty_success(int d1, int d2, int d3, int d4, int d5, int expected) {
+        PartyFactory factory = new PartyFactory(new Dice(d1), new Dice(d2), new Dice(d3), new Dice(d4), new Dice(d5));
+        Party fours = factory.createParty(Category.FOURS);
+        assertEquals(expected, fours.calculateScore());
     }
 
     @ParameterizedTest
     @CsvSource({ "4, 4, 4, 5, 5, 10", "4, 4, 5, 5, 5, 15", "4, 5, 5, 5, 5, 20" })
-    void fives(int d1, int d2, int d3, int d4, int d5, int expected) {
-        assertEquals(expected, new Yatzy(d1, d2, d3, d4, d5).fives());
+    void fivesParty_success(int d1, int d2, int d3, int d4, int d5, int expected) {
+        PartyFactory factory = new PartyFactory(new Dice(d1), new Dice(d2), new Dice(d3), new Dice(d4), new Dice(d5));
+        Party fives = factory.createParty(Category.FIVES);
+        assertEquals(expected, fives.calculateScore());
     }
 
     @ParameterizedTest
     @CsvSource({ "4, 4, 4, 5, 5, 0", "4, 4, 6, 5, 5, 6", "6, 5, 6, 6, 5, 18" })
-    void sixes(int d1, int d2, int d3, int d4, int d5, int expected) {
-        assertEquals(expected, new Yatzy(d1, d2, d3, d4, d5).sixes());
+    void sixesParty_success(int d1, int d2, int d3, int d4, int d5, int expected) {
+        PartyFactory factory = new PartyFactory(new Dice(d1), new Dice(d2), new Dice(d3), new Dice(d4), new Dice(d5));
+        Party sixes = factory.createParty(Category.SIXES);
+        assertEquals(expected, sixes.calculateScore());
+    }
+
+    @ParameterizedTest
+    @CsvSource({ "10, 2, 3, 4, 5, 1", "1, 20, 1, 4, 5, 2", "6, 2, 2, -4, 5, 0", "1, 2, 1, 10, 1, 4" })
+    void onesParty_InvalidDiceNumber_IllegalArgumentException(int d1, int d2, int d3, int d4, int d5, int expected) {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            PartyFactory factory = new PartyFactory(new Dice(d1), new Dice(d2), new Dice(d3), new Dice(d4),
+                    new Dice(d5));
+            Party ones = factory.createParty(Category.ONES);
+            ones.calculateScore();
+        });
+        assertTrue(exception.getMessage().contains("Invalid dice value! Value should between 1 and 6!"));
     }
 
     @ParameterizedTest
