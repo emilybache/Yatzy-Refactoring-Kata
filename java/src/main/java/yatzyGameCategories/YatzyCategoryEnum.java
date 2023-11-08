@@ -1,4 +1,4 @@
-package yatzyCategoriesInterface;
+package yatzyGameCategories;
 
 public enum YatzyCategoryEnum {
     CHANCE,
