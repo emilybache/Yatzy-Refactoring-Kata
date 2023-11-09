@@ -8,7 +8,7 @@ public class FourOfKingGameCategory extends DoublonsFamilyCategory {
     @Override
     public int calculateScore(List<Integer> dices) {
         List<Integer> allQuadruplet = getDuplicatesList(dices, 4);
-        return allQuadruplet.size() == 1 ? allQuadruplet.stream().mapToInt(i->i).sum() : 0;
+        return allQuadruplet.isEmpty() ? 0:  allQuadruplet.stream().mapToInt(i->i).sum();
     }
 }
 

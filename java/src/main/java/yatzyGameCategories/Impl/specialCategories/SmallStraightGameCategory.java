@@ -1,12 +1,12 @@
 package yatzyGameCategories.Impl.specialCategories;
 
-import yatzyGameCategories.YatzyGameCategory;
+import yatzyGameCategories.YatzyCategory;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class SmallStraightGameCategory implements YatzyGameCategory {
+public class SmallStraightGameCategory implements YatzyCategory {
     @Override
     public int calculateScore(List<Integer> dices) {
         Set<Integer> unique_dice = new HashSet<Integer>(dices);

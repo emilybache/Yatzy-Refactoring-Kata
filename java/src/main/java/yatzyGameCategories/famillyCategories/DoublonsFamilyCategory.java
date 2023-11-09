@@ -1,12 +1,12 @@
 package yatzyGameCategories.famillyCategories;
 
-import yatzyGameCategories.YatzyGameCategory;
+import yatzyGameCategories.YatzyCategory;
 
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public abstract class DoublonsFamilyCategory implements YatzyGameCategory {
+public abstract class DoublonsFamilyCategory implements YatzyCategory {
     protected List<Integer> getDuplicatesList(List<Integer> dices, int occurences){
         return dices.stream()
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
