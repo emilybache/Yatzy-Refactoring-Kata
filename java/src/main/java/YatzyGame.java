@@ -13,17 +13,15 @@ public class YatzyGame {
 
     public YatzyGame(int d1, int d2, int d3, int d4, int d5, YatzyCategoryEnum yatzyCategoryEnum)
     {
+        slf4jLogger.error("Start the Game");
         dices = new ArrayList<>();
         dices.add(d1);
         dices.add(d2);
         dices.add(d3);
         dices.add(d4);
         dices.add(d5);
-        try {
-            yatzyCategory = YatzyGameCategoryFactory.getYatzyGame(yatzyCategoryEnum);
-        } catch (NullPointerException e) {
-            slf4jLogger.error("There is a problem when retrieving YatzyGame Strategy {0}", yatzyCategory);
-        }
+        yatzyCategory = YatzyGameCategoryFactory.getYatzyGame(yatzyCategoryEnum);
+
     }
 
     public int calculateScore()

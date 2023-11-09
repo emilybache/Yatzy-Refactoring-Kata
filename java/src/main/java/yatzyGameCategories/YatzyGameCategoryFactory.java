@@ -53,6 +53,8 @@ public class YatzyGameCategoryFactory {
             case FULL_HOUSE:
                 yatzyCategory = new FullHouseGameCategory();
                 break;
+            default:
+                throw new IllegalArgumentException("There is a problem when retrieving YatzyGame Strategy " + yatzyCategoryEnum);
         }
         return yatzyCategory;
     }
