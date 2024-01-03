@@ -1,6 +1,6 @@
-
-import org.junit.*
-import org.junit.Assert.*
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class YatzyTest {
 
