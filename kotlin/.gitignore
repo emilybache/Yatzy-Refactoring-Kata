@@ -1,6 +1,8 @@
 # Compiled class file
 *.class
 out/
+build
+target
 
 .gradle
 
