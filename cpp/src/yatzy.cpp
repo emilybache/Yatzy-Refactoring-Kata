@@ -222,8 +222,6 @@ int Yatzy::FullHouse(int d1, int d2, int d3, int d4, int d5)
     int _3_at = 0;
 
 
-
-
     tallies = new int[6];
     memset(tallies, 0, sizeof(int)*6);
     tallies[d1-1] += 1;
