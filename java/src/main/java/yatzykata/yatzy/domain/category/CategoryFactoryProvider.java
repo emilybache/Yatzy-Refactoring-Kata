@@ -2,10 +2,16 @@ package yatzykata.yatzy.domain.category;
 
 public class CategoryFactoryProvider {
   public CategoryFactory getCategoryFactory(CategoryType categoryType) {
-    if (categoryType.equals(CategoryType.CHANCE)) {
-      return new ChanceFactory();
-    } else {
-      throw new IllegalArgumentException("Invalid category type: " + categoryType);
+    switch (categoryType) {
+      case CHANCE -> {
+        return new ChanceFactory();
+      }
+      case YATZY -> {
+        return new YatzyFactory();
+      }
+      default -> {
+        throw new IllegalArgumentException("Invalid category type: " + categoryType);
+      }
     }
   }
 }

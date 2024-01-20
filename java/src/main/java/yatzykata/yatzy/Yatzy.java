@@ -12,7 +12,6 @@ import yatzykata.yatzy.domain.roll.model.Roll;
 import yatzykata.yatzy.utils.IntComparisonOperator;
 
 public class Yatzy {
-  private static final int SCORE_ALL_DICE_ARE_EQUAL = 50;
   private static final int SCORE_OF_ZERO = 0;
   private static final int SCORE_SMALL_STRAIGHT = 15;
   private static final int SCORE_LARGE_STRAIGHT = 20;
@@ -52,14 +51,6 @@ public class Yatzy {
 
   public int score() {
     return category.calculateScore();
-  }
-
-  public static Integer yatzy(Integer... dice) {
-    return areAllDiceEqual(dice) ? SCORE_ALL_DICE_ARE_EQUAL : SCORE_OF_ZERO;
-  }
-
-  private static boolean areAllDiceEqual(Integer... dice) {
-    return Stream.of(dice).distinct().count() <= 1;
   }
 
   public static Integer ones(Integer... dice) {

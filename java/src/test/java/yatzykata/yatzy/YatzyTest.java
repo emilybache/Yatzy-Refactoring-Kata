@@ -2,6 +2,7 @@ package yatzykata.yatzy;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static yatzykata.yatzy.domain.category.CategoryType.CHANCE;
+import static yatzykata.yatzy.domain.category.CategoryType.YATZY;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,9 +16,9 @@ public class YatzyTest {
 
   @Test
   public void score50() {
-    assertThat(Yatzy.yatzy(4, 4, 4, 4, 4)).isEqualTo(50);
-    assertThat(Yatzy.yatzy(6, 6, 6, 6, 6)).isEqualTo(50);
-    assertThat(Yatzy.yatzy(6, 6, 6, 6, 3)).isEqualTo(0);
+    assertThat(new Yatzy(YATZY, 4, 4, 4, 4, 4).score()).isEqualTo(50);
+    assertThat(new Yatzy(YATZY, 6, 6, 6, 6, 6).score()).isEqualTo(50);
+    assertThat(new Yatzy(YATZY, 6, 6, 6, 6, 3).score()).isEqualTo(0);
   }
 
   @Test
