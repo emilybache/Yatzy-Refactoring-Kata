@@ -13,8 +13,7 @@ public record TwoPairs(Roll roll) implements Category {
   public int calculateScore() {
     Supplier<Stream<Integer>> streamSupplierDiceFoundMultipleTimes =
         () ->
-            MatchingDiceHelper.getDiceByAtLeastANumberOfTimesADieIsFound(
-                roll.dice(), DIE_MATCH_TWO_TIMES);
+            MatchingDiceHelper.getDiceByAtLeastANumberOfTimesADieIsFound(roll, DIE_MATCH_TWO_TIMES);
 
     if (streamSupplierDiceFoundMultipleTimes.get().count() == 2) {
       return MatchingDiceHelper.getScoreForDiceThatMatchMultipleTimes(

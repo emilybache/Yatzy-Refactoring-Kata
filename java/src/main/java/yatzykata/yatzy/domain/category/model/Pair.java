@@ -12,8 +12,7 @@ public record Pair(Roll roll) implements Category {
   @Override
   public int calculateScore() {
     Stream<Integer> diceFoundMultipleTimes =
-        MatchingDiceHelper.getDiceByAtLeastANumberOfTimesADieIsFound(
-                roll.dice(), DIE_MATCH_TWO_TIMES)
+        MatchingDiceHelper.getDiceByAtLeastANumberOfTimesADieIsFound(roll, DIE_MATCH_TWO_TIMES)
             .sorted(Comparator.reverseOrder())
             .limit(LIMIT_TO_ONE_PAIR);
 

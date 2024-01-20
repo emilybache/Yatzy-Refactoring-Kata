@@ -12,7 +12,7 @@ public record Straight(Roll roll, StraightType straightType) implements Category
 
   @Override
   public int calculateScore() {
-    return getScoreForStraight(roll.dice(), straightType);
+    return getScoreForStraight(roll.diceAsIntegers(), straightType);
   }
 
   private static Integer getScoreForStraight(List<Integer> dice, StraightType straightType) {
@@ -31,9 +31,9 @@ public record Straight(Roll roll, StraightType straightType) implements Category
 
   private static List<Integer> getDicesByStraightType(StraightType straightType) {
     if (straightType == StraightType.SMALL) {
-      return getDicesInStraight(DieSide.ONE.getValue(), DieSide.FIVE.getValue());
+      return getDicesInStraight(DieSide.ONE.value, DieSide.FIVE.value);
     } else {
-      return getDicesInStraight(DieSide.TWO.getValue(), DieSide.SIX.getValue());
+      return getDicesInStraight(DieSide.TWO.value, DieSide.SIX.value);
     }
   }
 

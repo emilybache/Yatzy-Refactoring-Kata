@@ -11,8 +11,10 @@ public class YatzyGame {
 
   public YatzyGame(List<Integer> rolledDice, CategoryType placedCategory) {
     CategoryFactoryProvider categoryFactoryProvider = new CategoryFactoryProvider();
-    Roll roll = new Roll(rolledDice);
-    this.category = categoryFactoryProvider.getCategoryFactory(placedCategory).createCategory(roll);
+    this.category =
+        categoryFactoryProvider
+            .getCategoryFactory(placedCategory)
+            .createCategory(Roll.from(rolledDice));
   }
 
   public int score() {

@@ -1,5 +1,8 @@
 package yatzykata.yatzy.domain.die.model;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 public enum DieSide {
   ONE(1),
   TWO(2),
@@ -8,13 +11,13 @@ public enum DieSide {
   FIVE(5),
   SIX(6);
 
-  private final int value;
+  public final int value;
 
   DieSide(int value) {
     this.value = value;
   }
 
-  public int getValue() {
-    return value;
+  public static Optional<DieSide> fromInt(int value) {
+    return Arrays.stream(values()).filter(dieSide -> dieSide.value == value).findFirst();
   }
 }

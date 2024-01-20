@@ -1,6 +1,5 @@
 package yatzykata.yatzy.domain.category.model;
 
-import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 import yatzykata.yatzy.domain.category.MatchingDiceHelper;
@@ -14,16 +13,16 @@ public record FullHouse(Roll roll) implements Category {
 
   @Override
   public int calculateScore() {
-    return getScoreForDiceMatchingWithASingleResult(roll.dice(), DIE_MATCH_TWO_TIMES)
-        + getScoreForDiceMatchingWithASingleResult(roll.dice(), DIE_MATCH_THREE_TIMES);
+    return getScoreForDiceMatchingWithASingleResult(roll, DIE_MATCH_TWO_TIMES)
+        + getScoreForDiceMatchingWithASingleResult(roll, DIE_MATCH_THREE_TIMES);
   }
 
   private static Integer getScoreForDiceMatchingWithASingleResult(
-      List<Integer> dice, Integer numberOfTimesDieIsFound) {
+      Roll roll, Integer numberOfTimesDieIsFound) {
     Supplier<Stream<Integer>> streamSupplierDiceFoundMultipleTimes =
         () ->
             MatchingDiceHelper.getDiceByExactlyANumberOfTimesADieIsFound(
-                dice, numberOfTimesDieIsFound);
+                roll, numberOfTimesDieIsFound);
 
     if (streamSupplierDiceFoundMultipleTimes.get().count() == ONLY_ONE_MATCH_WAS_FOUND) {
       return MatchingDiceHelper.getScoreForDiceThatMatchMultipleTimes(
