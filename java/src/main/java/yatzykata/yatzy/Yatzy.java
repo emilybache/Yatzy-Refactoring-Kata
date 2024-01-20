@@ -4,15 +4,19 @@ import java.util.stream.Stream;
 
 public class Yatzy {
 
+  private static final int SCORE_ALL_DICE_ARE_EQUAL = 50;
+  private static final int SCORE_OF_ZERO = 0;
+
   public static Integer chance(Integer... dice) {
     return Stream.of(dice).reduce(0, Integer::sum);
   }
 
-  public static int yatzy(int... dice) {
-    int[] counts = new int[6];
-    for (int die : dice) counts[die - 1]++;
-    for (int i = 0; i != 6; i++) if (counts[i] == 5) return 50;
-    return 0;
+  public static Integer yatzy(Integer... dice) {
+    return areAllDiceEqual(dice) ? SCORE_ALL_DICE_ARE_EQUAL : SCORE_OF_ZERO;
+  }
+
+  private static boolean areAllDiceEqual(Integer... dice) {
+    return Stream.of(dice).distinct().count() <= 1;
   }
 
   public static int ones(int d1, int d2, int d3, int d4, int d5) {

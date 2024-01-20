@@ -1,7 +1,6 @@
 package yatzykata.yatzy;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Assertions;
@@ -16,12 +15,10 @@ public class YatzyTest {
   }
 
   @Test
-  public void yatzy_scores_50() {
-    int expected = 50;
-    int actual = Yatzy.yatzy(4, 4, 4, 4, 4);
-    assertEquals(expected, actual);
-    Assertions.assertEquals(50, Yatzy.yatzy(6, 6, 6, 6, 6));
-    Assertions.assertEquals(0, Yatzy.yatzy(6, 6, 6, 6, 3));
+  public void score50() {
+    assertThat(Yatzy.yatzy(4, 4, 4, 4, 4)).isEqualTo(50);
+    assertThat(Yatzy.yatzy(6, 6, 6, 6, 6)).isEqualTo(50);
+    assertThat(Yatzy.yatzy(6, 6, 6, 6, 3)).isEqualTo(0);
   }
 
   @Test
