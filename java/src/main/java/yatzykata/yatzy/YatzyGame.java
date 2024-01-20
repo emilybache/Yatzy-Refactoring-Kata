@@ -11,7 +11,7 @@ import yatzykata.yatzy.domain.category.model.Category;
 import yatzykata.yatzy.domain.roll.model.Roll;
 import yatzykata.yatzy.utils.IntComparisonOperator;
 
-public class Yatzy {
+public class YatzyGame {
   private static final int SCORE_OF_ZERO = 0;
   private static final int SCORE_SMALL_STRAIGHT = 15;
   private static final int SCORE_LARGE_STRAIGHT = 20;
@@ -43,7 +43,7 @@ public class Yatzy {
     DIE_READ_TWO, DIE_READ_THREE, DIE_READ_FOUR, DIE_READ_FIVE, DIE_READ_SIX
   };
 
-  public Yatzy(CategoryType categoryType, int... dice) {
+  public YatzyGame(CategoryType categoryType, int... dice) {
     CategoryFactoryProvider categoryFactoryProvider = new CategoryFactoryProvider();
     Roll roll = new Roll(Arrays.stream(dice).boxed().collect(Collectors.toList()));
     this.category = categoryFactoryProvider.getCategoryFactory(categoryType).createCategory(roll);
