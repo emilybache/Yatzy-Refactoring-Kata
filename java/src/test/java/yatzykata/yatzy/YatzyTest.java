@@ -2,7 +2,6 @@ package yatzykata.yatzy;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class YatzyTest {
@@ -104,7 +103,9 @@ public class YatzyTest {
 
   @Test
   public void fullHouse() {
-    Assertions.assertEquals(18, Yatzy.fullHouse(6, 2, 2, 2, 6));
-    Assertions.assertEquals(0, Yatzy.fullHouse(2, 3, 4, 5, 6));
+    assertThat(Yatzy.fullHouse(6, 2, 2, 2, 6)).isEqualTo(18);
+    assertThat(Yatzy.fullHouse(2, 3, 4, 5, 6)).isEqualTo(0);
+    assertThat(Yatzy.fullHouse(2, 2, 3, 3, 4)).isEqualTo(0);
+    assertThat(Yatzy.fullHouse(4, 4, 4, 4, 4)).isEqualTo(0);
   }
 }

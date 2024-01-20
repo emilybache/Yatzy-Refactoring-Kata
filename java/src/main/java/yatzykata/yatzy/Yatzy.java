@@ -2,6 +2,7 @@ package yatzykata.yatzy;
 
 import java.util.*;
 import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import yatzykata.yatzy.utils.IntComparisonOperator;
@@ -29,6 +30,7 @@ public class Yatzy {
   private static final int DIE_READ_FOUR = 4;
   private static final int DIE_READ_FIVE = 5;
   private static final int DIE_READ_SIX = 6;
+  private static final int ONLY_ONE_MATCH_WAS_FOUND = 1;
 
   private static final int[] DICE_SMALL_STRAIGHT = {
     DIE_READ_ONE, DIE_READ_TWO, DIE_READ_THREE, DIE_READ_FOUR, DIE_READ_FIVE
@@ -161,34 +163,21 @@ public class Yatzy {
     return new HashSet<>(allDice).containsAll(allDiceInStraight) ? scoreForStraight : SCORE_OF_ZERO;
   }
 
-  public static int fullHouse(int d1, int d2, int d3, int d4, int d5) {
-    int[] tallies;
-    boolean _2 = false;
-    int i;
-    int _2_at = 0;
-    boolean _3 = false;
-    int _3_at = 0;
+  public static Integer fullHouse(Integer... dice) {
+    return getScoreForDiceMatchingWithASingleResult(dice, DIE_MATCH_TWO_TIMES)
+        + getScoreForDiceMatchingWithASingleResult(dice, DIE_MATCH_THREE_TIMES);
+  }
 
-    tallies = new int[6];
-    tallies[d1 - 1] += 1;
-    tallies[d2 - 1] += 1;
-    tallies[d3 - 1] += 1;
-    tallies[d4 - 1] += 1;
-    tallies[d5 - 1] += 1;
+  private static Integer getScoreForDiceMatchingWithASingleResult(
+      Integer[] dice, Integer numberOfTimesDieIsFound) {
+    Supplier<Stream<Integer>> streamSupplierDiceFoundMultipleTimes =
+        () -> getDiceByExactlyANumberOfTimesADieIsFound(dice, numberOfTimesDieIsFound);
 
-    for (i = 0; i != 6; i += 1)
-      if (tallies[i] == 2) {
-        _2 = true;
-        _2_at = i + 1;
-      }
-
-    for (i = 0; i != 6; i += 1)
-      if (tallies[i] == 3) {
-        _3 = true;
-        _3_at = i + 1;
-      }
-
-    if (_2 && _3) return _2_at * 2 + _3_at * 3;
-    else return 0;
+    if (streamSupplierDiceFoundMultipleTimes.get().count() == ONLY_ONE_MATCH_WAS_FOUND) {
+      return getScoreForDiceThatMatchMultipleTimes(
+          streamSupplierDiceFoundMultipleTimes.get(), numberOfTimesDieIsFound);
+    } else {
+      return SCORE_OF_ZERO;
+    }
   }
 }
