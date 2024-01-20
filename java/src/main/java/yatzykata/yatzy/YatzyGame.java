@@ -6,8 +6,8 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import yatzykata.yatzy.domain.category.CategoryFactoryProvider;
-import yatzykata.yatzy.domain.category.CategoryType;
 import yatzykata.yatzy.domain.category.model.Category;
+import yatzykata.yatzy.domain.category.model.CategoryType;
 import yatzykata.yatzy.domain.roll.model.Roll;
 import yatzykata.yatzy.utils.IntComparisonOperator;
 
@@ -15,12 +15,6 @@ public class YatzyGame {
   private static final int SCORE_OF_ZERO = 0;
   private static final int SCORE_SMALL_STRAIGHT = 15;
   private static final int SCORE_LARGE_STRAIGHT = 20;
-  private static final int ROLL_PLACED_ON_ONES = 1;
-  private static final int ROLL_PLACED_ON_TWOS = 2;
-  private static final int ROLL_PLACED_ON_THREES = 3;
-  private static final int ROLL_PLACED_ON_FOURS = 4;
-  private static final int ROLL_PLACED_ON_FIVES = 5;
-  private static final int ROLL_PLACED_ON_SIXES = 6;
   private static final int DIE_MATCH_TWO_TIMES = 2;
   private static final int DIE_MATCH_THREE_TIMES = 3;
   private static final int DIE_MATCH_FOUR_TIMES = 4;
@@ -51,34 +45,6 @@ public class YatzyGame {
 
   public int score() {
     return category.calculateScore();
-  }
-
-  public static Integer ones(Integer... dice) {
-    return getScoreDicePlacedOn(dice, ROLL_PLACED_ON_ONES);
-  }
-
-  public static Integer twos(Integer... dice) {
-    return getScoreDicePlacedOn(dice, ROLL_PLACED_ON_TWOS);
-  }
-
-  public static Integer threes(Integer... dice) {
-    return getScoreDicePlacedOn(dice, ROLL_PLACED_ON_THREES);
-  }
-
-  public static Integer fours(Integer... dice) {
-    return getScoreDicePlacedOn(dice, ROLL_PLACED_ON_FOURS);
-  }
-
-  public static Integer fives(Integer... dice) {
-    return getScoreDicePlacedOn(dice, ROLL_PLACED_ON_FIVES);
-  }
-
-  public static Integer sixes(Integer... dice) {
-    return getScoreDicePlacedOn(dice, ROLL_PLACED_ON_SIXES);
-  }
-
-  public static Integer getScoreDicePlacedOn(Integer[] dice, Integer placedOn) {
-    return Stream.of(dice).filter(die -> die.equals(placedOn)).reduce(0, Integer::sum);
   }
 
   public static Integer pair(Integer... dice) {

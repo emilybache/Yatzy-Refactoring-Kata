@@ -1,8 +1,7 @@
 package yatzykata.yatzy;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static yatzykata.yatzy.domain.category.CategoryType.CHANCE;
-import static yatzykata.yatzy.domain.category.CategoryType.YATZY;
+import static yatzykata.yatzy.domain.category.model.CategoryType.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,43 +22,43 @@ public class YatzyGameTest {
 
   @Test
   public void scoreSumOfOnes() {
-    assertThat(YatzyGame.ones(1, 2, 3, 4, 5)).isEqualTo(1);
-    assertThat(YatzyGame.ones(1, 2, 1, 4, 5)).isEqualTo(2);
-    assertThat(YatzyGame.ones(6, 2, 2, 4, 5)).isEqualTo(0);
-    assertThat(YatzyGame.ones(1, 2, 1, 1, 1)).isEqualTo(4);
+    assertThat(new YatzyGame(ONES, 1, 2, 3, 4, 5).score()).isEqualTo(1);
+    assertThat(new YatzyGame(ONES, 1, 2, 1, 4, 5).score()).isEqualTo(2);
+    assertThat(new YatzyGame(ONES, 6, 2, 2, 4, 5).score()).isEqualTo(0);
+    assertThat(new YatzyGame(ONES, 1, 2, 1, 1, 1).score()).isEqualTo(4);
   }
 
   @Test
   public void scoreSumOfTwos() {
-    assertThat(YatzyGame.twos(1, 2, 3, 2, 6)).isEqualTo(4);
-    assertThat(YatzyGame.twos(2, 2, 2, 2, 2)).isEqualTo(10);
+    assertThat(new YatzyGame(TWOS, 1, 2, 3, 2, 6).score()).isEqualTo(4);
+    assertThat(new YatzyGame(TWOS, 2, 2, 2, 2, 2).score()).isEqualTo(10);
   }
 
   @Test
   public void scoreSumOfThrees() {
-    assertThat(YatzyGame.threes(1, 2, 3, 2, 3)).isEqualTo(6);
-    assertThat(YatzyGame.threes(2, 3, 3, 3, 3)).isEqualTo(12);
+    assertThat(new YatzyGame(THREES, 1, 2, 3, 2, 3).score()).isEqualTo(6);
+    assertThat(new YatzyGame(THREES, 2, 3, 3, 3, 3).score()).isEqualTo(12);
   }
 
   @Test
   public void scoreSumOfFours() {
-    assertThat(YatzyGame.fours(4, 4, 4, 5, 5)).isEqualTo(12);
-    assertThat(YatzyGame.fours(4, 4, 5, 5, 5)).isEqualTo(8);
-    assertThat(YatzyGame.fours(4, 5, 5, 5, 5)).isEqualTo(4);
+    assertThat(new YatzyGame(FOURS, 4, 4, 4, 5, 5).score()).isEqualTo(12);
+    assertThat(new YatzyGame(FOURS, 4, 4, 5, 5, 5).score()).isEqualTo(8);
+    assertThat(new YatzyGame(FOURS, 4, 5, 5, 5, 5).score()).isEqualTo(4);
   }
 
   @Test
   public void scoreSumOfFives() {
-    assertThat(YatzyGame.fives(4, 4, 4, 5, 5)).isEqualTo(10);
-    assertThat(YatzyGame.fives(4, 4, 5, 5, 5)).isEqualTo(15);
-    assertThat(YatzyGame.fives(4, 5, 5, 5, 5)).isEqualTo(20);
+    assertThat(new YatzyGame(FIVES, 4, 4, 4, 5, 5).score()).isEqualTo(10);
+    assertThat(new YatzyGame(FIVES, 4, 4, 5, 5, 5).score()).isEqualTo(15);
+    assertThat(new YatzyGame(FIVES, 4, 5, 5, 5, 5).score()).isEqualTo(20);
   }
 
   @Test
   public void scoreSumOfSixes() {
-    assertThat(YatzyGame.sixes(4, 4, 4, 5, 5)).isEqualTo(0);
-    assertThat(YatzyGame.sixes(4, 4, 6, 5, 5)).isEqualTo(6);
-    assertThat(YatzyGame.sixes(6, 5, 6, 6, 5)).isEqualTo(18);
+    assertThat(new YatzyGame(SIXES, 4, 4, 4, 5, 5).score()).isEqualTo(0);
+    assertThat(new YatzyGame(SIXES, 4, 4, 6, 5, 5).score()).isEqualTo(6);
+    assertThat(new YatzyGame(SIXES, 6, 5, 6, 6, 5).score()).isEqualTo(18);
   }
 
   @Test
