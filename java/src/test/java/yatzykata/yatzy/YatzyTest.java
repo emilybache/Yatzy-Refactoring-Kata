@@ -1,6 +1,7 @@
 package yatzykata.yatzy;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static yatzykata.yatzy.domain.category.CategoryType.CHANCE;
 
 import org.junit.jupiter.api.Test;
 
@@ -8,8 +9,8 @@ public class YatzyTest {
 
   @Test
   public void scoreTheSumOfAllDice() {
-    assertThat(Yatzy.chance(2, 3, 4, 5, 1)).isEqualTo(15);
-    assertThat(Yatzy.chance(3, 3, 4, 5, 1)).isEqualTo(16);
+    assertThat(new Yatzy(CHANCE, 2, 3, 4, 5, 1).score()).isEqualTo(15);
+    assertThat(new Yatzy(CHANCE, 3, 3, 4, 5, 1).score()).isEqualTo(16);
   }
 
   @Test

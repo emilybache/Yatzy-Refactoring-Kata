@@ -5,10 +5,13 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import yatzykata.yatzy.domain.category.CategoryFactoryProvider;
+import yatzykata.yatzy.domain.category.CategoryType;
+import yatzykata.yatzy.domain.category.model.Category;
+import yatzykata.yatzy.domain.roll.model.Roll;
 import yatzykata.yatzy.utils.IntComparisonOperator;
 
 public class Yatzy {
-
   private static final int SCORE_ALL_DICE_ARE_EQUAL = 50;
   private static final int SCORE_OF_ZERO = 0;
   private static final int SCORE_SMALL_STRAIGHT = 15;
@@ -32,6 +35,8 @@ public class Yatzy {
   private static final int DIE_READ_SIX = 6;
   private static final int ONLY_ONE_MATCH_WAS_FOUND = 1;
 
+  private final Category category;
+
   private static final int[] DICE_SMALL_STRAIGHT = {
     DIE_READ_ONE, DIE_READ_TWO, DIE_READ_THREE, DIE_READ_FOUR, DIE_READ_FIVE
   };
@@ -39,8 +44,14 @@ public class Yatzy {
     DIE_READ_TWO, DIE_READ_THREE, DIE_READ_FOUR, DIE_READ_FIVE, DIE_READ_SIX
   };
 
-  public static Integer chance(Integer... dice) {
-    return Stream.of(dice).reduce(0, Integer::sum);
+  public Yatzy(CategoryType categoryType, int... dice) {
+    CategoryFactoryProvider categoryFactoryProvider = new CategoryFactoryProvider();
+    Roll roll = new Roll(Arrays.stream(dice).boxed().collect(Collectors.toList()));
+    this.category = categoryFactoryProvider.getCategoryFactory(categoryType).createCategory(roll);
+  }
+
+  public int score() {
+    return category.calculateScore();
   }
 
   public static Integer yatzy(Integer... dice) {
