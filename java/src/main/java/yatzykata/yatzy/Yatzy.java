@@ -6,6 +6,12 @@ public class Yatzy {
 
   private static final int SCORE_ALL_DICE_ARE_EQUAL = 50;
   private static final int SCORE_OF_ZERO = 0;
+  private static final int ROLL_PLACED_ON_ONES = 1;
+  private static final int ROLL_PLACED_ON_TWOS = 2;
+  private static final int ROLL_PLACED_ON_THREES = 3;
+  private static final int ROLL_PLACED_ON_FOURS = 4;
+  private static final int ROLL_PLACED_ON_FIVES = 5;
+  private static final int ROLL_PLACED_ON_SIXES = 6;
 
   public static Integer chance(Integer... dice) {
     return Stream.of(dice).reduce(0, Integer::sum);
@@ -19,71 +25,32 @@ public class Yatzy {
     return Stream.of(dice).distinct().count() <= 1;
   }
 
-  public static int ones(int d1, int d2, int d3, int d4, int d5) {
-    int sum = 0;
-    if (d1 == 1) sum++;
-    if (d2 == 1) sum++;
-    if (d3 == 1) sum++;
-    if (d4 == 1) sum++;
-    if (d5 == 1) sum++;
-
-    return sum;
+  public static Integer ones(Integer... dice) {
+    return getScoreDicePlacedOn(dice, ROLL_PLACED_ON_ONES);
   }
 
-  public static int twos(int d1, int d2, int d3, int d4, int d5) {
-    int sum = 0;
-    if (d1 == 2) sum += 2;
-    if (d2 == 2) sum += 2;
-    if (d3 == 2) sum += 2;
-    if (d4 == 2) sum += 2;
-    if (d5 == 2) sum += 2;
-    return sum;
+  public static Integer twos(Integer... dice) {
+    return getScoreDicePlacedOn(dice, ROLL_PLACED_ON_TWOS);
   }
 
-  public static int threes(int d1, int d2, int d3, int d4, int d5) {
-    int s;
-    s = 0;
-    if (d1 == 3) s += 3;
-    if (d2 == 3) s += 3;
-    if (d3 == 3) s += 3;
-    if (d4 == 3) s += 3;
-    if (d5 == 3) s += 3;
-    return s;
+  public static Integer threes(Integer... dice) {
+    return getScoreDicePlacedOn(dice, ROLL_PLACED_ON_THREES);
   }
 
-  protected int[] dice;
-
-  public Yatzy(int d1, int d2, int d3, int d4, int _5) {
-    dice = new int[5];
-    dice[0] = d1;
-    dice[1] = d2;
-    dice[2] = d3;
-    dice[3] = d4;
-    dice[4] = _5;
+  public static Integer fours(Integer... dice) {
+    return getScoreDicePlacedOn(dice, ROLL_PLACED_ON_FOURS);
   }
 
-  public int fours() {
-    int sum;
-    sum = 0;
-    for (int at = 0; at != 5; at++) {
-      if (dice[at] == 4) {
-        sum += 4;
-      }
-    }
-    return sum;
+  public static Integer fives(Integer... dice) {
+    return getScoreDicePlacedOn(dice, ROLL_PLACED_ON_FIVES);
   }
 
-  public int fives() {
-    int s = 0;
-    int i;
-    for (i = 0; i < dice.length; i++) if (dice[i] == 5) s = s + 5;
-    return s;
+  public static Integer sixes(Integer... dice) {
+    return getScoreDicePlacedOn(dice, ROLL_PLACED_ON_SIXES);
   }
 
-  public int sixes() {
-    int sum = 0;
-    for (int at = 0; at < dice.length; at++) if (dice[at] == 6) sum = sum + 6;
-    return sum;
+  public static Integer getScoreDicePlacedOn(Integer[] dice, Integer placedOn) {
+    return Stream.of(dice).filter(die -> die.equals(placedOn)).reduce(0, Integer::sum);
   }
 
   public static int score_pair(int d1, int d2, int d3, int d4, int d5) {
