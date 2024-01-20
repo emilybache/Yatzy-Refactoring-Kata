@@ -1,8 +1,6 @@
 package yatzykata.yatzy;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -12,6 +10,8 @@ public class Yatzy {
 
   private static final int SCORE_ALL_DICE_ARE_EQUAL = 50;
   private static final int SCORE_OF_ZERO = 0;
+  private static final int SCORE_SMALL_STRAIGHT = 15;
+  private static final int SCORE_LARGE_STRAIGHT = 20;
   private static final int ROLL_PLACED_ON_ONES = 1;
   private static final int ROLL_PLACED_ON_TWOS = 2;
   private static final int ROLL_PLACED_ON_THREES = 3;
@@ -23,6 +23,19 @@ public class Yatzy {
   private static final int DIE_MATCH_FOUR_TIMES = 4;
   private static final int LIMIT_TO_ONE_PAIR = 1;
   private static final int LIMIT_TO_TWO_PAIRS = 2;
+  private static final int DIE_READ_ONE = 1;
+  private static final int DIE_READ_TWO = 2;
+  private static final int DIE_READ_THREE = 3;
+  private static final int DIE_READ_FOUR = 4;
+  private static final int DIE_READ_FIVE = 5;
+  private static final int DIE_READ_SIX = 6;
+
+  private static final int[] DICE_SMALL_STRAIGHT = {
+    DIE_READ_ONE, DIE_READ_TWO, DIE_READ_THREE, DIE_READ_FOUR, DIE_READ_FIVE
+  };
+  private static final int[] DICE_LARGE_STRAIGHT = {
+    DIE_READ_TWO, DIE_READ_THREE, DIE_READ_FOUR, DIE_READ_FIVE, DIE_READ_SIX
+  };
 
   public static Integer chance(Integer... dice) {
     return Stream.of(dice).reduce(0, Integer::sum);
@@ -133,30 +146,19 @@ public class Yatzy {
         0, (score, die) -> score + (die * numberOfTimesDieIsFound));
   }
 
-  public static int smallStraight(int d1, int d2, int d3, int d4, int d5) {
-    int[] tallies;
-    tallies = new int[6];
-    tallies[d1 - 1] += 1;
-    tallies[d2 - 1] += 1;
-    tallies[d3 - 1] += 1;
-    tallies[d4 - 1] += 1;
-    tallies[d5 - 1] += 1;
-    if (tallies[0] == 1 && tallies[1] == 1 && tallies[2] == 1 && tallies[3] == 1 && tallies[4] == 1)
-      return 15;
-    return 0;
+  public static Integer smallStraight(Integer... dice) {
+    return getScoreForStraight(dice, DICE_SMALL_STRAIGHT, SCORE_SMALL_STRAIGHT);
   }
 
-  public static int largeStraight(int d1, int d2, int d3, int d4, int d5) {
-    int[] tallies;
-    tallies = new int[6];
-    tallies[d1 - 1] += 1;
-    tallies[d2 - 1] += 1;
-    tallies[d3 - 1] += 1;
-    tallies[d4 - 1] += 1;
-    tallies[d5 - 1] += 1;
-    if (tallies[1] == 1 && tallies[2] == 1 && tallies[3] == 1 && tallies[4] == 1 && tallies[5] == 1)
-      return 20;
-    return 0;
+  public static Integer largeStraight(Integer... dice) {
+    return getScoreForStraight(dice, DICE_LARGE_STRAIGHT, SCORE_LARGE_STRAIGHT);
+  }
+
+  private static Integer getScoreForStraight(
+      Integer[] dice, int[] diceInStraight, Integer scoreForStraight) {
+    List<Integer> allDice = Arrays.asList(dice);
+    List<Integer> allDiceInStraight = Arrays.stream(diceInStraight).boxed().toList();
+    return new HashSet<>(allDice).containsAll(allDiceInStraight) ? scoreForStraight : SCORE_OF_ZERO;
   }
 
   public static int fullHouse(int d1, int d2, int d3, int d4, int d5) {

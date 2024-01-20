@@ -89,17 +89,17 @@ public class YatzyTest {
   }
 
   @Test
-  public void smallStraight() {
-    Assertions.assertEquals(15, Yatzy.smallStraight(1, 2, 3, 4, 5));
-    Assertions.assertEquals(15, Yatzy.smallStraight(2, 3, 4, 5, 1));
-    Assertions.assertEquals(0, Yatzy.smallStraight(1, 2, 2, 4, 5));
+  public void scoreSmallStraight() {
+    assertThat(Yatzy.smallStraight(1, 2, 3, 4, 5)).isEqualTo(15);
+    assertThat(Yatzy.smallStraight(2, 3, 4, 5, 1)).isEqualTo(15);
+    assertThat(Yatzy.smallStraight(1, 2, 2, 4, 5)).isEqualTo(0);
   }
 
   @Test
-  public void largeStraight() {
-    Assertions.assertEquals(20, Yatzy.largeStraight(6, 2, 3, 4, 5));
-    Assertions.assertEquals(20, Yatzy.largeStraight(2, 3, 4, 5, 6));
-    Assertions.assertEquals(0, Yatzy.largeStraight(1, 2, 2, 4, 5));
+  public void scoreLargeStraight() {
+    assertThat(Yatzy.largeStraight(6, 2, 3, 4, 5)).isEqualTo(20);
+    assertThat(Yatzy.largeStraight(2, 3, 4, 5, 6)).isEqualTo(20);
+    assertThat(Yatzy.largeStraight(1, 2, 2, 4, 5)).isEqualTo(0);
   }
 
   @Test
