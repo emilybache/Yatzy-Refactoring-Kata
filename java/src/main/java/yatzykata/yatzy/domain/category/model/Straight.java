@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
 import yatzykata.yatzy.domain.die.model.DieSide;
 import yatzykata.yatzy.domain.roll.model.Roll;
 
