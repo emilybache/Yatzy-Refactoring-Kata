@@ -62,30 +62,30 @@ public class YatzyTest {
   }
 
   @Test
-  public void one_pair() {
-    Assertions.assertEquals(6, Yatzy.score_pair(3, 4, 3, 5, 6));
-    Assertions.assertEquals(10, Yatzy.score_pair(5, 3, 3, 3, 5));
-    Assertions.assertEquals(12, Yatzy.score_pair(5, 3, 6, 6, 5));
+  public void scoreSumOfOnePair() {
+    assertThat(Yatzy.pair(3, 4, 3, 5, 6)).isEqualTo(6);
+    assertThat(Yatzy.pair(5, 3, 3, 3, 5)).isEqualTo(10);
+    assertThat(Yatzy.pair(5, 3, 6, 6, 5)).isEqualTo(12);
   }
 
   @Test
-  public void two_Pair() {
-    Assertions.assertEquals(16, Yatzy.two_pair(3, 3, 5, 4, 5));
-    Assertions.assertEquals(16, Yatzy.two_pair(3, 3, 5, 5, 5));
+  public void scoreSumOfTwoPairs() {
+    assertThat(Yatzy.twoPairs(3, 3, 5, 4, 5)).isEqualTo(16);
+    assertThat(Yatzy.twoPairs(3, 3, 5, 5, 5)).isEqualTo(16);
   }
 
   @Test
-  public void three_of_a_kind() {
-    Assertions.assertEquals(9, Yatzy.three_of_a_kind(3, 3, 3, 4, 5));
-    Assertions.assertEquals(15, Yatzy.three_of_a_kind(5, 3, 5, 4, 5));
-    Assertions.assertEquals(9, Yatzy.three_of_a_kind(3, 3, 3, 3, 5));
+  public void scoreSumOfThreeOfAKind() {
+    assertThat(Yatzy.threeOfAKind(3, 3, 3, 4, 5)).isEqualTo(9);
+    assertThat(Yatzy.threeOfAKind(5, 3, 5, 4, 5)).isEqualTo(15);
+    assertThat(Yatzy.threeOfAKind(3, 3, 3, 3, 5)).isEqualTo(9);
+    assertThat(Yatzy.threeOfAKind(3, 3, 3, 3, 3)).isEqualTo(9);
   }
 
   @Test
-  public void four_of_a_knd() {
-    Assertions.assertEquals(12, Yatzy.four_of_a_kind(3, 3, 3, 3, 5));
-    Assertions.assertEquals(20, Yatzy.four_of_a_kind(5, 5, 5, 4, 5));
-    Assertions.assertEquals(9, Yatzy.three_of_a_kind(3, 3, 3, 3, 3));
+  public void scoreSumOfFourOfAKind() {
+    assertThat(Yatzy.fourOfAKind(3, 3, 3, 3, 5)).isEqualTo(12);
+    assertThat(Yatzy.fourOfAKind(5, 5, 5, 4, 5)).isEqualTo(20);
   }
 
   @Test

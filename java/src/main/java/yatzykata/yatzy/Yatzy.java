@@ -1,6 +1,12 @@
 package yatzykata.yatzy;
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import yatzykata.yatzy.utils.IntComparisonOperator;
 
 public class Yatzy {
 
@@ -12,6 +18,11 @@ public class Yatzy {
   private static final int ROLL_PLACED_ON_FOURS = 4;
   private static final int ROLL_PLACED_ON_FIVES = 5;
   private static final int ROLL_PLACED_ON_SIXES = 6;
+  private static final int DIE_MATCH_TWO_TIMES = 2;
+  private static final int DIE_MATCH_THREE_TIMES = 3;
+  private static final int DIE_MATCH_FOUR_TIMES = 4;
+  private static final int LIMIT_TO_ONE_PAIR = 1;
+  private static final int LIMIT_TO_TWO_PAIRS = 2;
 
   public static Integer chance(Integer... dice) {
     return Stream.of(dice).reduce(0, Integer::sum);
@@ -53,58 +64,73 @@ public class Yatzy {
     return Stream.of(dice).filter(die -> die.equals(placedOn)).reduce(0, Integer::sum);
   }
 
-  public static int score_pair(int d1, int d2, int d3, int d4, int d5) {
-    int[] counts = new int[6];
-    counts[d1 - 1]++;
-    counts[d2 - 1]++;
-    counts[d3 - 1]++;
-    counts[d4 - 1]++;
-    counts[d5 - 1]++;
-    int at;
-    for (at = 0; at != 6; at++) if (counts[6 - at - 1] >= 2) return (6 - at) * 2;
-    return 0;
+  public static Integer pair(Integer... dice) {
+    Stream<Integer> diceFoundMultipleTimes =
+        getDiceByExactlyANumberOfTimesADieIsFound(dice, DIE_MATCH_TWO_TIMES)
+            .sorted(Comparator.reverseOrder())
+            .limit(LIMIT_TO_ONE_PAIR);
+
+    return getScoreForDiceThatMatchMultipleTimes(diceFoundMultipleTimes, DIE_MATCH_TWO_TIMES);
   }
 
-  public static int two_pair(int d1, int d2, int d3, int d4, int d5) {
-    int[] counts = new int[6];
-    counts[d1 - 1]++;
-    counts[d2 - 1]++;
-    counts[d3 - 1]++;
-    counts[d4 - 1]++;
-    counts[d5 - 1]++;
-    int n = 0;
-    int score = 0;
-    for (int i = 0; i < 6; i += 1)
-      if (counts[6 - i - 1] >= 2) {
-        n++;
-        score += (6 - i);
-      }
-    if (n == 2) return score * 2;
-    else return 0;
+  public static Integer twoPairs(Integer... dice) {
+    Stream<Integer> diceFoundMultipleTimes =
+        getDiceByAtLeastANumberOfTimesADieIsFound(dice, DIE_MATCH_TWO_TIMES)
+            .limit(LIMIT_TO_TWO_PAIRS);
+
+    return getScoreForDiceThatMatchMultipleTimes(diceFoundMultipleTimes, DIE_MATCH_TWO_TIMES);
   }
 
-  public static int four_of_a_kind(int _1, int _2, int d3, int d4, int d5) {
-    int[] tallies;
-    tallies = new int[6];
-    tallies[_1 - 1]++;
-    tallies[_2 - 1]++;
-    tallies[d3 - 1]++;
-    tallies[d4 - 1]++;
-    tallies[d5 - 1]++;
-    for (int i = 0; i < 6; i++) if (tallies[i] >= 4) return (i + 1) * 4;
-    return 0;
+  public static Integer threeOfAKind(Integer... dice) {
+    Stream<Integer> diceFoundMultipleTimes =
+        getDiceByAtLeastANumberOfTimesADieIsFound(dice, DIE_MATCH_THREE_TIMES);
+
+    return getScoreForDiceThatMatchMultipleTimes(diceFoundMultipleTimes, DIE_MATCH_THREE_TIMES);
   }
 
-  public static int three_of_a_kind(int d1, int d2, int d3, int d4, int d5) {
-    int[] t;
-    t = new int[6];
-    t[d1 - 1]++;
-    t[d2 - 1]++;
-    t[d3 - 1]++;
-    t[d4 - 1]++;
-    t[d5 - 1]++;
-    for (int i = 0; i < 6; i++) if (t[i] >= 3) return (i + 1) * 3;
-    return 0;
+  public static Integer fourOfAKind(Integer... dice) {
+    Stream<Integer> diceFoundMultipleTimes =
+        getDiceByAtLeastANumberOfTimesADieIsFound(dice, DIE_MATCH_FOUR_TIMES);
+
+    return getScoreForDiceThatMatchMultipleTimes(diceFoundMultipleTimes, DIE_MATCH_FOUR_TIMES);
+  }
+
+  private static Stream<Integer> getDiceByExactlyANumberOfTimesADieIsFound(
+      Integer[] dice, Integer numberOfTimesDieIsFound) {
+    return getDiceByNumberOfTimesDieIsFound(
+        dice, numberOfTimesDieIsFound, IntComparisonOperator.EQUAL);
+  }
+
+  private static Stream<Integer> getDiceByAtLeastANumberOfTimesADieIsFound(
+      Integer[] dice, Integer numberOfTimesDieIsFound) {
+    return getDiceByNumberOfTimesDieIsFound(
+        dice, numberOfTimesDieIsFound, IntComparisonOperator.GREATER_THAN_OR_EQUAL);
+  }
+
+  private static Stream<Integer> getDiceByNumberOfTimesDieIsFound(
+      Integer[] dice,
+      Integer numberOfTimesDieIsFound,
+      IntComparisonOperator intComparisonOperator) {
+    return getDiceAndNumberOfTimesEachDieIsFound(dice).entrySet().stream()
+        .filter(
+            dieAndNumberOfTimesFound ->
+                intComparisonOperator.compare(
+                    dieAndNumberOfTimesFound.getValue(), numberOfTimesDieIsFound))
+        .map(Map.Entry::getKey);
+  }
+
+  private static Map<Integer, Integer> getDiceAndNumberOfTimesEachDieIsFound(Integer[] dice) {
+    return Arrays.stream(dice)
+        .collect(
+            Collectors.groupingBy(
+                Function.identity(),
+                Collectors.collectingAndThen(Collectors.counting(), Long::intValue)));
+  }
+
+  private static Integer getScoreForDiceThatMatchMultipleTimes(
+      Stream<Integer> diceFoundMultipleTimes, Integer numberOfTimesDieIsFound) {
+    return diceFoundMultipleTimes.reduce(
+        0, (score, die) -> score + (die * numberOfTimesDieIsFound));
   }
 
   public static int smallStraight(int d1, int d2, int d3, int d4, int d5) {
