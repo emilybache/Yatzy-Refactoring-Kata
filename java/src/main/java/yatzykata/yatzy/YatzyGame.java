@@ -13,29 +13,14 @@ import yatzykata.yatzy.utils.IntComparisonOperator;
 
 public class YatzyGame {
   private static final int SCORE_OF_ZERO = 0;
-  private static final int SCORE_SMALL_STRAIGHT = 15;
-  private static final int SCORE_LARGE_STRAIGHT = 20;
   private static final int DIE_MATCH_TWO_TIMES = 2;
   private static final int DIE_MATCH_THREE_TIMES = 3;
   private static final int DIE_MATCH_FOUR_TIMES = 4;
   private static final int LIMIT_TO_ONE_PAIR = 1;
   private static final int LIMIT_TO_TWO_PAIRS = 2;
-  private static final int DIE_READ_ONE = 1;
-  private static final int DIE_READ_TWO = 2;
-  private static final int DIE_READ_THREE = 3;
-  private static final int DIE_READ_FOUR = 4;
-  private static final int DIE_READ_FIVE = 5;
-  private static final int DIE_READ_SIX = 6;
   private static final int ONLY_ONE_MATCH_WAS_FOUND = 1;
 
   private final Category category;
-
-  private static final int[] DICE_SMALL_STRAIGHT = {
-    DIE_READ_ONE, DIE_READ_TWO, DIE_READ_THREE, DIE_READ_FOUR, DIE_READ_FIVE
-  };
-  private static final int[] DICE_LARGE_STRAIGHT = {
-    DIE_READ_TWO, DIE_READ_THREE, DIE_READ_FOUR, DIE_READ_FIVE, DIE_READ_SIX
-  };
 
   public YatzyGame(CategoryType categoryType, int... dice) {
     CategoryFactoryProvider categoryFactoryProvider = new CategoryFactoryProvider();
@@ -114,21 +99,6 @@ public class YatzyGame {
       Stream<Integer> diceFoundMultipleTimes, Integer numberOfTimesDieIsFound) {
     return diceFoundMultipleTimes.reduce(
         0, (score, die) -> score + (die * numberOfTimesDieIsFound));
-  }
-
-  public static Integer smallStraight(Integer... dice) {
-    return getScoreForStraight(dice, DICE_SMALL_STRAIGHT, SCORE_SMALL_STRAIGHT);
-  }
-
-  public static Integer largeStraight(Integer... dice) {
-    return getScoreForStraight(dice, DICE_LARGE_STRAIGHT, SCORE_LARGE_STRAIGHT);
-  }
-
-  private static Integer getScoreForStraight(
-      Integer[] dice, int[] diceInStraight, Integer scoreForStraight) {
-    List<Integer> allDice = Arrays.asList(dice);
-    List<Integer> allDiceInStraight = Arrays.stream(diceInStraight).boxed().toList();
-    return new HashSet<>(allDice).containsAll(allDiceInStraight) ? scoreForStraight : SCORE_OF_ZERO;
   }
 
   public static Integer fullHouse(Integer... dice) {

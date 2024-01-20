@@ -2,6 +2,7 @@ package yatzykata.yatzy.domain.category;
 
 import yatzykata.yatzy.domain.category.model.CategoryType;
 import yatzykata.yatzy.domain.die.model.DieSide;
+import yatzykata.yatzy.domain.category.model.StraightType;
 
 public class CategoryFactoryProvider {
   public CategoryFactory getCategoryFactory(CategoryType categoryType) {
@@ -29,6 +30,12 @@ public class CategoryFactoryProvider {
       }
       case SIXES -> {
         return new RepeatedDieFactory(DieSide.SIX);
+      }
+      case SMALL_STRAIGHT -> {
+        return new StraightFactory(StraightType.SMALL);
+      }
+      case LARGE_STRAIGHT -> {
+        return new StraightFactory(StraightType.LARGE);
       }
       default -> {
         throw new IllegalArgumentException("Invalid category type: " + categoryType);

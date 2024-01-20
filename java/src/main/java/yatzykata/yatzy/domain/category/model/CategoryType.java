@@ -9,4 +9,6 @@ public enum CategoryType {
   FOURS,
   FIVES,
   SIXES,
+  SMALL_STRAIGHT,
+  LARGE_STRAIGHT;
 }

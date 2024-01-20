@@ -90,16 +90,16 @@ public class YatzyGameTest {
 
   @Test
   public void scoreSmallStraight() {
-    assertThat(YatzyGame.smallStraight(1, 2, 3, 4, 5)).isEqualTo(15);
-    assertThat(YatzyGame.smallStraight(2, 3, 4, 5, 1)).isEqualTo(15);
-    assertThat(YatzyGame.smallStraight(1, 2, 2, 4, 5)).isEqualTo(0);
+    assertThat(new YatzyGame(SMALL_STRAIGHT, 1, 2, 3, 4, 5).score()).isEqualTo(15);
+    assertThat(new YatzyGame(SMALL_STRAIGHT, 2, 3, 4, 5, 1).score()).isEqualTo(15);
+    assertThat(new YatzyGame(SMALL_STRAIGHT, 1, 2, 2, 4, 5).score()).isEqualTo(0);
   }
 
   @Test
   public void scoreLargeStraight() {
-    assertThat(YatzyGame.largeStraight(6, 2, 3, 4, 5)).isEqualTo(20);
-    assertThat(YatzyGame.largeStraight(2, 3, 4, 5, 6)).isEqualTo(20);
-    assertThat(YatzyGame.largeStraight(1, 2, 2, 4, 5)).isEqualTo(0);
+    assertThat(new YatzyGame(LARGE_STRAIGHT, 6, 2, 3, 4, 5).score()).isEqualTo(20);
+    assertThat(new YatzyGame(LARGE_STRAIGHT, 2, 3, 4, 5, 6).score()).isEqualTo(20);
+    assertThat(new YatzyGame(LARGE_STRAIGHT, 1, 2, 2, 4, 5).score()).isEqualTo(0);
   }
 
   @Test
