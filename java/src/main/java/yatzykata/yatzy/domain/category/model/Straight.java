@@ -12,29 +12,29 @@ public record Straight(StraightType straightType) implements Category {
 
   @Override
   public int calculateScore(Roll roll) {
-    return getScoreForStraight(roll.diceAsIntegers(), straightType);
-  }
-
-  private static Integer getScoreForStraight(List<Integer> dice, StraightType straightType) {
-    List<Integer> dicesByStraightType = getDicesByStraightType(straightType);
-    boolean allDiceMatchStraight = new HashSet<>(dice).containsAll(dicesByStraightType);
-    if (allDiceMatchStraight) {
-      return addAllDice(dice);
+    List<Integer> dice = roll.diceAsIntegers();
+    List<Integer> diceByStraightType = getDiceByStraightType(straightType);
+    if (doesDiceMatchStraight(dice, diceByStraightType)) {
+      return getScoreFromDiceSum(dice);
     } else {
       return SCORE_OF_ZERO;
     }
   }
 
-  private static Integer addAllDice(List<Integer> dice) {
+  private static boolean doesDiceMatchStraight(
+      List<Integer> dice, List<Integer> dicesByStraightType) {
+    return new HashSet<>(dice).containsAll(dicesByStraightType);
+  }
+
+  private static Integer getScoreFromDiceSum(List<Integer> dice) {
     return dice.stream().reduce(0, Integer::sum);
   }
 
-  private static List<Integer> getDicesByStraightType(StraightType straightType) {
-    if (straightType == StraightType.SMALL) {
-      return getDicesInStraight(DieSide.ONE.value, DieSide.FIVE.value);
-    } else {
-      return getDicesInStraight(DieSide.TWO.value, DieSide.SIX.value);
-    }
+  private static List<Integer> getDiceByStraightType(StraightType straightType) {
+    return switch (straightType) {
+      case SMALL -> getDicesInStraight(DieSide.ONE.value, DieSide.FIVE.value);
+      case LARGE -> getDicesInStraight(DieSide.TWO.value, DieSide.SIX.value);
+    };
   }
 
   private static List<Integer> getDicesInStraight(int start, int end) {
