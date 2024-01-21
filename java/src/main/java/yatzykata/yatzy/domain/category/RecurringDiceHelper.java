@@ -8,6 +8,7 @@ import yatzykata.yatzy.domain.roll.model.Roll;
 import yatzykata.yatzy.utils.IntComparisonOperator;
 
 public final class RecurringDiceHelper {
+
   public static Stream<Integer> getDiceByExactRecurrence(Roll roll, int expectedDieRecurrence) {
     return getDiceByRecurrence(roll, expectedDieRecurrence, IntComparisonOperator.EQUAL);
   }
