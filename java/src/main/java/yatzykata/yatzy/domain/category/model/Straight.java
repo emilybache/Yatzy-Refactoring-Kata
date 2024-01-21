@@ -7,11 +7,11 @@ import java.util.stream.IntStream;
 import yatzykata.yatzy.domain.die.model.DieSide;
 import yatzykata.yatzy.domain.roll.model.Roll;
 
-public record Straight(Roll roll, StraightType straightType) implements Category {
+public record Straight(StraightType straightType) implements Category {
   private static final int SCORE_OF_ZERO = 0;
 
   @Override
-  public int calculateScore() {
+  public int calculateScore(Roll roll) {
     return getScoreForStraight(roll.diceAsIntegers(), straightType);
   }
 

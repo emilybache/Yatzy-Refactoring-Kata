@@ -2,9 +2,9 @@ package yatzykata.yatzy.domain.category.model;
 
 import yatzykata.yatzy.domain.roll.model.Roll;
 
-public record Chance(Roll roll) implements Category {
+public record Chance() implements Category {
   @Override
-  public int calculateScore() {
+  public int calculateScore(Roll roll) {
     return roll.diceAsIntegers().stream().reduce(0, Integer::sum);
   }
 }

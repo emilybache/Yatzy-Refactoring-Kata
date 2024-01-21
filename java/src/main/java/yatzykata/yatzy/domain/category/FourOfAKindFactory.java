@@ -2,11 +2,10 @@ package yatzykata.yatzy.domain.category;
 
 import yatzykata.yatzy.domain.category.model.Category;
 import yatzykata.yatzy.domain.category.model.FourOfAKind;
-import yatzykata.yatzy.domain.roll.model.Roll;
 
-public class FourOfAKindFactory implements CategoryFactory {
+public record FourOfAKindFactory() implements CategoryFactory {
   @Override
-  public Category createCategory(Roll roll) {
-    return new FourOfAKind(roll);
+  public Category createCategory() {
+    return new FourOfAKind();
   }
 }

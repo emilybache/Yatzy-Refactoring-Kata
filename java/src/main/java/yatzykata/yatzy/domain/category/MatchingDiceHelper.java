@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 import yatzykata.yatzy.domain.roll.model.Roll;
 import yatzykata.yatzy.utils.IntComparisonOperator;
 
-public class MatchingDiceHelper {
+public final class MatchingDiceHelper {
   public static Stream<Integer> getDiceByExactlyANumberOfTimesADieIsFound(
       Roll roll, Integer numberOfTimesDieIsFound) {
     return getDiceByNumberOfTimesDieIsFound(

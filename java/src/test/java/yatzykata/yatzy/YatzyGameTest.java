@@ -17,7 +17,8 @@ public class YatzyGameTest {
       name = "[{index}] Rolled dice = {0}, Placed on category = {1}, Expected score = {2}")
   @MethodSource("testCases")
   public void score(List<Integer> rolledDice, CategoryType placedCategory, int expectedScore) {
-    assertThat(new YatzyGame(rolledDice, placedCategory).score()).isEqualTo(expectedScore);
+    assertThat(new YatzyGame().roll(rolledDice).placeOnCategory(placedCategory).score())
+        .isEqualTo(expectedScore);
   }
 
   private static Stream<Arguments> testCases() {

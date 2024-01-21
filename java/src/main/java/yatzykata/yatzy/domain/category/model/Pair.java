@@ -5,12 +5,12 @@ import java.util.stream.Stream;
 import yatzykata.yatzy.domain.category.MatchingDiceHelper;
 import yatzykata.yatzy.domain.roll.model.Roll;
 
-public record Pair(Roll roll) implements Category {
+public record Pair() implements Category {
   private static final int DIE_MATCH_TWO_TIMES = 2;
   private static final int LIMIT_TO_ONE_PAIR = 1;
 
   @Override
-  public int calculateScore() {
+  public int calculateScore(Roll roll) {
     Stream<Integer> diceFoundMultipleTimes =
         MatchingDiceHelper.getDiceByAtLeastANumberOfTimesADieIsFound(roll, DIE_MATCH_TWO_TIMES)
             .sorted(Comparator.reverseOrder())

@@ -4,8 +4,8 @@ import yatzykata.yatzy.domain.category.model.CategoryType;
 import yatzykata.yatzy.domain.category.model.StraightType;
 import yatzykata.yatzy.domain.die.model.DieSide;
 
-public class CategoryFactoryProvider {
-  public CategoryFactory getCategoryFactory(CategoryType categoryType) {
+public record CategoryFactoryProvider() {
+  public static CategoryFactory getCategoryFactory(CategoryType categoryType) {
     return switch (categoryType) {
       case CHANCE -> new ChanceFactory();
       case YATZY -> new YatzyFactory();

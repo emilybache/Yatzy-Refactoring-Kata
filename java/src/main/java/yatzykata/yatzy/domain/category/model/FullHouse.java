@@ -5,14 +5,14 @@ import java.util.stream.Stream;
 import yatzykata.yatzy.domain.category.MatchingDiceHelper;
 import yatzykata.yatzy.domain.roll.model.Roll;
 
-public record FullHouse(Roll roll) implements Category {
+public record FullHouse() implements Category {
   private static final int DIE_MATCH_TWO_TIMES = 2;
   private static final int DIE_MATCH_THREE_TIMES = 3;
   private static final int ONLY_ONE_MATCH_WAS_FOUND = 1;
   private static final int SCORE_OF_ZERO = 0;
 
   @Override
-  public int calculateScore() {
+  public int calculateScore(Roll roll) {
     return getScoreForDiceMatchingWithASingleResult(roll, DIE_MATCH_TWO_TIMES)
         + getScoreForDiceMatchingWithASingleResult(roll, DIE_MATCH_THREE_TIMES);
   }
