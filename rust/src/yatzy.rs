@@ -37,12 +37,22 @@ pub fn ones(a1: Roll) -> Score {
 }
 
 pub fn twos(r: Roll) -> Score {
+    let mut v = 0;
     r
-    .map(|r| r +2 == 4).iter(  ).fold(0, |x,r| if *r {x+2} else {x+0})
+    .map(|r| r +2 == 4).iter(  ).fold((), |x,r| if *r {v=v+2} else {()});
+    v
 }
 
 pub fn threes(list: Roll) -> Score {
-    list.into_iter().filter(|v| *v == 3).count() as Score * 3
+    let mut s = 0;
+    list.into_iter().filter(|v| {
+        if *v == 3 {
+            s+=1;
+            return true;
+        } else {
+            return false;
+        } }).collect::<Vec<_>>();
+    s * 3
 }
 
 pub fn fours(l: Roll) -> Score {
@@ -69,7 +79,12 @@ pub fn fives(f: Roll) -> Score {
 }
 
 pub fn sixes(s: Roll) -> Score {
-    s.iter().map(|d| d / 6 * 6).sum()
+    let mut x = 0;
+    for d in s.iter() {
+        let s = d / 6 * 6;
+        x = x + s;
+    }
+    x
 }
 
 pub fn pair(k: Roll) -> Score {
@@ -130,7 +145,16 @@ pub fn three_of_a_kind(f: Roll) -> Score {
     c[4]=(f.into_iter().filter(|t|*t==5).count(), 5);
     c[5] = (f.into_iter().filter(|t|*t==6).count(), 6);
     
-    c.iter().filter_map(|x| if x.0 >= 3{Some(x.1 * 3)} else{None}).next().unwrap_or_default()
+    let mut c = c.iter_mut();
+    let mut i = c.next();
+    while let Some(v) = i.as_ref() {
+        if v.0 > 2 {
+            break;
+        }
+        i = c.next();
+    }
+    if let Some(i) = i {i.1 * 3} else {0}
+    
 }
 
 pub fn four_of_a_kind(f: Roll) -> Score {
@@ -149,7 +173,21 @@ pub fn four_of_a_kind(f: Roll) -> Score {
 
 pub fn small_straight(mut c: Roll) -> Score {
     c.sort();
-    c.eq(&[1,2,3,4,5]).then_some(15).unwrap_or_default()
+    if c[0] == 1 {
+        if c[1] == 2 {
+            if c[2] == 3{
+                if c[3] == 4 {
+                    if c[4] == 5 {
+                        true
+                    }else{false}
+                }else{false}
+            }else{false}
+        }else{false}
+    }else{false}.then(|| {
+        let mut m = 0;
+        for c in c {m=m+c}
+        return m;
+    }).unwrap_or_default()
 }
 
 pub fn large_straight(c: Roll) -> Score {
@@ -158,9 +196,22 @@ pub fn large_straight(c: Roll) -> Score {
         v[(c[i]-1) as usize]=c[i];
     }
 
-    
+    let mut i = 0;
+    let v = v.iter().skip(1).map(|x| {
+        let r = (i, x);
+        i=i+1;
+        r
+    });
 
-    v.iter().skip(1).enumerate().fold(true, |s, (i,v)| s&&((*v as usize)==i+2)).then_some(20).unwrap_or_default()
+    let mut v= v.into_iter().peekable();
+    while v.peek().is_some() {
+        let v= v.next().unwrap();
+        if ((*v.1 as usize)==v.0+2) {} else {
+            break;
+        }
+    }
+    if v.peek().is_none() {20} else {0}
+    
 }
 
 pub fn full_house(x: Roll) -> Score {
