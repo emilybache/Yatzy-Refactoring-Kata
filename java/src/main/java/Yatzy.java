@@ -1,14 +1,10 @@
 import model.Dice;
 
 public class Yatzy {
-    public int chance(int d1, int d2, int d3, int d4, int d5) {
-        int total = 0;
-        total += d1;
-        total += d2;
-        total += d3;
-        total += d4;
-        total += d5;
-        return total;
+    public int chance(Dice dice) {
+        return dice.getCombination()
+            .stream()
+            .reduce(0, Integer::sum);
     }
 
     public int yatzy(int... dice) {

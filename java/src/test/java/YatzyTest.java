@@ -15,10 +15,14 @@ public class YatzyTest {
 
     @Test
     public void chance_ReturnsSumOfAllDice() {
+        Dice dice1 = new Dice(2,3,4,5,1);
+        Dice dice2 = new Dice(3,3,4,5,1);
+
         int expected1 = 15;
         int expected2 = 16;
-        assertEquals(expected1, yatzyUnderTest.chance(2,3,4,5,1));
-        assertEquals(expected2, yatzyUnderTest.chance(3,3,4,5,1));
+
+        assertEquals(expected1, yatzyUnderTest.chance(dice1));
+        assertEquals(expected2, yatzyUnderTest.chance(dice2));
     }
 
     @Test
