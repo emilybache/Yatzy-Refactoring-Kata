@@ -27,15 +27,20 @@ public class YatzyTest {
 
     @Test
     public void yatzy_return50_ifAllDieAreEqual() {
+        Dice dice1 = new Dice(4,4,4,4,4);
+        Dice dice2 = new Dice(6,6,6,6,6);
+
         int expected = 50;
-        assertEquals(expected, yatzyUnderTest.yatzy(4,4,4,4,4));
-        assertEquals(expected, yatzyUnderTest.yatzy(6,6,6,6,6));
+
+        assertEquals(expected, yatzyUnderTest.yatzy(dice1));
+        assertEquals(expected, yatzyUnderTest.yatzy(dice2));
     }
 
     @Test
     public void yatzy_return0_ifAtLeastOneDieIsDifferent() {
+        Dice dice = new Dice(6,6,6,6,3);
         int expected = 0;
-        assertEquals(expected, yatzyUnderTest.yatzy(6,6,6,6,3));
+        assertEquals(expected, yatzyUnderTest.yatzy(dice));
     }
 
     @Test
