@@ -1,7 +1,19 @@
-public class Yatzy {
+import model.Dice;
 
-    public static int chance(int d1, int d2, int d3, int d4, int d5)
-    {
+public class Yatzy {
+    protected int[] dice;
+
+    public Yatzy(Dice dice) {
+        this.dice = new int[5];
+        this.dice[0] = dice.die0();
+        this.dice[1] = dice.die1();
+        this.dice[2] = dice.die2();
+        this.dice[3] = dice.die3();
+        this.dice[4] = dice.die4();
+    }
+
+    public Yatzy() {}
+    public int chance(int d1, int d2, int d3, int d4, int d5) {
         int total = 0;
         total += d1;
         total += d2;
@@ -11,8 +23,7 @@ public class Yatzy {
         return total;
     }
 
-    public static int yatzy(int... dice)
-    {
+    public static int yatzy(int... dice) {
         int[] counts = new int[6];
         for (int die : dice)
             counts[die-1]++;
@@ -55,19 +66,7 @@ public class Yatzy {
         return s;
     }
 
-    protected int[] dice;
-    public Yatzy(int d1, int d2, int d3, int d4, int _5)
-    {
-        dice = new int[5];
-        dice[0] = d1;
-        dice[1] = d2;
-        dice[2] = d3;
-        dice[3] = d4;
-        dice[4] = _5;
-    }
-
-    public int fours()
-    {
+    public int fours() {
         int sum;    
         sum = 0;
         for (int at = 0; at != 5; at++) {
@@ -78,8 +77,7 @@ public class Yatzy {
         return sum;
     }
 
-    public int fives()
-    {
+    public int fives() {
         int s = 0;
         int i;
         for (i = 0; i < dice.length; i++) 
@@ -88,8 +86,7 @@ public class Yatzy {
         return s;
     }
 
-    public int sixes()
-    {
+    public int sixes() {
         int sum = 0;
         for (int at = 0; at < dice.length; at++) 
             if (dice[at] == 6)
@@ -97,8 +94,7 @@ public class Yatzy {
         return sum;
     }
 
-    public static int scorePair(int d1, int d2, int d3, int d4, int d5)
-    {
+    public static int scorePair(int d1, int d2, int d3, int d4, int d5) {
         int[] counts = new int[6];
         counts[d1-1]++;
         counts[d2-1]++;
@@ -112,8 +108,7 @@ public class Yatzy {
         return 0;
     }
 
-    public static int twoPair(int d1, int d2, int d3, int d4, int d5)
-    {
+    public static int twoPair(int d1, int d2, int d3, int d4, int d5) {
         int[] counts = new int[6];
         counts[d1-1]++;
         counts[d2-1]++;
@@ -133,8 +128,7 @@ public class Yatzy {
             return 0;
     }
 
-    public static int fourOfAKind(int _1, int _2, int d3, int d4, int d5)
-    {
+    public static int fourOfAKind(int _1, int _2, int d3, int d4, int d5) {
         int[] tallies;
         tallies = new int[6];
         tallies[_1-1]++;
@@ -148,8 +142,7 @@ public class Yatzy {
         return 0;
     }
 
-    public static int threeOfAKind(int d1, int d2, int d3, int d4, int d5)
-    {
+    public static int threeOfAKind(int d1, int d2, int d3, int d4, int d5) {
         int[] t;
         t = new int[6];
         t[d1-1]++;
@@ -163,8 +156,7 @@ public class Yatzy {
         return 0;
     }
 
-    public static int smallStraight(int d1, int d2, int d3, int d4, int d5)
-    {
+    public static int smallStraight(int d1, int d2, int d3, int d4, int d5) {
         int[] tallies;
         tallies = new int[6];
         tallies[d1-1] += 1;
@@ -181,8 +173,7 @@ public class Yatzy {
         return 0;
     }
 
-    public static int largeStraight(int d1, int d2, int d3, int d4, int d5)
-    {
+    public static int largeStraight(int d1, int d2, int d3, int d4, int d5) {
         int[] tallies;
         tallies = new int[6];
         tallies[d1-1] += 1;
@@ -199,8 +190,7 @@ public class Yatzy {
         return 0;
     }
 
-    public static int fullHouse(int d1, int d2, int d3, int d4, int d5)
-    {
+    public static int fullHouse(int d1, int d2, int d3, int d4, int d5) {
         int[] tallies;
         boolean _2 = false;
         int i;

@@ -1,3 +1,4 @@
+import model.Dice;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -8,22 +9,26 @@ public class YatzyTest {
     public void chance_ReturnsSumOfAllDice() {
         int expected1 = 15;
         int expected2 = 16;
-        assertEquals(expected1, Yatzy.chance(2,3,4,5,1));
-        assertEquals(expected2, Yatzy.chance(3,3,4,5,1));
+        Yatzy yatzy = new Yatzy();
+        assertEquals(expected1, yatzy.chance(2,3,4,5,1));
+        assertEquals(expected2, yatzy.chance(3,3,4,5,1));
     }
 
-    @Test public void yatzy_return50_ifAllDieAreEqual() {
+    @Test
+    public void yatzy_return50_ifAllDieAreEqual() {
         int expected = 50;
         assertEquals(expected, Yatzy.yatzy(4,4,4,4,4));
         assertEquals(expected, Yatzy.yatzy(6,6,6,6,6));
     }
 
-    @Test public void yatzy_return0_ifAtLeastOneDieIsDifferent() {
+    @Test
+    public void yatzy_return0_ifAtLeastOneDieIsDifferent() {
         int expected = 0;
         assertEquals(expected, Yatzy.yatzy(6,6,6,6,3));
     }
 
-    @Test public void ones_returnsSumOfOnes() {
+    @Test
+    public void ones_returnsSumOfOnes() {
         assertEquals(1, Yatzy.ones(1,2,3,4,5));
         assertEquals(2, Yatzy.ones(1,2,1,4,5));
         assertEquals(0, Yatzy.ones(6,2,2,4,5));
@@ -44,23 +49,35 @@ public class YatzyTest {
 
     @Test
     public void fours_returnSumOfFours() {
-        assertEquals(12, new Yatzy(4,4,4,5,5).fours());
-        assertEquals(8, new Yatzy(4,4,5,5,5).fours());
-        assertEquals(4, new Yatzy(4,5,5,5,5).fours());
+        Dice diceWithThreeFours = new Dice(4,4,4,5,5);
+        Dice diceWithTwoFours = new Dice(4,4,5,5,5);
+        Dice diceWithOneFour = new Dice(4,5,5,5,5);
+
+        assertEquals(12, new Yatzy(diceWithThreeFours).fours());
+        assertEquals(8, new Yatzy(diceWithTwoFours).fours());
+        assertEquals(4, new Yatzy(diceWithOneFour).fours());
     }
 
     @Test
     public void fives_returnSumOfFours() {
-        assertEquals(10, new Yatzy(4,4,4,5,5).fives());
-        assertEquals(15, new Yatzy(4,4,5,5,5).fives());
-        assertEquals(20, new Yatzy(4,5,5,5,5).fives());
+        Dice diceWithTwoFives = new Dice(4,4,4,5,5);
+        Dice diceWithThreeFives = new Dice(4,4,5,5,5);
+        Dice diceWithFourFives = new Dice(4,5,5,5,5);
+
+        assertEquals(10, new Yatzy(diceWithTwoFives).fives());
+        assertEquals(15, new Yatzy(diceWithThreeFives).fives());
+        assertEquals(20, new Yatzy(diceWithFourFives).fives());
     }
 
     @Test
     public void sixes_returnSumOfSixes() {
-        assertEquals(0, new Yatzy(4,4,4,5,5).sixes());
-        assertEquals(6, new Yatzy(4,4,6,5,5).sixes());
-        assertEquals(18, new Yatzy(6,5,6,6,5).sixes());
+        Dice diceWithNoSix = new Dice(4,4,4,5,5);
+        Dice diceWithOneSix = new Dice(4,4,6,5,5);
+        Dice diceWithThreeSixes = new Dice(6,5,6,6,5);
+
+        assertEquals(0, new Yatzy(diceWithNoSix).sixes());
+        assertEquals(6, new Yatzy(diceWithOneSix).sixes());
+        assertEquals(18, new Yatzy(diceWithThreeSixes).sixes());
     }
 
     @Test
