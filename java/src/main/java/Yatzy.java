@@ -15,65 +15,46 @@ public class Yatzy {
         }
     }
 
-    public int ones(int d1, int d2, int d3, int d4, int d5) {
-        int sum = 0;
-        if (d1 == 1) sum++;
-        if (d2 == 1) sum++;
-        if (d3 == 1) sum++;
-        if (d4 == 1) sum++;
-        if (d5 == 1) 
-            sum++;
-
-        return sum;
+    public int ones(Dice dice) {
+        return Math.toIntExact(dice.getCombination()
+            .stream()
+            .filter(number -> number == 1)
+            .count());
     }
 
-    public int twos(int d1, int d2, int d3, int d4, int d5) {
-        int sum = 0;
-        if (d1 == 2) sum += 2;
-        if (d2 == 2) sum += 2;
-        if (d3 == 2) sum += 2;
-        if (d4 == 2) sum += 2;
-        if (d5 == 2) sum += 2;
-        return sum;
+    public int twos(Dice dice) {
+        return Math.toIntExact(dice.getCombination()
+            .stream()
+            .filter(number -> number == 2)
+            .count() * 2);
     }
 
-    public int threes(int d1, int d2, int d3, int d4, int d5) {
-        int s;    
-        s = 0;
-        if (d1 == 3) s += 3;
-        if (d2 == 3) s += 3;
-        if (d3 == 3) s += 3;
-        if (d4 == 3) s += 3;
-        if (d5 == 3) s += 3;
-        return s;
+    public int threes(Dice dice) {
+        return Math.toIntExact(dice.getCombination()
+            .stream()
+            .filter(number -> number == 3)
+            .count() * 3);
     }
 
-    public int fours(int... dice) {
-        int sum;    
-        sum = 0;
-        for (int at = 0; at != 5; at++) {
-            if (dice[at] == 4) {
-                sum += 4;
-            }
-        }
-        return sum;
+    public int fours(Dice dice) {
+        return Math.toIntExact(dice.getCombination()
+            .stream()
+            .filter(number -> number == 4)
+            .count() * 4);
     }
 
-    public int fives(int... dice) {
-        int s = 0;
-        int i;
-        for (i = 0; i < dice.length; i++) 
-            if (dice[i] == 5)
-                s = s + 5;
-        return s;
+    public int fives(Dice dice) {
+        return Math.toIntExact(dice.getCombination()
+            .stream()
+            .filter(number -> number == 5)
+            .count() * 5);
     }
 
-    public int sixes(int... dice) {
-        int sum = 0;
-        for (int at = 0; at < dice.length; at++) 
-            if (dice[at] == 6)
-                sum = sum + 6;
-        return sum;
+    public int sixes(Dice dice) {
+        return Math.toIntExact(dice.getCombination()
+            .stream()
+            .filter(number -> number == 6)
+            .count() * 6);
     }
 
     public int scorePair(int d1, int d2, int d3, int d4, int d5) {
