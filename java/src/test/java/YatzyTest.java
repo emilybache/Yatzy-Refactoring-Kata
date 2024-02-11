@@ -151,16 +151,24 @@ public class YatzyTest {
 
     @Test
     public void smallStraight_returns15_ifSmallStraight_otherwise0() {
-        assertEquals(15, yatzyUnderTest.smallStraight(1,2,3,4,5));
-        assertEquals(15, yatzyUnderTest.smallStraight(2,3,4,5,1));
-        assertEquals(0, yatzyUnderTest.smallStraight(1,2,2,4,5));
+        Dice dice1 = new Dice(1,2,3,4,5);
+        Dice dice2 = new Dice(2,3,4,5,1);
+        Dice dice3 = new Dice(1,2,2,4,5);
+
+        assertEquals(15, yatzyUnderTest.smallStraight(dice1));
+        assertEquals(15, yatzyUnderTest.smallStraight(dice2));
+        assertEquals(0, yatzyUnderTest.smallStraight(dice3));
     }
 
     @Test
     public void largeStraight_returns20_ifLargeStraight_otherwise0() {
-        assertEquals(20, yatzyUnderTest.largeStraight(6,2,3,4,5));
-        assertEquals(20, yatzyUnderTest.largeStraight(2,3,4,5,6));
-        assertEquals(0, yatzyUnderTest.largeStraight(1,2,2,4,5));
+        Dice dice1 = new Dice(6,2,3,4,5);
+        Dice dice2 = new Dice(2,3,4,5,6);
+        Dice dice3 = new Dice(1,2,2,4,5);
+
+        assertEquals(20, yatzyUnderTest.largeStraight(dice1));
+        assertEquals(20, yatzyUnderTest.largeStraight(dice2));
+        assertEquals(0, yatzyUnderTest.largeStraight(dice3));
     }
 
     @Test

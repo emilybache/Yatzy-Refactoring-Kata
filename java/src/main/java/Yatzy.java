@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Yatzy {
+    public static final List<Integer> SMALL_STRAIGHT = List.of(1,2,3,4,5);
+    public static final List<Integer> LARGE_STRAIGHT = List.of(2,3,4,5,6);
+
     public int chance(Dice dice) {
         return dice.getCombination()
             .stream()
@@ -119,38 +122,20 @@ public class Yatzy {
         }
     }
 
-    public int smallStraight(int d1, int d2, int d3, int d4, int d5) {
-        int[] tallies;
-        tallies = new int[6];
-        tallies[d1-1] += 1;
-        tallies[d2-1] += 1;
-        tallies[d3-1] += 1;
-        tallies[d4-1] += 1;
-        tallies[d5-1] += 1;
-        if (tallies[0] == 1 &&
-            tallies[1] == 1 &&
-            tallies[2] == 1 &&
-            tallies[3] == 1 &&
-            tallies[4] == 1)
+    public int smallStraight(Dice dice) {
+        if(SMALL_STRAIGHT.equals(dice.getCombination().stream().sorted().collect(Collectors.toList()))) {
             return 15;
-        return 0;
+        } else {
+            return 0;
+        }
     }
 
-    public int largeStraight(int d1, int d2, int d3, int d4, int d5) {
-        int[] tallies;
-        tallies = new int[6];
-        tallies[d1-1] += 1;
-        tallies[d2-1] += 1;
-        tallies[d3-1] += 1;
-        tallies[d4-1] += 1;
-        tallies[d5-1] += 1;
-        if (tallies[1] == 1 &&
-            tallies[2] == 1 &&
-            tallies[3] == 1 &&
-            tallies[4] == 1
-            && tallies[5] == 1)
+    public int largeStraight(Dice dice) {
+        if(LARGE_STRAIGHT.equals(dice.getCombination().stream().sorted().collect(Collectors.toList()))) {
             return 20;
-        return 0;
+        } else {
+            return 0;
+        }
     }
 
     public int fullHouse(int d1, int d2, int d3, int d4, int d5) {
