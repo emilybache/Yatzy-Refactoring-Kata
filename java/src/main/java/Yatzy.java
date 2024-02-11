@@ -17,11 +17,7 @@ public class Yatzy {
     }
 
     public int yatzy(Dice dice) {
-        if(diceService.areAllTheSame(dice)) {
-            return 50;
-        } else {
-            return 0;
-        }
+        return diceService.areAllTheSame(dice) ? 50 : 0;
     }
 
     public int ones(Dice dice) {
@@ -91,19 +87,11 @@ public class Yatzy {
     }
 
     public int smallStraight(Dice dice) {
-        if(diceService.isSmallStraight(dice)) {
-            return 15;
-        } else {
-            return 0;
-        }
+        return diceService.isSmallStraight(dice) ? 15 : 0;
     }
 
     public int largeStraight(Dice dice) {
-        if(diceService.isLargeStraight(dice)) {
-            return 20;
-        } else {
-            return 0;
-        }
+        return diceService.isLargeStraight(dice) ? 20 : 0;
     }
 
     public int fullHouse(Dice dice) {
