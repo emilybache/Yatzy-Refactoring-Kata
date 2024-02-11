@@ -109,29 +109,44 @@ public class YatzyTest {
 
     @Test
     public void onePair_returnsTheSumOfDiceFoundInPair() {
-        assertEquals(6, yatzyUnderTest.scorePair(3,4,3,5,6));
-        assertEquals(10, yatzyUnderTest.scorePair(5,3,3,3,5));
-        assertEquals(12, yatzyUnderTest.scorePair(5,3,6,6,5));
+        Dice dice1 = new Dice(3,4,3,5,6);
+        Dice dice2 = new Dice(5,3,3,3,5);
+        Dice dice3 = new Dice(5,3,6,6,5);
+
+        assertEquals(6, yatzyUnderTest.onePair(dice1));
+        assertEquals(10, yatzyUnderTest.onePair(dice2));
+        assertEquals(12, yatzyUnderTest.onePair(dice3));
     }
 
     @Test
     public void twoPair_returnsTheSumOfDiceFoundInTwoPairs() {
-        assertEquals(16, yatzyUnderTest.twoPair(3,3,5,4,5));
-        assertEquals(16, yatzyUnderTest.twoPair(3,3,5,5,5));
+        Dice dice1 = new Dice(3,3,5,4,5);
+        Dice dice2 = new Dice(3,3,5,5,5);
+
+        assertEquals(16, yatzyUnderTest.twoPairs(dice1));
+        assertEquals(16, yatzyUnderTest.twoPairs(dice2));
     }
 
     @Test
     public void threeOfAKind_returnsTheSumOfTheSameDieFoundThreeTimes() {
-        assertEquals(9, yatzyUnderTest.threeOfAKind(3,3,3,4,5));
-        assertEquals(15, yatzyUnderTest.threeOfAKind(5,3,5,4,5));
-        assertEquals(9, yatzyUnderTest.threeOfAKind(3,3,3,3,5));
+        Dice dice1 = new Dice(3,3,3,4,5);
+        Dice dice2 = new Dice(5,3,5,4,5);
+        Dice dice3 = new Dice(3,3,3,3,5);
+
+        assertEquals(9, yatzyUnderTest.threeOfAKind(dice1));
+        assertEquals(15, yatzyUnderTest.threeOfAKind(dice2));
+        assertEquals(9, yatzyUnderTest.threeOfAKind(dice3));
     }
 
     @Test
     public void fourOfAKind_returnTheSumOfTheSameDieFoundFourTimes() {
-        assertEquals(12, yatzyUnderTest.fourOfAKind(3,3,3,3,5));
-        assertEquals(20, yatzyUnderTest.fourOfAKind(5,5,5,4,5));
-        assertEquals(12, yatzyUnderTest.fourOfAKind(3,3,3,3,3));
+        Dice dice1 = new Dice(3,3,3,3,5);
+        Dice dice2 = new Dice(5,5,5,4,5);
+        Dice dice3 = new Dice(3,3,3,3,3);
+
+        assertEquals(12, yatzyUnderTest.fourOfAKind(dice1));
+        assertEquals(20, yatzyUnderTest.fourOfAKind(dice2));
+        assertEquals(12, yatzyUnderTest.fourOfAKind(dice3));
     }
 
     @Test

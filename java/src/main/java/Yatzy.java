@@ -1,5 +1,9 @@
 import model.Dice;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Yatzy {
     public int chance(Dice dice) {
         return dice.getCombination()
@@ -57,66 +61,62 @@ public class Yatzy {
             .count() * 6);
     }
 
-    public int scorePair(int d1, int d2, int d3, int d4, int d5) {
-        int[] counts = new int[6];
-        counts[d1-1]++;
-        counts[d2-1]++;
-        counts[d3-1]++;
-        counts[d4-1]++;
-        counts[d5-1]++;
-        int at;
-        for (at = 0; at != 6; at++)
-            if (counts[6-at-1] >= 2)
-                return (6-at)*2;
-        return 0;
-    }
-
-    public int twoPair(int d1, int d2, int d3, int d4, int d5) {
-        int[] counts = new int[6];
-        counts[d1-1]++;
-        counts[d2-1]++;
-        counts[d3-1]++;
-        counts[d4-1]++;
-        counts[d5-1]++;
-        int n = 0;
-        int score = 0;
-        for (int i = 0; i < 6; i += 1)
-            if (counts[6-i-1] >= 2) {
-                n++;
-                score += (6-i);
-            }        
-        if (n == 2)
-            return score * 2;
-        else
+    public int onePair(Dice dice) {
+        List<Integer> distinctDieFoundMoreThenTwoTimes = dice.getCombination()
+            .stream()
+            .sorted()
+            .filter(i -> Collections.frequency(dice.getCombination(), i) >= 2)
+            .distinct().toList();
+        if (distinctDieFoundMoreThenTwoTimes.size() >= 1) {
+            return distinctDieFoundMoreThenTwoTimes.stream()
+                .skip(Math.max(0, distinctDieFoundMoreThenTwoTimes.size() - 1))
+                .mapToInt(Integer::valueOf)
+                .sum() * 2;
+        } else {
             return 0;
+        }
     }
 
-    public int fourOfAKind(int _1, int _2, int d3, int d4, int d5) {
-        int[] tallies;
-        tallies = new int[6];
-        tallies[_1-1]++;
-        tallies[_2-1]++;
-        tallies[d3-1]++;
-        tallies[d4-1]++;
-        tallies[d5-1]++;
-        for (int i = 0; i < 6; i++)
-            if (tallies[i] >= 4)
-                return (i+1) * 4;
-        return 0;
+    public int twoPairs(Dice dice) {
+        List<Integer> distinctDieFoundMoreThenTwoTimes = dice.getCombination()
+            .stream()
+            .sorted()
+            .filter(i -> Collections.frequency(dice.getCombination(), i) >= 2)
+            .distinct().toList();
+        if (distinctDieFoundMoreThenTwoTimes.size() >= 2) {
+            return distinctDieFoundMoreThenTwoTimes.stream()
+                .skip(Math.max(0, distinctDieFoundMoreThenTwoTimes.size() - 2))
+                .mapToInt(Integer::valueOf)
+                .sum() * 2;
+        } else {
+            return 0;
+        }
     }
 
-    public int threeOfAKind(int d1, int d2, int d3, int d4, int d5) {
-        int[] t;
-        t = new int[6];
-        t[d1-1]++;
-        t[d2-1]++;
-        t[d3-1]++;
-        t[d4-1]++;
-        t[d5-1]++;
-        for (int i = 0; i < 6; i++)
-            if (t[i] >= 3)
-                return (i+1) * 3;
-        return 0;
+    public int fourOfAKind(Dice dice) {
+        List<Integer> distinctDieFoundMoreThenFourtimes = dice.getCombination()
+            .stream()
+            .sorted()
+            .filter(i -> Collections.frequency(dice.getCombination(), i) >= 4)
+            .distinct().toList();;
+        if (distinctDieFoundMoreThenFourtimes.size() != 0) {
+            return distinctDieFoundMoreThenFourtimes.get(0) * 4;
+        } else {
+            return 0;
+        }
+    }
+
+    public int threeOfAKind(Dice dice) {
+        List<Integer> distinctDieFoundMoreThenThreetimes = dice.getCombination()
+            .stream()
+            .sorted()
+            .filter(i -> Collections.frequency(dice.getCombination(), i) >= 3)
+            .distinct().toList();;
+        if (distinctDieFoundMoreThenThreetimes.size() != 0) {
+            return distinctDieFoundMoreThenThreetimes.get(0) * 3;
+        } else {
+            return 0;
+        }
     }
 
     public int smallStraight(int d1, int d2, int d3, int d4, int d5) {
