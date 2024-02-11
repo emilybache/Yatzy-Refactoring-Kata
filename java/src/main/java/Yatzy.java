@@ -1,21 +1,23 @@
 import model.Dice;
+import service.DiceService;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Yatzy {
-    public static final List<Integer> SMALL_STRAIGHT = List.of(1,2,3,4,5);
-    public static final List<Integer> LARGE_STRAIGHT = List.of(2,3,4,5,6);
+    private final DiceService diceService;
+
+    public Yatzy(DiceService diceService) {
+        this.diceService = diceService;
+    }
 
     public int chance(Dice dice) {
-        return dice.getCombination()
-            .stream()
-            .reduce(0, Integer::sum);
+        return diceService.sum(dice);
     }
 
     public int yatzy(Dice dice) {
-        if(dice.areAllTheSame()) {
+        if(diceService.areAllTheSame(dice)) {
             return 50;
         } else {
             return 0;
@@ -23,53 +25,31 @@ public class Yatzy {
     }
 
     public int ones(Dice dice) {
-        return Math.toIntExact(dice.getCombination()
-            .stream()
-            .filter(number -> number == 1)
-            .count());
+        return diceService.getSumOfXsInDice(1, dice);
     }
 
     public int twos(Dice dice) {
-        return Math.toIntExact(dice.getCombination()
-            .stream()
-            .filter(number -> number == 2)
-            .count() * 2);
+        return diceService.getSumOfXsInDice( 2, dice);
     }
 
     public int threes(Dice dice) {
-        return Math.toIntExact(dice.getCombination()
-            .stream()
-            .filter(number -> number == 3)
-            .count() * 3);
+        return diceService.getSumOfXsInDice(3, dice);
     }
 
     public int fours(Dice dice) {
-        return Math.toIntExact(dice.getCombination()
-            .stream()
-            .filter(number -> number == 4)
-            .count() * 4);
+        return diceService.getSumOfXsInDice(4,  dice);
     }
 
     public int fives(Dice dice) {
-        return Math.toIntExact(dice.getCombination()
-            .stream()
-            .filter(number -> number == 5)
-            .count() * 5);
+        return diceService.getSumOfXsInDice(5,dice);
     }
 
     public int sixes(Dice dice) {
-        return Math.toIntExact(dice.getCombination()
-            .stream()
-            .filter(number -> number == 6)
-            .count() * 6);
+        return diceService.getSumOfXsInDice(6, dice);
     }
 
     public int onePair(Dice dice) {
-        List<Integer> distinctDieFoundMoreThenTwoTimes = dice.getCombination()
-            .stream()
-            .sorted()
-            .filter(i -> Collections.frequency(dice.getCombination(), i) >= 2)
-            .distinct().toList();
+        List<Integer> distinctDieFoundMoreThenTwoTimes = diceService.getListdistinctDieFoundMoreThenXTimes(dice, 2);
         if (distinctDieFoundMoreThenTwoTimes.size() >= 1) {
             return distinctDieFoundMoreThenTwoTimes.stream()
                 .skip(Math.max(0, distinctDieFoundMoreThenTwoTimes.size() - 1))
@@ -81,11 +61,7 @@ public class Yatzy {
     }
 
     public int twoPairs(Dice dice) {
-        List<Integer> distinctDieFoundMoreThenTwoTimes = dice.getCombination()
-            .stream()
-            .sorted()
-            .filter(i -> Collections.frequency(dice.getCombination(), i) >= 2)
-            .distinct().toList();
+        List<Integer> distinctDieFoundMoreThenTwoTimes = diceService.getListdistinctDieFoundMoreThenXTimes(dice, 2);
         if (distinctDieFoundMoreThenTwoTimes.size() >= 2) {
             return distinctDieFoundMoreThenTwoTimes.stream()
                 .skip(Math.max(0, distinctDieFoundMoreThenTwoTimes.size() - 2))
@@ -97,11 +73,7 @@ public class Yatzy {
     }
 
     public int fourOfAKind(Dice dice) {
-        List<Integer> distinctDieFoundMoreThenFourtimes = dice.getCombination()
-            .stream()
-            .sorted()
-            .filter(i -> Collections.frequency(dice.getCombination(), i) >= 4)
-            .distinct().toList();;
+        List<Integer> distinctDieFoundMoreThenFourtimes = diceService.getListdistinctDieFoundMoreThenXTimes(dice, 4);
         if (distinctDieFoundMoreThenFourtimes.size() != 0) {
             return distinctDieFoundMoreThenFourtimes.get(0) * 4;
         } else {
@@ -110,11 +82,7 @@ public class Yatzy {
     }
 
     public int threeOfAKind(Dice dice) {
-        List<Integer> distinctDieFoundMoreThenThreetimes = dice.getCombination()
-            .stream()
-            .sorted()
-            .filter(i -> Collections.frequency(dice.getCombination(), i) >= 3)
-            .distinct().toList();;
+        List<Integer> distinctDieFoundMoreThenThreetimes = diceService.getListdistinctDieFoundMoreThenXTimes(dice, 3);
         if (distinctDieFoundMoreThenThreetimes.size() != 0) {
             return distinctDieFoundMoreThenThreetimes.get(0) * 3;
         } else {
@@ -123,7 +91,7 @@ public class Yatzy {
     }
 
     public int smallStraight(Dice dice) {
-        if(SMALL_STRAIGHT.equals(dice.getCombination().stream().sorted().collect(Collectors.toList()))) {
+        if(diceService.isSmallStraight(dice)) {
             return 15;
         } else {
             return 0;
@@ -131,7 +99,7 @@ public class Yatzy {
     }
 
     public int largeStraight(Dice dice) {
-        if(LARGE_STRAIGHT.equals(dice.getCombination().stream().sorted().collect(Collectors.toList()))) {
+        if(diceService.isLargeStraight(dice)) {
             return 20;
         } else {
             return 0;
@@ -139,18 +107,12 @@ public class Yatzy {
     }
 
     public int fullHouse(Dice dice) {
-        List<Integer> distinctDieFoundMoreThenTwoTimes = dice.getCombination()
-            .stream()
-            .sorted()
-            .filter(i -> Collections.frequency(dice.getCombination(), i) == 2)
-            .toList();
-        List<Integer> distinctDieFoundMoreThenThreeTimes = dice.getCombination()
-            .stream()
-            .sorted()
-            .filter(i -> Collections.frequency(dice.getCombination(), i) == 3)
-            .toList();
-        if (distinctDieFoundMoreThenTwoTimes.size() != 0 && distinctDieFoundMoreThenThreeTimes.size() != 0) {
-            return distinctDieFoundMoreThenTwoTimes.get(0)*2 + distinctDieFoundMoreThenThreeTimes.get(0)*3;
+        List<Integer> distinctDieFoundOnlyTwoTimes = diceService.getListdistinctDieFoundOnlyXTimes(dice, 2);
+
+        List<Integer> distinctDieFoundOnlyThreeTimes =  diceService.getListdistinctDieFoundOnlyXTimes(dice, 3);
+
+        if (distinctDieFoundOnlyTwoTimes.size() != 0 && distinctDieFoundOnlyThreeTimes.size() != 0) {
+            return distinctDieFoundOnlyTwoTimes.get(0)*2 + distinctDieFoundOnlyThreeTimes.get(0)*3;
         } else {
             return 0;
         }
