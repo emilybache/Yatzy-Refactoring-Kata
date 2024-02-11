@@ -83,13 +83,13 @@ class Yatzy
     return s
   end
 
-  def initialize(d1, d2, d3, d4, _5)
+  def initialize(d1, d2, d3, d4, _five)
     @dice = [0]*5
     @dice[0] = d1
     @dice[1] = d2
     @dice[2] = d3
     @dice[3] = d4
-    @dice[4] = _5
+    @dice[4] = _five
   end
 
   def fours
@@ -161,10 +161,10 @@ class Yatzy
     end
   end
 
-  def self.four_of_a_kind( _1,  _2,  d3,  d4,  d5)
+  def self.four_of_a_kind( _one,  _two,  d3,  d4,  d5)
     tallies = [0]*6
-    tallies[_1-1] += 1
-    tallies[_2-1] += 1
+    tallies[_one-1] += 1
+    tallies[_two-1] += 1
     tallies[d3-1] += 1
     tallies[d4-1] += 1
     tallies[d5-1] += 1
@@ -220,11 +220,11 @@ class Yatzy
 
   def self.fullHouse( d1,  d2,  d3,  d4,  d5)
     tallies = []
-    _2 = false
+    _two = false
     i = 0
-    _2_at = 0
-    _3 = false
-    _3_at = 0
+    _two_at = 0
+    _three = false
+    _three_at = 0
 
     tallies = [0]*6
     tallies[d1-1] += 1
@@ -235,20 +235,20 @@ class Yatzy
 
     for i in Array 0..5
       if (tallies[i] == 2)
-        _2 = true
-        _2_at = i+1
+        _two = true
+        _two_at = i+1
       end
     end
 
     for i in Array 0..5
       if (tallies[i] == 3)
-        _3 = true
-        _3_at = i+1
+        _three = true
+        _three_at = i+1
       end
     end
 
-    if (_2 and _3)
-      return _2_at * 2 + _3_at * 3
+    if (_two and _three)
+      return _two_at * 2 + _three_at * 3
     else
       return 0
     end
