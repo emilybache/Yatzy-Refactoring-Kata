@@ -173,7 +173,10 @@ public class YatzyTest {
 
     @Test
     public void fullHouse_returnsSum_IfThreeDiceAndTheTwoOtherDiceAreOfTheSameNumber_Otherwise0() {
-        assertEquals(18, yatzyUnderTest.fullHouse(6,2,2,2,6));
-        assertEquals(0, yatzyUnderTest.fullHouse(2,3,4,5,6));
+        Dice dice1 = new Dice(6,2,2,2,6);
+        Dice dice2 = new Dice(2,3,4,5,6);
+
+        assertEquals(18, yatzyUnderTest.fullHouse(dice1));
+        assertEquals(0, yatzyUnderTest.fullHouse(dice2));
     }
 }
