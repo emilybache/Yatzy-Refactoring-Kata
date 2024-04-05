@@ -20,50 +20,75 @@ public class Yatzy2 implements  YatzyCalculator {
         YatzyCategory category = YatzyCategory.valueOf(categoryName);
         int result;
         switch (category) {
-            case chance:
-                result = chance(dice);
+            case CHANCE:
+                result = dice.stream().mapToInt(Integer::intValue).sum();
                 break;
-            case yatzy:
-                result = yatzy(dice);
+            case YATZY:
+                int yatzyResult = 0;
+                if (frequencies(dice).containsValue(5)) {
+                    yatzyResult = 50;
+                }
+                result = yatzyResult;
                 break;
-            case ones:
-                result = ones(dice);
+            case ONES:
+                result = frequencies(dice).get(1);
                 break;
-            case twos:
-                result = twos(dice);
+            case TWOS:
+                result = frequencies(dice).get(2) * 2;
                 break;
-            case threes:
-                result = threes(dice);
+            case THREES:
+                result = frequencies(dice).get(3) * 3;
                 break;
-            case fours:
-                result = fours(dice);
+            case FOURS:
+                result = frequencies(dice).get(4) * 4;
                 break;
-            case fives:
-                result = fives(dice);
+            case FIVES:
+                result = frequencies(dice).get(5) * 5;
                 break;
-            case sixes:
-                result = sixes(dice);
+            case SIXES:
+                result = frequencies(dice).get(6) * 6;
                 break;
-            case pair:
-                result = pair(dice);
+            case PAIR:
+                result = nofakind(2, dice);
                 break;
-            case threeofakind:
-                result = threeofakind(dice);
+            case THREE_OF_A_KIND:
+                result = nofakind(3, dice);
                 break;
-            case fourofakind:
-                result = fourofakind(dice);
+            case FOUR_OF_A_KIND:
+                result = nofakind(4, dice);
                 break;
-            case smallstraight:
-                result = smallstraight(dice);
+            case SMALL_STRAIGHT:
+                int smallStraightResult = 0;
+                if (frequencies(dice).values().stream().filter(f2 -> f2 == 1).count() == 5 && frequencies(dice).get(6) == 0) {
+                    smallStraightResult = dice.stream().mapToInt(Integer::intValue).sum();
+                }
+                result = smallStraightResult;
                 break;
-            case largestraight:
-                result = largestraight(dice);
+            case LARGE_STRAIGHT:
+                int largeStraightResult = 0;
+                if (frequencies(dice).values().stream().filter(f1 -> f1 == 1).count() == 5 && frequencies(dice).get(1) == 0) {
+                    largeStraightResult = dice.stream().mapToInt(Integer::intValue).sum();
+                }
+                result = largeStraightResult;
                 break;
-            case twopairs:
-                result = twopairs(dice);
+            case TWO_PAIRS:
+                int score = 0;
+                if (frequencies(dice).values().stream().filter(f -> f >= 2).count() == 2) {
+                    for (int i : DICE_VALUES) {
+                        if (frequencies(dice).get(i) >= 2) {
+                            score += i*2;
+                        }
+                    }
+                }
+                result = score;
                 break;
-            case fullhouse:
-                result = fullhouse(dice);
+            case FULL_HOUSE:
+                int fullHouseResult = 0;
+                Map<Integer, Integer> frequencies = frequencies(dice);
+                if (frequencies.containsValue(2) && frequencies.containsValue(3)) {
+                    fullHouseResult = dice.stream().mapToInt(Integer::intValue).sum();
+                }
+                result = fullHouseResult;
                 break;
             default:
                 result = 0;
@@ -83,103 +108,14 @@ public class Yatzy2 implements  YatzyCalculator {
         return frequencies;
     }
 
-    int numberFrequency(int number, List<Integer> dice) {
-        return frequencies(dice).get(number)*number;
-    }
-
     int nofakind(int n, List<Integer> dice) {
-        Map<Integer, Integer> frequencies = frequencies(dice);
         for (int i : Arrays.asList(6, 5, 4, 3, 2, 1)) {
-            if (frequencies.get(i) >= n) {
+            if (frequencies(dice).get(i) >= n) {
                 return i*n;
             }
         }
         return 0;
     }
 
-    boolean isStraight(List<Integer> dice) {
-        return frequencies(dice).values().stream().filter(f -> f == 1).collect(Collectors.toList()).size() == 5;
-    }
-
-    int sum(List<Integer> dice) {
-        return dice.stream().mapToInt(Integer::intValue).sum();
-    }
-
-    public int chance(List<Integer> dice) {
-        return sum(dice);
-    }
-
-    public int yatzy(List<Integer> dice) {
-        if (frequencies(dice).containsValue(5)) {
-            return 50;
-        }
-        return 0;
-    }
-
-    public int ones(List<Integer> dice) {
-        return numberFrequency(1, dice);
-    }
-    public int twos(List<Integer> dice) {
-        return numberFrequency(2, dice);
-    }
-    public int threes(List<Integer> dice) {
-        return numberFrequency(3, dice);
-    }
-    public int fours(List<Integer> dice) {
-        return numberFrequency(4, dice);
-    }
-    public int fives(List<Integer> dice) {
-        return numberFrequency(5, dice);
-    }
-    public int sixes(List<Integer> dice) {
-        return numberFrequency(6, dice);
-    }
-
-    public int pair(List<Integer> dice) {
-        return nofakind(2, dice);
-    }
-
-    public int threeofakind(List<Integer> dice) {
-        return nofakind(3, dice);
-    }
-
-    public int fourofakind(List<Integer> dice) {
-        return nofakind(4, dice);
-    }
-
-    public int smallstraight(List<Integer> dice) {
-        if (isStraight(dice) && frequencies(dice).get(6) == 0) {
-            return sum(dice);
-        }
-        return 0;
-    }
-
-    public int largestraight(List<Integer> dice) {
-        if (isStraight(dice) && frequencies(dice).get(1) == 0) {
-            return sum(dice);
-        }
-        return 0;
-    }
-
-    public int twopairs(List<Integer> dice) {
-        Map<Integer, Integer> frequencies = frequencies(dice);
-        int score = 0;
-        if (frequencies(dice).values().stream().filter(f -> f >= 2).collect(Collectors.toList()).size() == 2) {
-            for (int i : DICE_VALUES) {
-                if (frequencies.get(i) >= 2) {
-                    score += i*2;
-                }
-            }
-        }
-        return score;
-    }
-
-    public int fullhouse(List<Integer> dice) {
-        Map<Integer, Integer> frequencies = frequencies(dice);
-        if (frequencies.values().contains(2) && frequencies.values().contains(3)) {
-            return sum(dice);
-        }
-        return 0;
-    }
 }
 
