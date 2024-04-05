@@ -10,3 +10,10 @@ If you like this Kata, you may be interested in [my books](https://leanpub.com/u
 
 The problem that this code is designed to solve is explained here: [Yatzy](https://sammancoaching.org/kata_descriptions/yatzy.html)
 
+## Contributing to this Kata
+Please do not send me your refactored solutions. I am however grateful for language translations and updates to dependencies.
+
+I recently added new refactoring challenges to the Java version and I would appreciate translations of Yatzy2 and Yatzy3 in other languages.
+
+## Code Reading Practice
+Test your code reading skills. Here is a description of what to do: [Scanning for Code Smells](https://sammancoaching.org/exercises/code_reading.html). There are suitable lists of urls to open in some of the language subdirectories.
