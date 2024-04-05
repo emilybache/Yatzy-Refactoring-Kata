@@ -1,7 +1,11 @@
-import org.junit.*;
-import org.codingdojo.yatzy1.Yatzy1;
+package org.codingdojo;
 
-import static org.junit.Assert.*;
+import org.codingdojo.yatzy1.Yatzy1;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 public class Yatzy1Test {
 

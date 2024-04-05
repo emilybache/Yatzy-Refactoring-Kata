@@ -1,10 +1,12 @@
-import org.junit.Test;
+package org.codingdojo;
+
 import org.codingdojo.yatzy2.Yatzy2;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class Yatzy2Test {
     Yatzy2 yatzy2 = new Yatzy2();
