@@ -1,6 +1,5 @@
 import org.junit.Test;
-import yatzy1.Yatzy1;
-import yatzy2.Yatzy2;
+import org.codingdojo.yatzy2.Yatzy2;
 
 import java.util.List;
 

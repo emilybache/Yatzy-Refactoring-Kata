@@ -1,5 +1,5 @@
 import org.junit.*;
-import yatzy1.Yatzy1;
+import org.codingdojo.yatzy1.Yatzy1;
 
 import static org.junit.Assert.*;
 

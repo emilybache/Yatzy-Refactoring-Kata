@@ -1,4 +1,7 @@
-package yatzy2;
+package org.codingdojo.yatzy2;
+
+import org.codingdojo.YatzyCalculator;
+import org.codingdojo.YatzyCategory;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -6,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Yatzy2 implements  YatzyCalculator {
+public class Yatzy2 implements YatzyCalculator {
     static final List<Integer> DICE_VALUES = Arrays.asList(6, 5, 4, 3, 2, 1);
 
 

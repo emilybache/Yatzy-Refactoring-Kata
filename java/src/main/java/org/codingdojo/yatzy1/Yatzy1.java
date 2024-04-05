@@ -1,4 +1,4 @@
-package yatzy1;
+package org.codingdojo.yatzy1;
 
 public class Yatzy1 {
 
