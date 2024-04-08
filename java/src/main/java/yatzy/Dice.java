@@ -13,4 +13,10 @@ public int sum(){
     public boolean areAllTheSame() {
     return  this.getRollAsList().stream().allMatch(getRollAsList().getFirst()::equals);
     }
+    public int getSumOfNumbersXInDiceWhenPlacedOnCategoryX(int x) {
+        return Math.toIntExact(getRollAsList()
+            .stream()
+            .filter(number -> number == x)
+            .count() * x);
+    }
 }

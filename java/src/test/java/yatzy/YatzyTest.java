@@ -61,7 +61,28 @@ public class YatzyTest {
 
     }
     @Test
-    void ones_should_return_sum_of_ones(){}
+    void ones_should_return_sum_of_ones(){
+        Dice dice0 = new Dice(2,2,3,4,5);
+        Dice dice1 = new Dice(4,5,5,6,1);
+        Dice dice2 = new Dice(1,1,5,5,5);
+        Dice dice3 = new Dice(1,1,1,6,6);
+        Dice dice4 = new Dice(1,1,1,1,6);
+        Dice dice5 = new Dice(1,1,1,1,1);
+
+        int actual0 = yatzy.ones(dice0);
+        int actual1 = yatzy.ones(dice1);
+        int actual2 = yatzy.ones(dice2);
+        int actual3 = yatzy.ones(dice3);
+        int actual4 = yatzy.ones(dice4);
+        int actual5 = yatzy.ones(dice5);
+
+        assertEquals(0, actual0);
+        assertEquals(1, actual1);
+        assertEquals(2, actual2);
+        assertEquals(3, actual3);
+        assertEquals(4, actual4);
+        assertEquals(5, actual5);
+    }
     @Test
     void twos_should_return_sum_of_twos(){}
     @Test
