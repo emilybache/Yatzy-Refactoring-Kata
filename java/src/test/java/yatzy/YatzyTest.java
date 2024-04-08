@@ -221,15 +221,90 @@ public class YatzyTest {
         assertEquals(expected4, actual4);
     }
     @Test
-    void two_pairs_should_return_sum_of_two_highest_matching_dice_placed_on_two_pairs(){}
+    void two_pairs_should_return_sum_of_two_highest_matching_dice_placed_on_two_pairs(){
+        Dice dice1 = new Dice(3,3,4,4,5);
+        Dice dice2 = new Dice(2,2,5,5,5);
+
+        int actual1 = yatzy.twoPairs(dice1);
+        int actual2 = yatzy.twoPairs(dice2);
+
+        int expected1 = 14;
+        int expected2 = 14;
+
+        assertEquals(expected1, actual1);
+        assertEquals(expected2, actual2);
+    }
+
     @Test
-    void three_of_kind_should_return_sum_of_two_highest_matching_dice_placed_on_three_pairs(){}
+    void three_of_kind_should_return_sum_of_two_highest_matching_dice_placed_on_three_pairs(){
+        Dice dice1 = new Dice(3,4,4,4,5);
+        Dice dice2 = new Dice(2,2,5,5,5);
+        Dice dice3 = new Dice(1,1,1,4,5);
+
+        int actual1 = yatzy.threeOfKind(dice1);
+        int actual2 = yatzy.threeOfKind(dice2);
+        int actual3 = yatzy.threeOfKind(dice3);
+
+        int expected1 = 12;
+        int expected2 = 15;
+        int expected3 = 3;
+
+        assertEquals(expected1, actual1);
+        assertEquals(expected2, actual2);
+        assertEquals(expected3, actual3);
+    }
     @Test
-    void four_of_kind_should_return_sum_of_two_highest_matching_dice_placed_on_four_of_kind(){}
+    void four_of_kind_should_return_sum_of_two_highest_matching_dice_placed_on_four_of_kind(){
+        Dice dice1 = new Dice(4,4,4,4,5);
+        Dice dice2 = new Dice(2,5,5,5,5);
+        Dice dice3 = new Dice(1,1,1,1,5);
+
+        int actual1 = yatzy.fourOfKind(dice1);
+        int actual2 = yatzy.fourOfKind(dice2);
+        int actual3 = yatzy.fourOfKind(dice3);
+
+        int expected1 = 16;
+        int expected2 = 20;
+        int expected3 = 4;
+
+        assertEquals(expected1, actual1);
+        assertEquals(expected2, actual2);
+        assertEquals(expected3, actual3);
+    }
     @Test
-    void small_straight_should_return_sum_of_two_highest_matching_dice_placed_on_small_straight(){}
+    void small_straight_should_return_sum_of_two_highest_matching_dice_placed_on_small_straight(){
+        Dice dice1 = new Dice(1,2,3,4,5);
+        Dice dice2 = new Dice(2,5,3,4,1);
+        Dice dice3 = new Dice(1,5,2,4,5);
+
+        int actual1 = yatzy.smallStraight(dice1);
+        int actual2 = yatzy.smallStraight(dice2);
+        int actual3 = yatzy.smallStraight(dice3);
+
+        int expected15 = 15;
+        int expected0 = 0;
+
+        assertEquals(expected15, actual1);
+        assertEquals(expected15, actual2);
+        assertEquals(expected0, actual3);
+    }
     @Test
-    void large_straight_should_return_sum_of_two_highest_matching_dice_placed_on_large_straight(){}
+    void large_straight_should_return_sum_of_two_highest_matching_dice_placed_on_large_straight(){
+        Dice dice1 = new Dice(2,6,3,4,5);
+        Dice dice2 = new Dice(2,3,4,5,6);
+        Dice dice3 = new Dice(1,5,2,4,5);
+
+        int actual1 = yatzy.largeStraight(dice1);
+        int actual2 = yatzy.largeStraight(dice2);
+        int actual3 = yatzy.largeStraight(dice3);
+
+        int expected20 = 20;
+        int expected0 = 0;
+
+        assertEquals(expected20, actual1);
+        assertEquals(expected20, actual2);
+        assertEquals(expected0, actual3);
+    }
     @Test
     void full_house_should_return_sum_of_two_highest_matching_dice_placed_on_full_house(){}
 
