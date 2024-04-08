@@ -4,13 +4,22 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class YatzyTest {
+    private Yatzy yatzy;
     @BeforeEach
     public void setUp() {
-
+        yatzy = new Yatzy();
     }
 
     @Test
     public void chance_should_return_sum_of_all_dices() {
+        Dice d1=new Dice(1,1,3,3,6);
+        Dice d2=new Dice(4,5,5,6,1);
+
+        int actual1 = yatzy.chance(d1);
+        int actual2 = yatzy.chance(d2);
+
+        int expected1 = 14;
+        int expected2 = 21;
     }
 
     @Test
