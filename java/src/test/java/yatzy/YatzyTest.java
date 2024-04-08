@@ -84,15 +84,120 @@ public class YatzyTest {
         assertEquals(5, actual5);
     }
     @Test
-    void twos_should_return_sum_of_twos(){}
+    void twos_should_return_sum_of_twos(){
+        Dice dice0 = new Dice(1,1,3,4,5);
+        Dice dice1 = new Dice(4,2,5,6,1);
+        Dice dice2 = new Dice(2,2,5,5,5);
+        Dice dice3 = new Dice(2,2,2,6,6);
+        Dice dice4 = new Dice(2,2,2,2,6);
+        Dice dice5 = new Dice(2,2,2,2,2);
+
+        int actual0 = yatzy.twos(dice0);
+        int actual1 = yatzy.twos(dice1);
+        int actual2 = yatzy.twos(dice2);
+        int actual3 = yatzy.twos(dice3);
+        int actual4 = yatzy.twos(dice4);
+        int actual5 = yatzy.twos(dice5);
+
+        assertEquals(0, actual0);
+        assertEquals(1, actual1);
+        assertEquals(2, actual2);
+        assertEquals(3, actual3);
+        assertEquals(4, actual4);
+        assertEquals(5, actual5);
+    }
     @Test
-    void threes_should_return_sum_of_threes(){}
+    void threes_should_return_sum_of_threes(){
+        Dice dice0 = new Dice(1,1,2,4,5);
+        Dice dice1 = new Dice(3,2,5,6,1);
+        Dice dice2 = new Dice(3,3,5,5,5);
+        Dice dice3 = new Dice(3,3,3,6,6);
+        Dice dice4 = new Dice(3,3,3,3,6);
+        Dice dice5 = new Dice(3,3,3,3,3);
+
+        int actual0 = yatzy.threes(dice0);
+        int actual1 = yatzy.threes(dice1);
+        int actual2 = yatzy.threes(dice2);
+        int actual3 = yatzy.threes(dice3);
+        int actual4 = yatzy.threes(dice4);
+        int actual5 = yatzy.threes(dice5);
+
+        assertEquals(0, actual0);
+        assertEquals(1, actual1);
+        assertEquals(2, actual2);
+        assertEquals(3, actual3);
+        assertEquals(4, actual4);
+        assertEquals(5, actual5);
+    }
     @Test
-    void fours_should_return_sum_of_fours(){}
+    void fours_should_return_sum_of_fours(){
+        Dice dice0 = new Dice(1,1,3,2,5);
+        Dice dice1 = new Dice(4,2,5,6,1);
+        Dice dice2 = new Dice(2,2,4,4,5);
+        Dice dice3 = new Dice(4,4,4,6,6);
+        Dice dice4 = new Dice(4,4,4,4,6);
+        Dice dice5 = new Dice(4,4,4,4,4);
+
+        int actual0 = yatzy.fours(dice0);
+        int actual1 = yatzy.fours(dice1);
+        int actual2 = yatzy.fours(dice2);
+        int actual3 = yatzy.fours(dice3);
+        int actual4 = yatzy.fours(dice4);
+        int actual5 = yatzy.fours(dice5);
+
+        assertEquals(0, actual0);
+        assertEquals(1, actual1);
+        assertEquals(2, actual2);
+        assertEquals(3, actual3);
+        assertEquals(4, actual4);
+        assertEquals(5, actual5);
+    }
     @Test
-    void fives_should_return_sum_of_fives(){}
+    void fives_should_return_sum_of_fives(){
+        Dice dice0 = new Dice(1,1,3,4,2);
+        Dice dice1 = new Dice(4,2,5,6,1);
+        Dice dice2 = new Dice(2,2,4,5,5);
+        Dice dice3 = new Dice(5,5,5,6,6);
+        Dice dice4 = new Dice(5,5,5,5,6);
+        Dice dice5 = new Dice(5,5,5,5,5);
+
+        int actual0 = yatzy.fives(dice0);
+        int actual1 = yatzy.fives(dice1);
+        int actual2 = yatzy.fives(dice2);
+        int actual3 = yatzy.fives(dice3);
+        int actual4 = yatzy.fives(dice4);
+        int actual5 = yatzy.fives(dice5);
+
+        assertEquals(0, actual0);
+        assertEquals(1, actual1);
+        assertEquals(2, actual2);
+        assertEquals(3, actual3);
+        assertEquals(4, actual4);
+        assertEquals(5, actual5);
+    }
     @Test
-    void sixes_should_return_sum_of_sixes(){}
+    void sixes_should_return_sum_of_sixes(){
+        Dice dice0 = new Dice(1,1,3,4,5);
+        Dice dice1 = new Dice(4,2,5,6,1);
+        Dice dice2 = new Dice(6,6,5,5,5);
+        Dice dice3 = new Dice(2,2,6,6,6);
+        Dice dice4 = new Dice(2,6,6,6,6);
+        Dice dice5 = new Dice(6,6,6,6,6);
+
+        int actual0 = yatzy.sixs(dice0);
+        int actual1 = yatzy.sixs(dice1);
+        int actual2 = yatzy.sixs(dice2);
+        int actual3 = yatzy.sixs(dice3);
+        int actual4 = yatzy.sixs(dice4);
+        int actual5 = yatzy.sixs(dice5);
+
+        assertEquals(0, actual0);
+        assertEquals(1, actual1);
+        assertEquals(2, actual2);
+        assertEquals(3, actual3);
+        assertEquals(4, actual4);
+        assertEquals(5, actual5);
+    }
     @Test
     void pair_should_return_sum_of_two_highest_matching_dice_placed_on_pair(){}
     @Test
