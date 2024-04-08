@@ -1,7 +1,9 @@
 package yatzy;
 
 public class Yatzy {
-    public int chance(Dice d){}
+
+    public int chance(Dice d){
+        return d.sum();}
     public int yatzy(Dice d){}
     public int ones(Dice d){}
     public int twos(Dice d){}
