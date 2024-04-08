@@ -9,4 +9,8 @@ public List<Integer> getRollAsList(){
 public int sum(){
     return this.getRollAsList().stream().mapToInt(x->x).sum();
 }
+
+    public boolean areAllTheSame() {
+    return  this.getRollAsList().stream().allMatch(getRollAsList().getFirst()::equals);
+    }
 }

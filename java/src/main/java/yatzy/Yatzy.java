@@ -4,7 +4,9 @@ public class Yatzy {
 
     public int chance(Dice d){
         return d.sum();}
-    public int yatzy(Dice d){}
+    public int yatzy(Dice d){
+        return d.areAllTheSame() ? 50 : 0;
+    }
     public int ones(Dice d){}
     public int twos(Dice d){}
     public int fours(Dice d){}

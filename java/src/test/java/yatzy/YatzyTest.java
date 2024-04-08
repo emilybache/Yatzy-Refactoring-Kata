@@ -54,6 +54,11 @@ public class YatzyTest {
 
     @Test
     void yatzy_should_return_0_if_one_or_more_dice_have_different_numbers() {
+        Dice d1=new Dice(1,2,3,4,5);
+        int actual1 = yatzy.yatzy(d1);
+        int expected = 0;
+        assertEquals(expected,actual1);
+
     }
     @Test
     void ones_should_return_sum_of_ones(){}
