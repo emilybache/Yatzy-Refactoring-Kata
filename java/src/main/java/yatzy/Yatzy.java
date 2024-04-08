@@ -1,5 +1,7 @@
 package yatzy;
 
+import java.util.List;
+
 public class Yatzy {
 
     public int chance(Dice d) {
@@ -34,6 +36,9 @@ public class Yatzy {
     }
 
     public int pair(Dice d) {
+        List<Integer> listDistinctNumbers = d.getListofDistinctNumberFoundMoreThanXTimesInDice(2);
+        if(listDistinctNumbers.isEmpty()) return 0;
+        return  listDistinctNumbers.stream().skip(Math.max(0, listDistinctNumbers.size()-1)).mapToInt(Integer::valueOf).sum()*2;
     }
 
     public int twoPairs(Dice d) {

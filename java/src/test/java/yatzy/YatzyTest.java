@@ -199,7 +199,27 @@ public class YatzyTest {
         assertEquals(5, actual5);
     }
     @Test
-    void pair_should_return_sum_of_two_highest_matching_dice_placed_on_pair(){}
+    void pair_should_return_sum_of_two_highest_matching_dice_placed_on_pair(){
+        Dice dice1 = new Dice(5,1,3,5,6);
+        Dice dice2 = new Dice(6,6,3,3,1);
+        Dice dice3 = new Dice(5,3,6,6,6);
+        Dice dice4 = new Dice(1,2,3,4,5);
+
+        int actual1 = yatzy.pair(dice1);
+        int actual2 = yatzy.pair(dice2);
+        int actual3 = yatzy.pair(dice3);
+        int actual4 = yatzy.pair(dice4);
+
+        int expected1 = 10;
+        int expected2 = 12;
+        int expected3 = 12;
+        int expected4 = 0;
+
+        assertEquals(expected1, actual1);
+        assertEquals(expected2, actual2);
+        assertEquals(expected3, actual3);
+        assertEquals(expected4, actual4);
+    }
     @Test
     void two_pairs_should_return_sum_of_two_highest_matching_dice_placed_on_two_pairs(){}
     @Test

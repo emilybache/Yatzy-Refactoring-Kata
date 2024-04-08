@@ -1,5 +1,7 @@
 package yatzy;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public record Dice(int d1, int d2, int d3, int d4, int d5 ) {
@@ -19,4 +21,8 @@ public int sum(){
             .filter(number -> number == x)
             .count() * x);
     }
+    public List<Integer> getListofDistinctNumberFoundMoreThanXTimesInDice(int times){
+        return getRollAsList().stream().sorted().filter(x-> Collections.frequency(getRollAsList(),x)>= times).distinct().toList();
+    }
+
 }
