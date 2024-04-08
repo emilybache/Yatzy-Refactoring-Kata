@@ -3,6 +3,8 @@ package yatzy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class YatzyTest {
     private Yatzy yatzy;
     @BeforeEach
@@ -20,6 +22,9 @@ public class YatzyTest {
 
         int expected1 = 14;
         int expected2 = 21;
+
+        assertEquals(expected1,actual1);
+        assertEquals(expected2,actual2);
     }
 
     @Test
