@@ -28,27 +28,28 @@ public class YatzyTest {
     }
 
     @Test
-    void yatzy_should_return_50_if_all_dice_have_the_same_number_1() {
-    }
+    void yatzy_should_return_50_if_all_dice_have_the_same_number() {
+        Dice d1=new Dice(1,1,1,1,1);
+        Dice d2=new Dice(2,2,2,2,2);
+        Dice d3=new Dice(3,3,3,3,3);
+        Dice d4=new Dice(4,4,4,4,4);
+        Dice d5=new Dice(5,5,5,5,5);
+        Dice d6=new Dice(6,6,6,6,6);
 
-    @Test
-    void yatzy_should_return_50_if_all_dice_have_the_same_number_2() {
-    }
+        int actual1 = yatzy.yatzy(d1);
+        int actual2 = yatzy.yatzy(d2);
+        int actual3 = yatzy.yatzy(d3);
+        int actual4 = yatzy.yatzy(d4);
+        int actual5 = yatzy.yatzy(d5);
+        int actual6 = yatzy.yatzy(d6);
 
-    @Test
-    void yatzy_should_return_50_if_all_dice_have_the_same_number_3() {
-    }
-
-    @Test
-    void yatzy_should_return_50_if_all_dice_have_the_same_number_4() {
-    }
-
-    @Test
-    void yatzy_should_return_50_if_all_dice_have_the_same_number_5() {
-    }
-
-    @Test
-    void yatzy_should_return_50_if_all_dice_have_the_same_number_6() {
+        int expected = 50;
+        assertEquals(expected,actual1);
+        assertEquals(expected,actual2);
+        assertEquals(expected,actual3);
+        assertEquals(expected,actual4);
+        assertEquals(expected,actual5);
+        assertEquals(expected,actual6);
     }
 
     @Test
