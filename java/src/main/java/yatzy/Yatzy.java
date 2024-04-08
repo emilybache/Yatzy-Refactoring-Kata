@@ -71,6 +71,8 @@ public class Yatzy {
     }
 
     public int fullHouse(Dice d) {
+        if ((threeOfKind(d) == 0 && twoPairs(d) != 0) || (threeOfKind(d) != 0 && twoPairs(d) == 0)) return 0;
+        else return d.sum();
     }
 
 

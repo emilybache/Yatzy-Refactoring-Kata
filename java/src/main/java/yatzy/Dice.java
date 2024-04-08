@@ -18,7 +18,7 @@ public record Dice(int d1, int d2, int d3, int d4, int d5 ) {
         return Math.toIntExact(getRollAsList()
             .stream()
             .filter(number -> number == x)
-            .count() * x);
+            .count() );
     }
     public List<Integer> getListofDistinctNumberFoundMoreThanXTimesInDice(int times){
         return getRollAsList().stream().sorted().filter(x-> Collections.frequency(getRollAsList(),x)>= times).distinct().toList();
@@ -26,10 +26,10 @@ public record Dice(int d1, int d2, int d3, int d4, int d5 ) {
 
 
     public boolean areSmallStraight() {
-       return getRollAsList().stream().sorted().equals(List.of(1,2,3,4,5));
+       return getRollAsList().stream().sorted().toList().equals(List.of(1,2,3,4,5));
     }
 
     public boolean areAllLargeStraight(){
-        return getRollAsList().stream().sorted().equals(List.of(2,3,4,5,6));
+        return getRollAsList().stream().sorted().toList().equals(List.of(2,3,4,5,6));
     }
 }
