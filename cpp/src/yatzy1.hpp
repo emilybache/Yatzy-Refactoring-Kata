@@ -1,7 +1,7 @@
 #ifndef YATZY_INCLUDED
 #define YATZY_INCLUDED
 
-class Yatzy
+class Yatzy1
 {
 public:
 
@@ -14,8 +14,8 @@ public:
 protected:
     int * dice;
 public:
-    Yatzy();
-    Yatzy(int d1, int d2, int d3, int d4, int _5);
+    Yatzy1();
+    Yatzy1(int d1, int d2, int d3, int d4, int _5);
     int Fours();
     int Fives();
     int sixes();

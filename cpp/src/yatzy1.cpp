@@ -1,7 +1,7 @@
-#include "yatzy.hpp"
+#include "yatzy1.hpp"
 #include <string.h>
 
-int Yatzy::Chance(int d1, int d2, int d3, int d4, int d5)
+int Yatzy1::Chance(int d1, int d2, int d3, int d4, int d5)
 {
     int total = 0;
     total += d1;
@@ -13,7 +13,7 @@ int Yatzy::Chance(int d1, int d2, int d3, int d4, int d5)
 }
 
 
-int Yatzy::yatzy(int dice[])
+int Yatzy1::yatzy(int dice[])
 {
     int counts[6] = {0,0,0,0,0,0};
     for (int i = 0; i != 5; i++)
@@ -24,7 +24,7 @@ int Yatzy::yatzy(int dice[])
     return 0;
 }
 
-int Yatzy::Ones(int d1, int d2, int d3, int d4, int d5) {
+int Yatzy1::Ones(int d1, int d2, int d3, int d4, int d5) {
     int sum = 0;
     if (d1 == 1) sum++;
     if (d2 == 1) sum++;
@@ -36,7 +36,7 @@ int Yatzy::Ones(int d1, int d2, int d3, int d4, int d5) {
     return sum;
 }
 
-int Yatzy::Twos(int d1, int d2, int d3, int d4, int d5) {
+int Yatzy1::Twos(int d1, int d2, int d3, int d4, int d5) {
     int sum = 0;
     if (d1 == 2) sum += 2;
     if (d2 == 2) sum += 2;
@@ -47,7 +47,7 @@ int Yatzy::Twos(int d1, int d2, int d3, int d4, int d5) {
 }
 
 
-int Yatzy::Threes(int d1, int d2, int d3, int d4, int d5) {
+int Yatzy1::Threes(int d1, int d2, int d3, int d4, int d5) {
     int s;    
     s = 0;
     if (d1 == 3) s += 3;
@@ -58,11 +58,11 @@ int Yatzy::Threes(int d1, int d2, int d3, int d4, int d5) {
     return s;
 }
 
-Yatzy::Yatzy()
+Yatzy1::Yatzy1()
 {
 }
 
-Yatzy::Yatzy(int d1, int d2, int d3, int d4, int _5)
+Yatzy1::Yatzy1(int d1, int d2, int d3, int d4, int _5)
 {
     dice = new int[5];
     dice[0] = d1;
@@ -72,7 +72,7 @@ Yatzy::Yatzy(int d1, int d2, int d3, int d4, int _5)
     dice[4] = _5;
 }
 
-int Yatzy::Fours()
+int Yatzy1::Fours()
 {
     int sum;    
     sum = 0;
@@ -85,7 +85,7 @@ int Yatzy::Fours()
 }
 
 
-int Yatzy::Fives()
+int Yatzy1::Fives()
 {
     int s = 0;
     int i;
@@ -95,7 +95,7 @@ int Yatzy::Fives()
     return s;
 }
 
-int Yatzy::sixes()
+int Yatzy1::sixes()
 {
     int sum = 0;
     for (int at = 0; at < 5; at++) 
@@ -104,7 +104,7 @@ int Yatzy::sixes()
     return sum;
 }
 
-int Yatzy::ScorePair(int d1, int d2, int d3, int d4, int d5)
+int Yatzy1::ScorePair(int d1, int d2, int d3, int d4, int d5)
 {
     int counts[6] = {0,0,0,0,0,0};
     counts[d1-1]++;
@@ -119,7 +119,7 @@ int Yatzy::ScorePair(int d1, int d2, int d3, int d4, int d5)
     return 0;
 }
 
-int Yatzy::TwoPair(int d1, int d2, int d3, int d4, int d5)
+int Yatzy1::TwoPair(int d1, int d2, int d3, int d4, int d5)
 {
     int counts[6] = {0};
     counts[d1-1]++;
@@ -140,7 +140,7 @@ int Yatzy::TwoPair(int d1, int d2, int d3, int d4, int d5)
         return 0;
 }
 
-int Yatzy::FourOfAKind(int _1, int _2, int d3, int d4, int d5)
+int Yatzy1::FourOfAKind(int _1, int _2, int d3, int d4, int d5)
 {
     int * tallies;
     tallies = new int[6];
@@ -157,7 +157,7 @@ int Yatzy::FourOfAKind(int _1, int _2, int d3, int d4, int d5)
     return 0;
 }
 
-int Yatzy::ThreeOfAKind(int d1, int d2, int d3, int d4, int d5)
+int Yatzy1::ThreeOfAKind(int d1, int d2, int d3, int d4, int d5)
 {
     int * t;
     t = new int[6];
@@ -175,7 +175,7 @@ int Yatzy::ThreeOfAKind(int d1, int d2, int d3, int d4, int d5)
 }
 
 
-int Yatzy::SmallStraight(int d1, int d2, int d3, int d4, int d5)
+int Yatzy1::SmallStraight(int d1, int d2, int d3, int d4, int d5)
 {
     int* tallies =new int[6];
     memset(tallies, 0, sizeof(int)*6);
@@ -193,7 +193,7 @@ int Yatzy::SmallStraight(int d1, int d2, int d3, int d4, int d5)
     return 0;
 }
 
-int Yatzy::LargeStraight(int d1, int d2, int d3, int d4, int d5)
+int Yatzy1::LargeStraight(int d1, int d2, int d3, int d4, int d5)
 {
     int* tallies = new int[6];
     memset(tallies, 0, sizeof(*tallies)*6);
@@ -212,7 +212,7 @@ int Yatzy::LargeStraight(int d1, int d2, int d3, int d4, int d5)
 }
 
 
-int Yatzy::FullHouse(int d1, int d2, int d3, int d4, int d5)
+int Yatzy1::FullHouse(int d1, int d2, int d3, int d4, int d5)
 {
     int* tallies;
     bool _2 = false;
