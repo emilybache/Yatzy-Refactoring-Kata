@@ -1,6 +1,8 @@
+#include <iostream>
 #include "ApprovalTests.hpp"
 #include "catch2/catch.hpp"
 #include "yatzy1.hpp"
+#include "yatzy2.h"
 
 static int *ints(int a, int b, int c, int d, int e) {
     int *r = new int[5];
@@ -76,3 +78,28 @@ TEST_CASE ("Yatzy") {
     }
 }
 
+// implemet function doYatzy2
+static int doYatzy2(YatzyCategory category, int d1, int d2, int d3, int d4, int d5) {
+    std::vector<int> dice{d1, d2, d3, d4, d5};
+    std::cout << "Category: " << static_cast<int>(category) << " Dice: ";
+    // flush the output
+    std::cout.flush();
+    return Yatzy2().score(dice, category);
+}
+
+
+
+TEST_CASE ("Yatzy2") {
+    std::vector<int> dice{1, 2, 3, 4, 5, 6};
+    std::vector<YatzyCategory> categories{YatzyCategory::CHANCE,
+                                          YatzyCategory::YATZY, YatzyCategory::ONES,
+                                             YatzyCategory::TWOS, YatzyCategory::THREES, YatzyCategory::FOURS,
+                                             YatzyCategory::FIVES, YatzyCategory::SIXES, YatzyCategory::PAIR,
+                                             YatzyCategory::TWO_PAIRS,
+                                             YatzyCategory::THREE_OF_A_KIND,
+                                             YatzyCategory::FOUR_OF_A_KIND, YatzyCategory::SMALL_STRAIGHT,
+                                             YatzyCategory::LARGE_STRAIGHT, YatzyCategory::FULL_HOUSE};
+    ApprovalTests::CombinationApprovals::verifyAllCombinations("Yatzy2",
+                                                               [](YatzyCategory c, int d1, int d2, int d3, int d4, int d5) { return doYatzy2(c,d1,d2,d3,d4,d5); },
+                                                               categories,dice, dice, dice, dice, dice);
+}
