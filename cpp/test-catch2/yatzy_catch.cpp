@@ -106,28 +106,120 @@ TEST_CASE ("Yatzy") {
     }
 }
 
-// implemet function doYatzy2
-static int doYatzy2(YatzyCategory category, int d1, int d2, int d3, int d4, int d5) {
-    std::vector<int> dice{d1, d2, d3, d4, d5};
-    std::cout << "Category: " << static_cast<int>(category) << " Dice: ";
-    // flush the output
-    std::cout.flush();
-    return Yatzy2().score(dice, category);
+TEST_CASE("Yatzy2") {
+    Yatzy2* yatzy2 = new Yatzy2();
+    SECTION("chance_scores_sum_of_all_dice")
+    {
+        CHECK(15 == yatzy2->score({ 2, 3, 4, 5, 1 }, "CHANCE"));
+        CHECK(16 == yatzy2->score({ 3, 3, 4, 5, 1 }, "CHANCE"));
+    }
+
+    SECTION("yatzy_scores_50")
+    {
+        CHECK(50 == yatzy2->score({ 4, 4, 4, 4, 4 }, "YATZY"));
+        CHECK(50 == yatzy2->score({ 6, 6, 6, 6, 6 }, "YATZY"));
+        CHECK(0 == yatzy2->score({ 6, 6, 6, 6, 3 }, "YATZY"));
+    }
+
+
+    SECTION("test_1s")
+    {
+        CHECK(1 == yatzy2->score({ 1, 2, 3, 4, 5 }, "ONES"));
+        CHECK(2 == yatzy2->score({ 1, 2, 1, 4, 5 }, "ONES"));
+        CHECK(0 == yatzy2->score({ 6, 2, 2, 4, 5 }, "ONES"));
+        CHECK(4 == yatzy2->score({ 1, 2, 1, 1, 1 }, "ONES"));
+    }
+
+
+    SECTION("twos")
+    {
+        CHECK(4 == yatzy2->score({ 1, 2, 3, 2, 6 }, "TWOS"));
+        CHECK(10 == yatzy2->score({ 2, 2, 2, 2, 2 }, "TWOS"));
+    }
+
+
+    SECTION("threes")
+    {
+        CHECK(6 == yatzy2->score({ 1, 2, 3, 2, 3 }, "THREES"));
+        CHECK(12 == yatzy2->score({ 2, 3, 3, 3, 3 }, "THREES"));
+    }
+
+
+    SECTION("fours")
+    {
+        CHECK(12 == yatzy2->score({ 4, 4, 4, 5, 5 }, "FOURS"));
+        CHECK(8 == yatzy2->score({ 4, 4, 5, 5, 5 }, "FOURS"));
+        CHECK(4 == yatzy2->score({ 4, 5, 5, 5, 5 }, "FOURS"));
+    }
+
+
+    SECTION("fives")
+    {
+        CHECK(10 == yatzy2->score({ 4, 4, 4, 5, 5 }, "FIVES"));
+        CHECK(15 == yatzy2->score({ 4, 4, 5, 5, 5 }, "FIVES"));
+        CHECK(20 == yatzy2->score({ 4, 5, 5, 5, 5 }, "FIVES"));
+    }
+
+
+    SECTION("sixes")
+    {
+        CHECK(0 == yatzy2->score({ 4, 4, 4, 5, 5 }, "SIXES"));
+        CHECK(6 == yatzy2->score({ 4, 4, 6, 5, 5 }, "SIXES"));
+        CHECK(18 == yatzy2->score({ 6, 5, 6, 6, 5 }, "SIXES"));
+    }
+
+
+    SECTION("pair")
+    {
+        CHECK(6 == yatzy2->score({ 3, 4, 3, 5, 6 }, "PAIR"));
+        CHECK(10 == yatzy2->score({ 5, 3, 3, 3, 5 }, "PAIR"));
+        CHECK(12 == yatzy2->score({ 5, 3, 6, 6, 5 }, "PAIR"));
+    }
+
+
+    SECTION("two_pair")
+    {
+        CHECK(16 == yatzy2->score({ 3, 3, 5, 4, 5 }, "TWO_PAIRS"));
+        CHECK(16 == yatzy2->score({ 3, 3, 5, 5, 5 }, "TWO_PAIRS"));
+    }
+
+
+    SECTION("three_of_a_kind")
+    {
+        CHECK(9 == yatzy2->score({ 3, 3, 3, 4, 5 }, "THREE_OF_A_KIND"));
+        CHECK(15 == yatzy2->score({ 5, 3, 5, 4, 5 }, "THREE_OF_A_KIND"));
+        CHECK(9 == yatzy2->score({ 3, 3, 3, 3, 5 }, "THREE_OF_A_KIND"));
+    }
+
+
+    SECTION("four_of_a_knd")
+    {
+        CHECK(12 == yatzy2->score({ 3, 3, 3, 3, 5 }, "FOUR_OF_A_KIND"));
+        CHECK(20 == yatzy2->score({ 5, 5, 5, 4, 5 }, "FOUR_OF_A_KIND"));
+        CHECK(12 == yatzy2->score({ 3, 3, 3, 3, 3 }, "FOUR_OF_A_KIND"));
+    }
+
+
+    SECTION("smallStraight")
+    {
+        CHECK(15 == yatzy2->score({ 1, 2, 3, 4, 5 }, "SMALL_STRAIGHT"));
+        CHECK(15 == yatzy2->score({ 2, 3, 4, 5, 1 }, "SMALL_STRAIGHT"));
+        CHECK(0 == yatzy2->score({ 1, 2, 2, 4, 5 }, "SMALL_STRAIGHT"));
+    }
+
+
+    SECTION("largeStraight")
+    {
+        CHECK(20 == yatzy2->score({ 6, 2, 3, 4, 5 }, "LARGE_STRAIGHT"));
+        CHECK(20 == yatzy2->score({ 2, 3, 4, 5, 6 }, "LARGE_STRAIGHT"));
+        CHECK(0 == yatzy2->score({ 1, 2, 2, 4, 5 }, "LARGE_STRAIGHT"));
+    }
+
+
+    SECTION("fullHouse")
+    {
+        CHECK(18 == yatzy2->score({ 6, 2, 2, 2, 6 }, "FULL_HOUSE"));
+        CHECK(0 == yatzy2->score({ 2, 3, 4, 5, 6 }, "FULL_HOUSE"));
+    }
 }
 
-
-
-TEST_CASE ("Yatzy2") {
-    std::vector<int> dice{1, 2, 3, 4, 5, 6};
-    std::vector<YatzyCategory> categories{YatzyCategory::CHANCE,
-                                          YatzyCategory::YATZY, YatzyCategory::ONES,
-                                             YatzyCategory::TWOS, YatzyCategory::THREES, YatzyCategory::FOURS,
-                                             YatzyCategory::FIVES, YatzyCategory::SIXES, YatzyCategory::PAIR,
-                                             YatzyCategory::TWO_PAIRS,
-                                             YatzyCategory::THREE_OF_A_KIND,
-                                             YatzyCategory::FOUR_OF_A_KIND, YatzyCategory::SMALL_STRAIGHT,
-                                             YatzyCategory::LARGE_STRAIGHT, YatzyCategory::FULL_HOUSE};
-    ApprovalTests::CombinationApprovals::verifyAllCombinations("Yatzy2",
-                                                               [](YatzyCategory c, int d1, int d2, int d3, int d4, int d5) { return doYatzy2(c,d1,d2,d3,d4,d5); },
-                                                               categories,dice, dice, dice, dice, dice);
-}
