@@ -2,19 +2,6 @@ namespace Yatzy1
 {
     public class Yatzy1
     {
-        protected int[] dice;
-        public Yatzy1(int d1, int d2, int d3, int d4, int _5)
-        {
-            dice = new int[5];
-            dice[0] = d1;
-            dice[1] = d2;
-            dice[2] = d3;
-            dice[3] = d4;
-            dice[4] = _5;
-        }
-
-        public Yatzy1() {}
-
         public static int Chance(int d1, int d2, int d3, int d4, int d5)
         {
             var total = 0;
@@ -67,6 +54,18 @@ namespace Yatzy1
             if (d4 == 3) s += 3;
             if (d5 == 3) s += 3;
             return s;
+        }
+
+        protected int[] dice;
+        public Yatzy1() {}
+        public Yatzy1(int d1, int d2, int d3, int d4, int _5)
+        {
+            dice = new int[5];
+            dice[0] = d1;
+            dice[1] = d2;
+            dice[2] = d3;
+            dice[3] = d4;
+            dice[4] = _5;
         }
         public int Fours()
         {
@@ -157,6 +156,7 @@ namespace Yatzy1
                     return (i + 1) * 3;
             return 0;
         }
+        
         public static int SmallStraight(int d1, int d2, int d3, int d4, int d5)
         {
             int[] tallies;
