@@ -15,7 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Yatzy\Yatzy.csproj" />
+    <ProjectReference Include="..\Yatzy1\Yatzy1.csproj" />
+    <ProjectReference Include="..\Yatzy2\Yatzy2.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,10 +1,9 @@
-namespace Yatzy
+namespace Yatzy1
 {
-    public class Yatzy
+    public class Yatzy1
     {
         protected int[] dice;
-
-        public Yatzy(int d1, int d2, int d3, int d4, int _5)
+        public Yatzy1(int d1, int d2, int d3, int d4, int _5)
         {
             dice = new int[5];
             dice[0] = d1;
@@ -13,6 +12,8 @@ namespace Yatzy
             dice[3] = d4;
             dice[4] = _5;
         }
+
+        public Yatzy1() {}
 
         public static int Chance(int d1, int d2, int d3, int d4, int d5)
         {
@@ -24,7 +25,6 @@ namespace Yatzy
             total += d5;
             return total;
         }
-
         public static int yatzy(params int[] dice)
         {
             var counts = new int[6];
@@ -35,7 +35,6 @@ namespace Yatzy
                     return 50;
             return 0;
         }
-
         public static int Ones(int d1, int d2, int d3, int d4, int d5)
         {
             var sum = 0;
@@ -48,7 +47,6 @@ namespace Yatzy
 
             return sum;
         }
-
         public static int Twos(int d1, int d2, int d3, int d4, int d5)
         {
             var sum = 0;
@@ -59,7 +57,6 @@ namespace Yatzy
             if (d5 == 2) sum += 2;
             return sum;
         }
-
         public static int Threes(int d1, int d2, int d3, int d4, int d5)
         {
             int s;
@@ -71,7 +68,6 @@ namespace Yatzy
             if (d5 == 3) s += 3;
             return s;
         }
-
         public int Fours()
         {
             int sum;
@@ -81,7 +77,6 @@ namespace Yatzy
                     sum += 4;
             return sum;
         }
-
         public int Fives()
         {
             var s = 0;
@@ -91,7 +86,6 @@ namespace Yatzy
                     s = s + 5;
             return s;
         }
-
         public int sixes()
         {
             var sum = 0;
@@ -100,8 +94,7 @@ namespace Yatzy
                     sum = sum + 6;
             return sum;
         }
-
-        public static int ScorePair(int d1, int d2, int d3, int d4, int d5)
+        public int ScorePair(int d1, int d2, int d3, int d4, int d5)
         {
             var counts = new int[6];
             counts[d1 - 1]++;
@@ -115,7 +108,6 @@ namespace Yatzy
                     return (6 - at) * 2;
             return 0;
         }
-
         public static int TwoPair(int d1, int d2, int d3, int d4, int d5)
         {
             var counts = new int[6];
@@ -137,7 +129,6 @@ namespace Yatzy
                 return score * 2;
             return 0;
         }
-
         public static int FourOfAKind(int _1, int _2, int d3, int d4, int d5)
         {
             int[] tallies;
@@ -152,7 +143,6 @@ namespace Yatzy
                     return (i + 1) * 4;
             return 0;
         }
-
         public static int ThreeOfAKind(int d1, int d2, int d3, int d4, int d5)
         {
             int[] t;
@@ -167,7 +157,6 @@ namespace Yatzy
                     return (i + 1) * 3;
             return 0;
         }
-
         public static int SmallStraight(int d1, int d2, int d3, int d4, int d5)
         {
             int[] tallies;
@@ -185,7 +174,6 @@ namespace Yatzy
                 return 15;
             return 0;
         }
-
         public static int LargeStraight(int d1, int d2, int d3, int d4, int d5)
         {
             int[] tallies;
@@ -203,7 +191,6 @@ namespace Yatzy
                 return 20;
             return 0;
         }
-
         public static int FullHouse(int d1, int d2, int d3, int d4, int d5)
         {
             int[] tallies;
