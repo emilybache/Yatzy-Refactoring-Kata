@@ -14,6 +14,7 @@ public class Yatzy2Test
         Assert.Equal(16, calculator.Score(new List<int> { 3, 3, 4, 5, 1 }, "CHANCE"));
     }
 
+    [Fact]
     public void yatzy_scores_50()
     {
         Assert.Equal(50, calculator.Score(new List<int> { 4, 4, 4, 4, 4 }, "YATZY"));
@@ -21,6 +22,7 @@ public class Yatzy2Test
         Assert.Equal(0, calculator.Score(new List<int> { 6, 6, 6, 6, 3 }, "YATZY"));
     }
 
+    [Fact]
     public void test_1s()
     {
         Assert.Equal(1, calculator.Score(new List<int> { 1, 2, 3, 4, 5 }, "ONES"));
@@ -29,18 +31,21 @@ public class Yatzy2Test
         Assert.Equal(4, calculator.Score(new List<int> { 1, 2, 1, 1, 1 }, "ONES"));
     }
 
+    [Fact]
     public void twos()
     {
         Assert.Equal(4, calculator.Score(new List<int> { 1, 2, 3, 2, 6 }, "TWOS"));
         Assert.Equal(10, calculator.Score(new List<int> { 2, 2, 2, 2, 2 }, "TWOS"));
     }
 
+    [Fact]
     public void threes()
     {
         Assert.Equal(6, calculator.Score(new List<int> { 1, 2, 3, 2, 3 }, "THREES"));
         Assert.Equal(12, calculator.Score(new List<int> { 2, 3, 3, 3, 3 }, "THREES"));
     }
 
+    [Fact]
     public void fours()
     {
         Assert.Equal(12, calculator.Score(new List<int> { 4, 4, 4, 5, 5 }, "FOURS"));
@@ -48,6 +53,7 @@ public class Yatzy2Test
         Assert.Equal(4, calculator.Score(new List<int> { 4, 5, 5, 5, 5 }, "FOURS"));
     }
 
+    [Fact]
     public void fives()
     {
         Assert.Equal(10, calculator.Score(new List<int> { 4, 4, 4, 5, 5 }, "FIVES"));
@@ -55,6 +61,7 @@ public class Yatzy2Test
         Assert.Equal(20, calculator.Score(new List<int> { 4, 5, 5, 5, 5 }, "FIVES"));
     }
 
+    [Fact]
     public void sixes()
     {
         Assert.Equal(0, calculator.Score(new List<int> { 4, 4, 4, 5, 5 }, "SIXES"));
@@ -62,6 +69,7 @@ public class Yatzy2Test
         Assert.Equal(18, calculator.Score(new List<int> { 6, 5, 6, 6, 5 }, "SIXES"));
     }
 
+    [Fact]
     public void pair()
     {
         Assert.Equal(6, calculator.Score(new List<int> { 3, 4, 3, 5, 6 }, "PAIR"));
@@ -69,12 +77,14 @@ public class Yatzy2Test
         Assert.Equal(12, calculator.Score(new List<int> { 5, 3, 6, 6, 5 }, "PAIR"));
     }
 
+    [Fact]
     public void two_pair()
     {
         Assert.Equal(16, calculator.Score(new List<int> { 3, 3, 5, 4, 5 }, "TWO_PAIRS"));
         Assert.Equal(16, calculator.Score(new List<int> { 3, 3, 5, 5, 5 }, "TWO_PAIRS"));
     }
 
+    [Fact]
     public void three_of_a_kind()
     {
         Assert.Equal(9, calculator.Score(new List<int> { 3, 3, 3, 4, 5 }, "THREE_OF_A_KIND"));
@@ -82,6 +92,7 @@ public class Yatzy2Test
         Assert.Equal(9, calculator.Score(new List<int> { 3, 3, 3, 3, 5 }, "THREE_OF_A_KIND"));
     }
 
+    [Fact]
     public void four_of_a_knd()
     {
         Assert.Equal(12, calculator.Score(new List<int> { 3, 3, 3, 3, 5 }, "FOUR_OF_A_KIND"));
@@ -89,6 +100,7 @@ public class Yatzy2Test
         Assert.Equal(12, calculator.Score(new List<int> { 3, 3, 3, 3, 3 }, "FOUR_OF_A_KIND"));
     }
 
+    [Fact]
     public void smallStraight()
     {
         Assert.Equal(15, calculator.Score(new List<int> { 1, 2, 3, 4, 5 }, "SMALL_STRAIGHT"));
@@ -96,6 +108,7 @@ public class Yatzy2Test
         Assert.Equal(0, calculator.Score(new List<int> { 1, 2, 2, 4, 5 }, "SMALL_STRAIGHT"));
     }
 
+    [Fact]
     public void largeStraight()
     {
         Assert.Equal(20, calculator.Score(new List<int> { 6, 2, 3, 4, 5 }, "LARGE_STRAIGHT"));
@@ -103,6 +116,7 @@ public class Yatzy2Test
         Assert.Equal(0, calculator.Score(new List<int> { 1, 2, 2, 4, 5 }, "LARGE_STRAIGHT"));
     }
 
+    [Fact]
     public void fullHouse()
     {
         Assert.Equal(18, calculator.Score(new List<int> { 6, 2, 2, 2, 6 }, "FULL_HOUSE"));
