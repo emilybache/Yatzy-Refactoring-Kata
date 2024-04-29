@@ -66,7 +66,7 @@ class Yatzy:
             s += 3
         return s
 
-    def __init__(self, d1, d2, d3, d4, _5):
+    def __init__(self, d1=0, d2=0, d3=0, d4=0, _5=0):
         self.dice = [0] * 5
         self.dice[0] = d1
         self.dice[1] = d2
@@ -96,8 +96,7 @@ class Yatzy:
                 sum = sum + 6
         return sum
 
-    @staticmethod
-    def score_pair(d1, d2, d3, d4, d5):
+    def score_pair(self, d1, d2, d3, d4, d5):
         counts = [0] * 6
         counts[d1 - 1] += 1
         counts[d2 - 1] += 1
