@@ -21,6 +21,17 @@ public class Yatzy2 implements YatzyCalculator {
     @Override
     public int score(List<Integer> dice, String categoryName) {
         YatzyCategory category = YatzyCategory.valueOf(categoryName);
+
+        // calculate dice frequencies
+        HashMap<Integer, Integer> diceFrequencies = new HashMap<>();
+        for (int i : DICE_VALUES) {
+            diceFrequencies.put(i, 0);
+        }
+        for (int die : dice) {
+            diceFrequencies.put(die, diceFrequencies.get(die) + 1);
+        }
+
+        // calculate the score
         int result;
         switch (category) {
             case CHANCE:
@@ -33,7 +44,7 @@ public class Yatzy2 implements YatzyCalculator {
 
                 // score for yatzy if all dice are the same
                 int yatzyResult = 0;
-                if (frequencies(dice).containsValue(5)) {
+                if (diceFrequencies.containsValue(5)) {
                     yatzyResult = 50;
                 }
                 result = yatzyResult;
@@ -41,32 +52,32 @@ public class Yatzy2 implements YatzyCalculator {
 
             case ONES:
                 // sum all the ones
-                result = frequencies(dice).get(1);
+                result = diceFrequencies.get(1);
                 break;
 
             case TWOS:
                 // sum all the twos
-                result = frequencies(dice).get(2) * 2;
+                result = diceFrequencies.get(2) * 2;
                 break;
 
             case THREES:
                 // sum all the threes
-                result = frequencies(dice).get(3) * 3;
+                result = diceFrequencies.get(3) * 3;
                 break;
 
             case FOURS:
                 // sum all the fours
-                result = frequencies(dice).get(4) * 4;
+                result = diceFrequencies.get(4) * 4;
                 break;
 
             case FIVES:
                 // sum all the fives
-                result = frequencies(dice).get(5) * 5;
+                result = diceFrequencies.get(5) * 5;
                 break;
 
             case SIXES:
                 // sum all the sixes
-                result = frequencies(dice).get(6) * 6;
+                result = diceFrequencies.get(6) * 6;
                 break;
 
             case PAIR:
@@ -75,7 +86,7 @@ public class Yatzy2 implements YatzyCalculator {
                 int pairResult = 0;
                 // score highest pair if there is more than one
                 for (int i : DICE_VALUES) {
-                    if (frequencies(dice).get(i) >= 2) {
+                    if (diceFrequencies.get(i) >= 2) {
                         pairResult = i * 2;
                         break;
                     }
@@ -88,7 +99,7 @@ public class Yatzy2 implements YatzyCalculator {
                 // score if three dice are the same
                 int threeKindResult = 0;
                 for (int i : DICE_VALUES) {
-                    if (frequencies(dice).get(i) >= 3) {
+                    if (diceFrequencies.get(i) >= 3) {
                         threeKindResult = i * 3;
                         break;
                     }
@@ -101,7 +112,7 @@ public class Yatzy2 implements YatzyCalculator {
                 // score if four dice are the same
                 int fourKindResult = 0;
                 for (int i : DICE_VALUES) {
-                    if (frequencies(dice).get(i) >= 4) {
+                    if (diceFrequencies.get(i) >= 4) {
                         fourKindResult = i * 4;
                         break;
                     }
@@ -114,12 +125,12 @@ public class Yatzy2 implements YatzyCalculator {
                 // score if dice contains 1,2,3,4,5
                 int smallStraightResult = 0;
                 long count = 0L;
-                for (Integer frequency : frequencies(dice).values()) {
+                for (Integer frequency : diceFrequencies.values()) {
                     if (frequency == 1) {
                         count++;
                     }
                 }
-                if (count == 5 && frequencies(dice).get(6) == 0) {
+                if (count == 5 && diceFrequencies.get(6) == 0) {
                     for (Integer die : dice) {
                         smallStraightResult += die;
                     }
@@ -132,12 +143,12 @@ public class Yatzy2 implements YatzyCalculator {
                 // score if dice contains 2,3,4,5,6
                 int largeStraightResult = 0;
                 long straightCount = 0L;
-                for (Integer frequency : frequencies(dice).values()) {
+                for (Integer frequency : diceFrequencies.values()) {
                     if (frequency == 1) {
                         straightCount++;
                     }
                 }
-                if (straightCount == 5 && frequencies(dice).get(1) == 0) {
+                if (straightCount == 5 && diceFrequencies.get(1) == 0) {
                     for (Integer die : dice) {
                         largeStraightResult += die;
                     }
@@ -150,14 +161,14 @@ public class Yatzy2 implements YatzyCalculator {
                 // score if there are two pairs
                 int twoPairResult = 0;
                 long pairCount = 0L;
-                for (Integer frequency : frequencies(dice).values()) {
+                for (Integer frequency : diceFrequencies.values()) {
                     if (frequency >= 2) {
                         pairCount++;
                     }
                 }
                 if (pairCount == 2) {
                     for (int i : DICE_VALUES) {
-                        if (frequencies(dice).get(i) >= 2) {
+                        if (diceFrequencies.get(i) >= 2) {
                             twoPairResult += i * 2;
                         }
                     }
@@ -169,8 +180,7 @@ public class Yatzy2 implements YatzyCalculator {
 
                 // score if there is a pair as well as three of a kind
                 int fullHouseResult = 0;
-                Map<Integer, Integer> frequencies = frequencies(dice);
-                if (frequencies.containsValue(2) && frequencies.containsValue(3)) {
+                if (diceFrequencies.containsValue(2) && diceFrequencies.containsValue(3)) {
                     for (Integer die : dice) {
                         fullHouseResult += die;
                     }
@@ -182,18 +192,6 @@ public class Yatzy2 implements YatzyCalculator {
                 result = 0;
         }
         return result;
-    }
-
-    Map<Integer, Integer> frequencies(List<Integer> dice) {
-        HashMap<Integer, Integer> frequencies = new HashMap<>();
-        for (int i : DICE_VALUES) {
-            frequencies.put(i, 0);
-        }
-        for (int die : dice) {
-            frequencies.put(die, frequencies.get(die) + 1);
-        }
-
-        return frequencies;
     }
 
 }

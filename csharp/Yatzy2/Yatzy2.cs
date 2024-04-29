@@ -12,6 +12,19 @@ public class Yatzy2
     public int Score(List<int> dice, string categoryName)
     {
         YatzyCategory category = (YatzyCategory)Enum.Parse(typeof(YatzyCategory), categoryName);
+
+        // calculate dice frequencies
+        Dictionary<int, int> diceFrequencies = new Dictionary<int, int>();
+        foreach (int i in DICE_VALUES)
+        {
+            diceFrequencies[i] = 0;
+        }
+        foreach (int die in dice)
+        {
+            diceFrequencies[die]++;
+        }
+        
+        // calculate the score
         int result;
         switch (category)
         {
@@ -25,7 +38,7 @@ public class Yatzy2
 
                 // score for yatzy if all dice are the same
                 int yatzyResult = 0;
-                if (Frequencies(dice).ContainsValue(5))
+                if (diceFrequencies.ContainsValue(5))
                 {
                     yatzyResult = 50;
                 }
@@ -35,32 +48,32 @@ public class Yatzy2
 
             case YatzyCategory.ONES:
                 // sum all the ones
-                result = Frequencies(dice)[1];
+                result = diceFrequencies[1];
                 break;
 
             case YatzyCategory.TWOS:
                 // sum all the twos
-                result = Frequencies(dice)[2] * 2;
+                result = diceFrequencies[2] * 2;
                 break;
 
             case YatzyCategory.THREES:
                 // sum all the threes
-                result = Frequencies(dice)[3] * 3;
+                result = diceFrequencies[3] * 3;
                 break;
 
             case YatzyCategory.FOURS:
                 // sum all the fours
-                result = Frequencies(dice)[4] * 4;
+                result = diceFrequencies[4] * 4;
                 break;
 
             case YatzyCategory.FIVES:
                 // sum all the fives
-                result = Frequencies(dice)[5] * 5;
+                result = diceFrequencies[5] * 5;
                 break;
 
             case YatzyCategory.SIXES:
                 // sum all the sixes
-                result = Frequencies(dice)[6] * 6;
+                result = diceFrequencies[6] * 6;
                 break;
 
             case YatzyCategory.PAIR:
@@ -70,7 +83,7 @@ public class Yatzy2
                 // score highest pair if there is more than one
                 foreach (int i in DICE_VALUES)
                 {
-                    if (Frequencies(dice)[i] >= 2)
+                    if (diceFrequencies[i] >= 2)
                     {
                         pairResult = i * 2;
                         break;
@@ -86,7 +99,7 @@ public class Yatzy2
                 int threeKindResult = 0;
                 foreach (int i in DICE_VALUES)
                 {
-                    if (Frequencies(dice)[i] >= 3)
+                    if (diceFrequencies[i] >= 3)
                     {
                         threeKindResult = i * 3;
                         break;
@@ -102,7 +115,7 @@ public class Yatzy2
                 int fourKindResult = 0;
                 foreach (int i in DICE_VALUES)
                 {
-                    if (Frequencies(dice)[i] >= 4)
+                    if (diceFrequencies[i] >= 4)
                     {
                         fourKindResult = i * 4;
                         break;
@@ -117,7 +130,7 @@ public class Yatzy2
                 // score if dice contains 1,2,3,4,5
                 int smallStraightResult = 0;
                 long count = 0L;
-                foreach (int frequency in Frequencies(dice).Values)
+                foreach (int frequency in diceFrequencies.Values)
                 {
                     if (frequency == 1)
                     {
@@ -125,7 +138,7 @@ public class Yatzy2
                     }
                 }
 
-                if (count == 5 && Frequencies(dice)[6] == 0)
+                if (count == 5 && diceFrequencies[6] == 0)
                 {
                     foreach (int die in dice)
                     {
@@ -141,7 +154,7 @@ public class Yatzy2
                 // score if dice contains 2,3,4,5,6
                 int largeStraightResult = 0;
                 long straightCount = 0L;
-                foreach (int frequency in Frequencies(dice).Values)
+                foreach (int frequency in diceFrequencies.Values)
                 {
                     if (frequency == 1)
                     {
@@ -149,7 +162,7 @@ public class Yatzy2
                     }
                 }
 
-                if (straightCount == 5 && Frequencies(dice)[1] == 0)
+                if (straightCount == 5 && diceFrequencies[1] == 0)
                 {
                     foreach (int die in dice)
                     {
@@ -165,7 +178,7 @@ public class Yatzy2
                 // score if there are two pairs
                 int twoPairResult = 0;
                 long pairCount = 0L;
-                foreach (int frequency in Frequencies(dice).Values)
+                foreach (int frequency in diceFrequencies.Values)
                 {
                     if (frequency >= 2)
                     {
@@ -177,7 +190,7 @@ public class Yatzy2
                 {
                     foreach (int i in DICE_VALUES)
                     {
-                        if (Frequencies(dice)[i] >= 2)
+                        if (diceFrequencies[i] >= 2)
                         {
                             twoPairResult += i * 2;
                         }
@@ -191,8 +204,7 @@ public class Yatzy2
 
                 // score if there is a pair as well as three of a kind
                 int fullHouseResult = 0;
-                Dictionary<int, int> frequencies = Frequencies(dice);
-                if (frequencies.ContainsValue(2) && frequencies.ContainsValue(3))
+                if (diceFrequencies.ContainsValue(2) && diceFrequencies.ContainsValue(3))
                 {
                     foreach (int die in dice)
                     {
@@ -209,21 +221,5 @@ public class Yatzy2
         }
 
         return result;
-    }
-
-    public Dictionary<int, int> Frequencies(List<int> dice)
-    {
-        Dictionary<int, int> frequencies = new Dictionary<int, int>();
-        foreach (int i in DICE_VALUES)
-        {
-            frequencies[i] = 0;
-        }
-
-        foreach (int die in dice)
-        {
-            frequencies[die]++;
-        }
-
-        return frequencies;
     }
 }
