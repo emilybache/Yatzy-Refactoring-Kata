@@ -39,6 +39,7 @@ public:
     }
 
     int score(const std::vector<int> &dice, std::string categoryName) {
+        // identify category from string input
         YatzyCategory category;
         static std::unordered_map<std::string, YatzyCategory> const table = {
                 {"CHANCE",          YatzyCategory::CHANCE},
