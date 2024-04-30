@@ -36,9 +36,22 @@ var Yatzy = function(d1, d2, d3, d4, _5) {
                 sum = sum + 6;
         return sum;
     }
+
+    this.score_pair = function(d1, d2, d3, d4, d5)
+    {
+        var counts = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+        counts[d1-1]++;
+        counts[d2-1]++;
+        counts[d3-1]++;
+        counts[d4-1]++;
+        counts[d5-1]++;
+        var at;
+        for (at = 0; at != 6; at++)
+            if (counts[6-at-1] >= 2)
+                return (6-at)*2;
+        return 0;
+    }
 }
-
-
 
 Yatzy.chance = function(d1, d2, d3, d4, d5) {
     var total = 0;
@@ -92,21 +105,6 @@ Yatzy.threes = function(d1, d2, d3, d4, d5) {
     if (d4 == 3) s += 3;
     if (d5 == 3) s += 3;
     return s;
-}
-
-Yatzy.score_pair = function(d1, d2, d3, d4, d5)
-{
-    var counts = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-    counts[d1-1]++;
-    counts[d2-1]++;
-    counts[d3-1]++;
-    counts[d4-1]++;
-    counts[d5-1]++;
-    var at;
-    for (at = 0; at != 6; at++)
-        if (counts[6-at-1] >= 2)
-            return (6-at)*2;
-    return 0;
 }
 
 Yatzy.two_pair = function(d1, d2, d3, d4, d5)
@@ -234,5 +232,3 @@ Yatzy.fullHouse = function(d1, d2, d3, d4, d5)
 }
 
 module.exports = Yatzy;
-
-
