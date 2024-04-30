@@ -4,7 +4,9 @@ var Yatzy = require("../lib/yatzy1");
 
 describe('Chance', function() {
     it('scores sum of all dice', function(){
-        assert.equal(15, Yatzy.chance(2, 3, 4, 5, 1));
+        let expected = 15;
+        let actual = Yatzy.chance(2, 3, 4, 5, 1);
+        assert.equal(expected, actual);
         assert.equal(16, Yatzy.chance(3, 3, 4, 5, 1));
     });
 });
