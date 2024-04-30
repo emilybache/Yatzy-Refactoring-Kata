@@ -4,6 +4,6 @@
   "description": "Code for a refactoring exercise about the game of Yatzy",
   "dependencies": {},
   "devDependencies": {
-    "mocha": "^8.2.1"
+    "mocha": "^10.4.0"
   }
 }
