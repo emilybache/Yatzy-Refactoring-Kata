@@ -10,9 +10,6 @@ import java.util.stream.IntStream;
 
 @UtilityClass
 public class YatzyHelper {
-    public static int calculateScoreByNumber(int number, List<Integer> diceValues) {
-        return 0;
-    }
 
     public static int findFrequency(int number, List<Integer> diceValues) {
         return 0;
