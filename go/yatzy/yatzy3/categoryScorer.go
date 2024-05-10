@@ -27,6 +27,12 @@ func newCategoryScorer(categoryName string) categoryScorer {
 		return numberScorer{number: 5}
 	case yatzy.Categories.SIXES:
 		return numberScorer{number: 6}
+	case yatzy.Categories.PAIR:
+		return repeatedCountScorer{count: 2}
+	case yatzy.Categories.THREE_OF_A_KIND:
+		return repeatedCountScorer{count: 3}
+	case yatzy.Categories.FOUR_OF_A_KIND:
+		return repeatedCountScorer{count: 4}
 	default:
 		return nilScorer{}
 	}
@@ -55,6 +61,20 @@ type numberScorer struct {
 
 func (n numberScorer) calculateScore(dice []int) int {
 	return frequencies(dice)[n.number] * n.number
+}
+
+type repeatedCountScorer struct {
+	count int
+}
+
+func (r repeatedCountScorer) calculateScore(dice []int) int {
+	frequencies := frequencies(dice)
+	for _, i := range []int{6, 5, 4, 3, 2, 1} {
+		if v := frequencies[i]; v >= r.count {
+			return i * r.count
+		}
+	}
+	return 0
 }
 
 type nilScorer struct{}
