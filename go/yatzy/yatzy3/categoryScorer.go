@@ -37,6 +37,8 @@ func newCategoryScorer(categoryName string) categoryScorer {
 		return straightScorer{includes: 1}
 	case yatzy.Categories.LARGE_STRAIGHT:
 		return straightScorer{includes: 6}
+	case yatzy.Categories.TWO_PAIRS:
+		return twoPairScorer{}
 	case yatzy.Categories.FULL_HOUSE:
 		return fullHouseScorer{}
 	default:
@@ -102,6 +104,27 @@ func (s straightScorer) isStraight(dice []int) bool {
 		}
 	}
 	return count == 5
+}
+
+type twoPairScorer struct{}
+
+func (ts twoPairScorer) calculateScore(dice []int) int {
+	freqs := frequencies(dice)
+	var score int
+	var numPairs int
+	for _, v := range freqs {
+		if v >= 2 {
+			numPairs += 1
+		}
+	}
+	if numPairs == 2 {
+		for _, i := range []int{6, 5, 4, 3, 2, 1} {
+			if freqs[i] >= 2 {
+				score += i * 2
+			}
+		}
+	}
+	return score
 }
 
 type fullHouseScorer struct{}
