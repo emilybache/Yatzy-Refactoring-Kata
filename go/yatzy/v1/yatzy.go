@@ -1,4 +1,4 @@
-package yatzy1
+package v1
 
 type YatzyStruct struct {
 	dice []int

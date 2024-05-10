@@ -2,8 +2,8 @@ package test
 
 import (
 	"github.com/emilybache/yatzy-refactoring-kata/yatzy"
-	"github.com/emilybache/yatzy-refactoring-kata/yatzy/yatzy2"
-	"github.com/emilybache/yatzy-refactoring-kata/yatzy/yatzy3"
+	"github.com/emilybache/yatzy-refactoring-kata/yatzy/v2"
+	"github.com/emilybache/yatzy-refactoring-kata/yatzy/v3"
 	"github.com/stretchr/testify/suite"
 	"testing"
 )
@@ -15,11 +15,11 @@ func TestImplementationOf(t *testing.T) {
 	}{
 		{
 			name: "Yatzy2",
-			calc: &yatzy2.Yatzy{},
+			calc: &v2.Yatzy{},
 		},
 		{
 			name: "Yatzy3",
-			calc: &yatzy3.Yatzy{},
+			calc: &v3.Yatzy{},
 		},
 	}
 	for _, tt := range tests {

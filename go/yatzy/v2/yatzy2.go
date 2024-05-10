@@ -1,4 +1,4 @@
-package yatzy2
+package v2
 
 import "github.com/emilybache/yatzy-refactoring-kata/yatzy"
 
