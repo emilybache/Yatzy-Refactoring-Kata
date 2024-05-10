@@ -33,6 +33,10 @@ func newCategoryScorer(categoryName string) categoryScorer {
 		return repeatedCountScorer{count: 3}
 	case yatzy.Categories.FOUR_OF_A_KIND:
 		return repeatedCountScorer{count: 4}
+	case yatzy.Categories.SMALL_STRAIGHT:
+		return straightScorer{includes: 1}
+	case yatzy.Categories.LARGE_STRAIGHT:
+		return straightScorer{includes: 6}
 	default:
 		return nilScorer{}
 	}
@@ -75,6 +79,27 @@ func (r repeatedCountScorer) calculateScore(dice []int) int {
 		}
 	}
 	return 0
+}
+
+type straightScorer struct {
+	includes int
+}
+
+func (s straightScorer) calculateScore(dice []int) int {
+	if s.isStraight(dice) && frequencies(dice)[s.includes] != 0 {
+		return sum(dice)
+	}
+	return 0
+}
+
+func (s straightScorer) isStraight(dice []int) bool {
+	count := 0
+	for _, v := range frequencies(dice) {
+		if v == 1 {
+			count += 1
+		}
+	}
+	return count == 5
 }
 
 type nilScorer struct{}
