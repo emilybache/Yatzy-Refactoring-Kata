@@ -1,4 +1,4 @@
-package test
+package yatzy_test
 
 import (
 	"github.com/emilybache/yatzy-refactoring-kata/yatzy"
@@ -45,7 +45,7 @@ func (t *yatzySuite) Test_yatzy_scores_50() {
 	t.Require().Equal(0, t.calc.Score([]int{6, 6, 6, 6, 3}, "yatzy"))
 }
 
-func (t *yatzySuite) Test_test_1s() {
+func (t *yatzySuite) Test_1s() {
 	t.Require().Equal(1, t.calc.Score([]int{1, 2, 3, 4, 5}, "ones"))
 	t.Require().Equal(2, t.calc.Score([]int{1, 2, 1, 4, 5}, "ones"))
 	t.Require().Equal(0, t.calc.Score([]int{6, 2, 2, 4, 5}, "ones"))
