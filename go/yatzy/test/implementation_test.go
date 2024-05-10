@@ -8,7 +8,7 @@ import (
 	"testing"
 )
 
-func TestImplementations(t *testing.T) {
+func TestImplementationOf(t *testing.T) {
 	tests := []struct {
 		name string
 		calc yatzy.Calculator
