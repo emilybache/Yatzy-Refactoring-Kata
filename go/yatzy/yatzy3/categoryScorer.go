@@ -37,6 +37,8 @@ func newCategoryScorer(categoryName string) categoryScorer {
 		return straightScorer{includes: 1}
 	case yatzy.Categories.LARGE_STRAIGHT:
 		return straightScorer{includes: 6}
+	case yatzy.Categories.FULL_HOUSE:
+		return fullHouseScorer{}
 	default:
 		return nilScorer{}
 	}
@@ -100,6 +102,26 @@ func (s straightScorer) isStraight(dice []int) bool {
 		}
 	}
 	return count == 5
+}
+
+type fullHouseScorer struct{}
+
+func (fullHouseScorer) calculateScore(dice []int) int {
+	frequencies := frequencies(dice)
+	var foundTwo bool
+	var foundThree bool
+	for _, v := range frequencies {
+		if v == 2 {
+			foundTwo = true
+		}
+		if v == 3 {
+			foundThree = true
+		}
+	}
+	if foundTwo && foundThree {
+		return sum(dice)
+	}
+	return 0
 }
 
 type nilScorer struct{}
