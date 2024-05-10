@@ -15,6 +15,18 @@ func newCategoryScorer(categoryName string) categoryScorer {
 		return chanceScorer{}
 	case yatzy.Categories.YATZY:
 		return yatzyScorer{}
+	case yatzy.Categories.ONES:
+		return numberScorer{number: 1}
+	case yatzy.Categories.TWOS:
+		return numberScorer{number: 2}
+	case yatzy.Categories.THREES:
+		return numberScorer{number: 3}
+	case yatzy.Categories.FOURS:
+		return numberScorer{number: 4}
+	case yatzy.Categories.FIVES:
+		return numberScorer{number: 5}
+	case yatzy.Categories.SIXES:
+		return numberScorer{number: 6}
 	default:
 		return nilScorer{}
 	}
@@ -35,6 +47,14 @@ func (yatzyScorer) calculateScore(dice []int) int {
 		}
 	}
 	return 0
+}
+
+type numberScorer struct {
+	number int
+}
+
+func (n numberScorer) calculateScore(dice []int) int {
+	return frequencies(dice)[n.number] * n.number
 }
 
 type nilScorer struct{}
