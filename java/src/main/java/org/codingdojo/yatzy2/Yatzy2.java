@@ -6,6 +6,7 @@ import org.codingdojo.YatzyCategory;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Yatzy2 implements YatzyCalculator {
@@ -177,24 +178,20 @@ public class Yatzy2 implements YatzyCalculator {
 
             case FULL_HOUSE:
 
-                result = fullHouseResult(dice, diceFrequencies);
+                // score if there is a pair as well as three of a kind
+                int fullHouseResult = 0;
+                if (diceFrequencies.containsValue(2) && diceFrequencies.containsValue(3)) {
+                    for (Integer die : dice) {
+                        fullHouseResult += die;
+                    }
+                }
+                result = fullHouseResult;
                 break;
 
             default:
                 result = 0;
         }
         return result;
-    }
-
-    private static int fullHouseResult(List<Integer> dice, HashMap<Integer, Integer> diceFrequencies) {
-        // score if there is a pair as well as three of a kind
-        int fullHouseResult = 0;
-        if (diceFrequencies.containsValue(2) && diceFrequencies.containsValue(3)) {
-            for (Integer die : dice) {
-                fullHouseResult += die;
-            }
-        }
-        return fullHouseResult;
     }
 
 }
