@@ -18,7 +18,7 @@ const YatzyCategory = Object.freeze({
 
 
 var Yatzy = function () {
-    function calculateFullHouse(diceFrequencies, dice) {
+    function applesauce(diceFrequencies, dice) {
         // score if there is a pair as well as three of a kind
         let fullHouseResult = 0;
         if (Object.values(diceFrequencies).includes(2) &&
@@ -182,7 +182,7 @@ var Yatzy = function () {
                 break;
 
             case YatzyCategory.FULL_HOUSE:
-                result = calculateFullHouse(diceFrequencies, dice);
+                result = applesauce(diceFrequencies, dice);
                 break;
 
             default:
