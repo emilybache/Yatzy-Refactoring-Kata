@@ -30,27 +30,6 @@ var Yatzy = function () {
         return fullHouseResult;
     }
 
-    function calculateTwoPairs(diceFrequencies, DICE_VALUES) {
-        // score if there are two pairs
-        let twoPairResult = 0;
-        let pairCount = 0;
-        for (const frequency of Object.values(diceFrequencies)) {
-            if (frequency >= 2) {
-                pairCount++;
-            }
-        }
-
-        if (pairCount === 2) {
-            for (const i of DICE_VALUES) {
-                if (diceFrequencies[i] >= 2) {
-                    twoPairResult += i * 2;
-                }
-            }
-        }
-
-        return twoPairResult;
-    }
-
     this.score = function (dice, categoryName) {
         const category = YatzyCategory[categoryName];
 
@@ -182,7 +161,24 @@ var Yatzy = function () {
                 break;
 
             case YatzyCategory.TWO_PAIRS:
-                result = calculateTwoPairs(diceFrequencies, DICE_VALUES);
+                // score if there are two pairs
+                let twoPairResult = 0;
+                let pairCount = 0;
+                for (const frequency of Object.values(diceFrequencies)) {
+                    if (frequency >= 2) {
+                        pairCount++;
+                    }
+                }
+
+                if (pairCount === 2) {
+                    for (const i of DICE_VALUES) {
+                        if (diceFrequencies[i] >= 2) {
+                            twoPairResult += i * 2;
+                        }
+                    }
+                }
+
+                result = twoPairResult;
                 break;
 
             case YatzyCategory.FULL_HOUSE:
