@@ -157,7 +157,22 @@ public class Yatzy2 implements YatzyCalculator {
 
             case TWO_PAIRS:
 
-                result = twoPairsResult(diceFrequencies);
+                // score if there are two pairs
+                int twoPairResult = 0;
+                long pairCount = 0L;
+                for (Integer frequency : diceFrequencies.values()) {
+                    if (frequency >= 2) {
+                        pairCount++;
+                    }
+                }
+                if (pairCount == 2) {
+                    for (int i : DICE_VALUES) {
+                        if (diceFrequencies.get(i) >= 2) {
+                            twoPairResult += i * 2;
+                        }
+                    }
+                }
+                result = twoPairResult;
                 break;
 
             case FULL_HOUSE:
@@ -169,25 +184,6 @@ public class Yatzy2 implements YatzyCalculator {
                 result = 0;
         }
         return result;
-    }
-
-    private static int twoPairsResult(HashMap<Integer, Integer> diceFrequencies) {
-        // score if there are two pairs
-        int twoPairResult = 0;
-        long pairCount = 0L;
-        for (Integer frequency : diceFrequencies.values()) {
-            if (frequency >= 2) {
-                pairCount++;
-            }
-        }
-        if (pairCount == 2) {
-            for (int i : DICE_VALUES) {
-                if (diceFrequencies.get(i) >= 2) {
-                    twoPairResult += i * 2;
-                }
-            }
-        }
-        return twoPairResult;
     }
 
     private static int fullHouseResult(List<Integer> dice, HashMap<Integer, Integer> diceFrequencies) {
