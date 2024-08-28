@@ -2,7 +2,7 @@ _Support this and all my katas via [Patreon](https://www.patreon.com/EmilyBache)
  
  # Yatzy Refactoring Kata
 
-There is a [top code kata video](https://youtu.be/SvcJKNF_nRQ) explaining why you might want to try this refactoring kata. It is also used in my video [Unlock the Power of Refactoring in Everyday OO Design](https://youtu.be/sngRW3zPiiE).
+There is a [top code kata video](https://youtu.be/SvcJKNF_nRQ) explaining why you might want to try this refactoring kata. It is also used in my videos [Unlock the Power of Refactoring in Everyday OO Design](https://youtu.be/sngRW3zPiiE) and [Reduce Method Sprawl with Code Paragraphs](https://youtu.be/tPz1riXOrYk).
 
 If you like this Kata, you may be interested in [my books](https://leanpub.com/u/emilybache) and website [SammanCoaching.org](https://sammancoaching.org)
 
