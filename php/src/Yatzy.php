@@ -27,7 +27,7 @@ class Yatzy
      */
     public static function yatzyScore(array $dice): int
     {
-        $counts = array_fill(0, count($dice) + 1, 0);
+        $counts = array_fill(0, 6, 0);
         foreach ($dice as $die) {
             $counts[$die - 1] += 1;
         }
