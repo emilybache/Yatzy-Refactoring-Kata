@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@types/mocha": "^5.2.0",
-    "mocha": "^10.2.0",
+    "mocha": "^10.8.2",
     "ts-node": "^6.0.5",
     "typescript": "^2.8.3"
   },
