@@ -1,12 +1,12 @@
-package Yatzy
+package yatzy.yatzy1
 
-class Yatzy(
-    private val d1: Int,
-    private val d2: Int,
-    val d3: Int,
-    private val d4: Int,
-    val d5: Int
-) {
+class Yatzy1(
+              private val d1: Int,
+              private val d2: Int,
+              val d3: Int,
+              private val d4: Int,
+              val d5: Int
+            ) {
   val dice: List[Int] = List(d1, d2, d3, d4, d5)
 
   def fives(): Int = {
@@ -38,7 +38,7 @@ class Yatzy(
   }
 }
 
-object Yatzy {
+object Yatzy1 {
   def Yatzy(dice: Int*): Int = {
     val counts = new Array[Int](6)
     for (die <- dice) {
@@ -166,10 +166,10 @@ object Yatzy {
     tallies(d5 - 1) += 1
     if (
       tallies(0) == 1 &&
-      tallies(1) == 1 &&
-      tallies(2) == 1 &&
-      tallies(3) == 1 &&
-      tallies(4) == 1
+        tallies(1) == 1 &&
+        tallies(2) == 1 &&
+        tallies(3) == 1 &&
+        tallies(4) == 1
     ) 15
     else 0
   }
@@ -183,10 +183,10 @@ object Yatzy {
     tallies(d5 - 1) += 1
     if (
       tallies(1) == 1 &&
-      tallies(2) == 1 &&
-      tallies(3) == 1 &&
-      tallies(4) == 1 &&
-      tallies(5) == 1
+        tallies(2) == 1 &&
+        tallies(3) == 1 &&
+        tallies(4) == 1 &&
+        tallies(5) == 1
     ) return 20
     0
   }
