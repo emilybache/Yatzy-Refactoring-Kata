@@ -6,7 +6,7 @@ import yatzy.YatzyCategory.*
 import scala.util.boundary
 import scala.util.boundary.break
 
-object Yatzy2 { private[yatzy2] val DICE_VALUES = List(6, 5, 4, 3, 2, 1) }
+object Yatzy2 { private val DICE_VALUES = List(6, 5, 4, 3, 2, 1) }
 class Yatzy2 extends YatzyCalculator {
 //  override def validCategories: List[String] = util.Arrays.stream(YatzyCategory.values).map(_.toString).collect(Collectors.toList)
   override def validCategories: List[String] = YatzyCategory.values.map(_.toString).toList
