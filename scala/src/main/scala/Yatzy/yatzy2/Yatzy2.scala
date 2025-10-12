@@ -64,7 +64,7 @@ class Yatzy2 extends YatzyCalculator {
           for (i <- Yatzy2.DICE_VALUES) {
             if (diceFrequencies(i) >= 2) {
               pairResult = i * 2
-              break() //todo: break is not supported
+              break()
 
             }
           }
@@ -78,7 +78,7 @@ class Yatzy2 extends YatzyCalculator {
           for (i <- Yatzy2.DICE_VALUES) {
             if (diceFrequencies(i) >= 3) {
               threeKindResult = i * 3
-              break() //todo: break is not supported
+              break()
             }
           }
         }
@@ -91,7 +91,7 @@ class Yatzy2 extends YatzyCalculator {
           for (i <- Yatzy2.DICE_VALUES) {
             if (diceFrequencies(i) >= 4) {
               fourKindResult = i * 4
-              break() //todo: break is not supported
+              break()
             }
           }
         }
