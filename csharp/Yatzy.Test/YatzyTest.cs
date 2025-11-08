@@ -1,127 +1,132 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using ApprovalTests;
+using ApprovalTests.Reporters;
 using Xunit;
 
 namespace Yatzy.Test
 {
+    [UseReporter(typeof(DiffReporter))]
     public class YatzyTest
     {
         [Fact]
         public void Chance_scores_sum_of_all_dice()
         {
-            var expected = 15;
-            var actual = Yatzy.Chance(2, 3, 4, 5, 1);
-            Assert.Equal(expected, actual);
-            Assert.Equal(16, Yatzy.Chance(3, 3, 4, 5, 1));
+            CheckAll(dice => Yatzy.Chance(dice.Die1, dice.Die2, dice.Die3, dice.Die4, dice.Die5));
         }
 
         [Fact]
         public void Fact_1s()
         {
-            Assert.True(Yatzy.Ones(1, 2, 3, 4, 5) == 1);
-            Assert.Equal(2, Yatzy.Ones(1, 2, 1, 4, 5));
-            Assert.Equal(0, Yatzy.Ones(6, 2, 2, 4, 5));
-            Assert.Equal(4, Yatzy.Ones(1, 2, 1, 1, 1));
+            CheckAll(dice => Yatzy.Ones(dice.Die1, dice.Die2, dice.Die3, dice.Die4, dice.Die5));
         }
 
         [Fact]
         public void Fact_2s()
         {
-            Assert.Equal(4, Yatzy.Twos(1, 2, 3, 2, 6));
-            Assert.Equal(10, Yatzy.Twos(2, 2, 2, 2, 2));
+            CheckAll(dice => Yatzy.Twos(dice.Die1, dice.Die2, dice.Die3, dice.Die4, dice.Die5));
         }
 
         [Fact]
         public void Fact_threes()
         {
-            Assert.Equal(6, Yatzy.Threes(1, 2, 3, 2, 3));
-            Assert.Equal(12, Yatzy.Threes(2, 3, 3, 3, 3));
+            CheckAll(dice => Yatzy.Threes(dice.Die1, dice.Die2, dice.Die3, dice.Die4, dice.Die5));
         }
 
         [Fact]
         public void fives()
         {
-            Assert.Equal(10, new Yatzy(4, 4, 4, 5, 5).Fives());
-            Assert.Equal(15, new Yatzy(4, 4, 5, 5, 5).Fives());
-            Assert.Equal(20, new Yatzy(4, 5, 5, 5, 5).Fives());
+            CheckAll(dice => new Yatzy(dice.Die1, dice.Die2, dice.Die3, dice.Die4, dice.Die5).Fives());
         }
 
         [Fact]
         public void four_of_a_knd()
         {
-            Assert.Equal(12, Yatzy.FourOfAKind(3, 3, 3, 3, 5));
-            Assert.Equal(20, Yatzy.FourOfAKind(5, 5, 5, 4, 5));
-            Assert.Equal(12, Yatzy.FourOfAKind(3, 3, 3, 3, 3));
+            CheckAll(dice => Yatzy.FourOfAKind(dice.Die1, dice.Die2, dice.Die3, dice.Die4, dice.Die5));
         }
 
         [Fact]
         public void fours_Fact()
         {
-            Assert.Equal(12, new Yatzy(4, 4, 4, 5, 5).Fours());
-            Assert.Equal(8, new Yatzy(4, 4, 5, 5, 5).Fours());
-            Assert.Equal(4, new Yatzy(4, 5, 5, 5, 5).Fours());
+            CheckAll(dice => new Yatzy(dice.Die1, dice.Die2, dice.Die3, dice.Die4, dice.Die5).Fours());
         }
 
         [Fact]
         public void fullHouse()
         {
-            Assert.Equal(18, Yatzy.FullHouse(6, 2, 2, 2, 6));
-            Assert.Equal(0, Yatzy.FullHouse(2, 3, 4, 5, 6));
+            CheckAll(dice => Yatzy.FullHouse(dice.Die1, dice.Die2, dice.Die3, dice.Die4, dice.Die5));
         }
 
         [Fact]
         public void largeStraight()
         {
-            Assert.Equal(20, Yatzy.LargeStraight(6, 2, 3, 4, 5));
-            Assert.Equal(20, Yatzy.LargeStraight(2, 3, 4, 5, 6));
-            Assert.Equal(0, Yatzy.LargeStraight(1, 2, 2, 4, 5));
+            CheckAll(dice => Yatzy.LargeStraight(dice.Die1, dice.Die2, dice.Die3, dice.Die4, dice.Die5));
         }
 
         [Fact]
         public void one_pair()
         {
-            Assert.Equal(6, Yatzy.ScorePair(3, 4, 3, 5, 6));
-            Assert.Equal(10, Yatzy.ScorePair(5, 3, 3, 3, 5));
-            Assert.Equal(12, Yatzy.ScorePair(5, 3, 6, 6, 5));
+            CheckAll(dice => Yatzy.ScorePair(dice.Die1, dice.Die2, dice.Die3, dice.Die4, dice.Die5));
         }
 
         [Fact]
         public void sixes_Fact()
         {
-            Assert.Equal(0, new Yatzy(4, 4, 4, 5, 5).sixes());
-            Assert.Equal(6, new Yatzy(4, 4, 6, 5, 5).sixes());
-            Assert.Equal(18, new Yatzy(6, 5, 6, 6, 5).sixes());
+            CheckAll(dice => new Yatzy(dice.Die1, dice.Die2, dice.Die3, dice.Die4, dice.Die5).sixes());
         }
 
         [Fact]
         public void smallStraight()
         {
-            Assert.Equal(15, Yatzy.SmallStraight(1, 2, 3, 4, 5));
-            Assert.Equal(15, Yatzy.SmallStraight(2, 3, 4, 5, 1));
-            Assert.Equal(0, Yatzy.SmallStraight(1, 2, 2, 4, 5));
+            CheckAll(dice => Yatzy.SmallStraight(dice.Die1, dice.Die2, dice.Die3, dice.Die4, dice.Die5));
         }
 
         [Fact]
         public void three_of_a_kind()
         {
-            Assert.Equal(9, Yatzy.ThreeOfAKind(3, 3, 3, 4, 5));
-            Assert.Equal(15, Yatzy.ThreeOfAKind(5, 3, 5, 4, 5));
-            Assert.Equal(9, Yatzy.ThreeOfAKind(3, 3, 3, 3, 5));
+            CheckAll(dice => Yatzy.ThreeOfAKind(dice.Die1, dice.Die2, dice.Die3, dice.Die4, dice.Die5));
         }
 
         [Fact]
         public void two_Pair()
         {
-            Assert.Equal(16, Yatzy.TwoPair(3, 3, 5, 4, 5));
-            Assert.Equal(16, Yatzy.TwoPair(3, 3, 5, 5, 5));
+            CheckAll(dice => Yatzy.TwoPair(dice.Die1, dice.Die2, dice.Die3, dice.Die4, dice.Die5));
         }
 
         [Fact]
         public void Yatzy_scores_50()
         {
-            var expected = 50;
-            var actual = Yatzy.yatzy(4, 4, 4, 4, 4);
-            Assert.Equal(expected, actual);
-            Assert.Equal(50, Yatzy.yatzy(6, 6, 6, 6, 6));
-            Assert.Equal(0, Yatzy.yatzy(6, 6, 6, 6, 3));
+            CheckAll(dice => Yatzy.yatzy(dice.Die1, dice.Die2, dice.Die3, dice.Die4, dice.Die5));
+        }
+
+        private static void CheckAll(Func<Throw, int> check)
+        {
+            Approvals.VerifyAll(GenerateAllThrows(), t => $"{t} => {check(t)}");
+        }
+
+        private static IEnumerable<Throw> GenerateAllThrows()
+        {
+            return Enumerable.Range(1, 6).SelectMany(d1 =>
+                Enumerable.Range(1, 6).SelectMany(d2 =>
+                    Enumerable.Range(1, 6).SelectMany(d3 =>
+                        Enumerable.Range(1, 6).SelectMany(d4 =>
+                            Enumerable.Range(1, 6).Select(d5 => new Throw(d1, d2, d3, d4, d5))
+                        )
+                    )
+                )
+            );
+        }
+
+        public readonly struct Throw(int die1, int die2, int die3, int die4, int die5)
+        {
+            public int Die1 => die1;
+            public int Die2 => die2;
+            public int Die3 => die3;
+            public int Die4 => die4;
+            public int Die5 => die5;
+
+            public override string ToString() => $"{Die1}, {Die2}, {Die3}, {Die4}, {Die5}";
         }
     }
 }
