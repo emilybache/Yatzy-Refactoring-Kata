@@ -1,13 +1,10 @@
 {
   "compilerOptions": {
-    "target": "es2017",
-    "module": "commonjs",
     "declaration": false,
     "outDir": "build",
     "rootDir": ".",
     "strict": true,
-    "noUnusedLocals": true,
-    "types": ["node", "mocha"],
+    "types": ["node"],
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true
   },
