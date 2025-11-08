@@ -1,14 +1,10 @@
 {
   "name": "yatzy-refactoring-kata",
   "version": "0.0.1",
-  "dependencies": {
-    "@types/node": "*"
-  },
   "devDependencies": {
     "@jest/globals": "^30.2.0",
     "approvals": "^7.3.0",
     "ts-jest": "^29.4.5",
-    "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   },
   "scripts": {
