@@ -9,10 +9,10 @@
     "@types/node": "*"
   },
   "devDependencies": {
-    "@types/mocha": "^5.2.0",
-    "mocha": "^8.2.1",
-    "ts-node": "^6.0.5",
-    "typescript": "^2.8.3"
+    "@types/mocha": "^10.0.10",
+    "mocha": "^11.7.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
   },
   "scripts": {
     "test": "mocha --require ts-node/register/transpile-only 'test/**/*.ts'",
