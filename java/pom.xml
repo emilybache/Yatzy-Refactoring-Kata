@@ -10,8 +10,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.jupiter.version>5.9.2</junit.jupiter.version>
+        <approvaltests.version>25.7.0</approvaltests.version>
     </properties>
-
 
     <dependencies>
         <dependency>
@@ -35,7 +35,8 @@
         <dependency>
             <groupId>com.approvaltests</groupId>
             <artifactId>approvaltests</artifactId>
-            <version>18.5.0</version>
+            <version>${approvaltests.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <build>
