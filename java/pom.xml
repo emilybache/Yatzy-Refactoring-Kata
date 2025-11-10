@@ -9,7 +9,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <junit.jupiter.version>5.9.2</junit.jupiter.version>
+        <junit.jupiter.version>6.0.1</junit.jupiter.version>
         <approvaltests.version>25.7.0</approvaltests.version>
     </properties>
 
