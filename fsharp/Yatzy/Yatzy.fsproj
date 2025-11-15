@@ -6,5 +6,6 @@
   <ItemGroup>
     <Compile Include="Yatzy1.fs" />
     <Compile Include="Yatzy2.fs" />
+    <Compile Include="Yatzy3.fs" />
   </ItemGroup>
 </Project>
