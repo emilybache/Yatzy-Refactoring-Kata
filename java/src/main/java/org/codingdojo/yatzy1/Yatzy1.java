@@ -1,4 +1,6 @@
-public class Yatzy {
+package org.codingdojo.yatzy1;
+
+public class Yatzy1 {
 
     public static int chance(int d1, int d2, int d3, int d4, int d5)
     {
@@ -56,8 +58,10 @@ public class Yatzy {
     }
 
     protected int[] dice;
-    public Yatzy(int d1, int d2, int d3, int d4, int _5)
+    public Yatzy1() {}
+    public Yatzy1(int d1, int d2, int d3, int d4, int _5)
     {
+        this();
         dice = new int[5];
         dice[0] = d1;
         dice[1] = d2;
@@ -97,7 +101,7 @@ public class Yatzy {
         return sum;
     }
 
-    public static int score_pair(int d1, int d2, int d3, int d4, int d5)
+    public int score_pair(int d1, int d2, int d3, int d4, int d5)
     {
         int[] counts = new int[6];
         counts[d1-1]++;
@@ -162,6 +166,7 @@ public class Yatzy {
                 return (i+1) * 3;
         return 0;
     }
+
 
     public static int smallStraight(int d1, int d2, int d3, int d4, int d5)
     {
