@@ -2,8 +2,12 @@
   "name": "yatzy-refactoring-kata",
   "version": "0.0.1",
   "description": "Code for a refactoring exercise about the game of Yatzy",
-  "dependencies": {},
   "devDependencies": {
-    "mocha": "^8.2.1"
+    "@jest/globals": "^30.2.0",
+    "approvals": "^7.3.0"
+  },
+  "scripts": {
+    "test": "jest",
+    "watch": "jest --watch"
   }
 }
