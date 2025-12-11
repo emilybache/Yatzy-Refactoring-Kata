@@ -7,7 +7,7 @@ namespace Yatzy.Test;
 public class YatzyTest
 {
     [Fact]
-    public void test1()
+    public void Test1()
     {
         Assert.Equal(15, Yatzy1.Yatzy1.Chance(2, 3, 4, 5, 1));
         Assert.Equal(16, Yatzy1.Yatzy1.Chance(3, 3, 4, 5, 1));
